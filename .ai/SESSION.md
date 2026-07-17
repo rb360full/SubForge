@@ -22,10 +22,14 @@
 - Updated README, tasks, and session notes for the MVP milestone
 - Added a connectivity testing stage that filters out dead proxy nodes before publish
 - Added deterministic tests for live and dead TCP endpoints
+- Added a GitHub Actions update workflow scheduled every 8 hours
+- Added support for `TELEGRAM_SESSION_STRING` for non-interactive scheduled runs
+- Updated README to document the scheduled workflow and required secret
 
 ## Notes
 
 - No future subscription business logic was implemented
 - The Python scaffold now includes a usable offline MVP pipeline
 - The MVP pipeline now filters dead nodes with a lightweight connectivity test
+- The scheduled GitHub Actions workflow now runs the pipeline every 8 hours
 - The workspace is ready for the next incremental sprint

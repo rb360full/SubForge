@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import sys
+import os
 from pathlib import Path
 
 from core.config import ConfigurationLoader
@@ -44,6 +45,7 @@ def main(argv: list[str] | None = None) -> int:
     output_dir = Path(config.settings.output_directory)
     api_id = telegram_provider.config.source.get("api_id")
     api_hash = telegram_provider.config.source.get("api_hash")
+    session_string = os.getenv("TELEGRAM_SESSION_STRING")
     if not isinstance(api_id, int) or not isinstance(api_hash, str) or not api_hash.strip():
         print("Telegram provider is missing api_id/api_hash in config/providers.json")
         return 1
@@ -53,6 +55,7 @@ def main(argv: list[str] | None = None) -> int:
             api_id=api_id,
             api_hash=api_hash,
             channels=channels,
+            session_string=session_string.strip() if isinstance(session_string, str) and session_string.strip() else None,
             timeout_seconds=config.settings.default_timeout_seconds,
         )
     )

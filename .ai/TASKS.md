@@ -9,6 +9,7 @@ Use this file to record significant implementation tasks and progress.
 - `packages/core` domain primitives added
 - Python MVP pipeline for parsing, deduplication, generation, and publishing added
 - Connectivity testing stage added to filter dead proxy nodes before publish
+- GitHub Actions update workflow scheduled every 8 hours
 
 ## Next Suggested Tasks
 

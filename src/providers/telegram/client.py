@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Iterable
 
 from telethon import TelegramClient
+from telethon.sessions import StringSession
 
 from models.proxy import ProxyConfig
 from parser.subscription_parser import SubscriptionParser
@@ -19,6 +20,7 @@ class TelegramProviderConfig:
     api_id: int
     api_hash: str
     channels: tuple[str, ...]
+    session_string: str | None = None
     session_name: str = "subforge"
     timeout_seconds: int = 30
 
@@ -34,7 +36,8 @@ class TelegramProvider:
         return asyncio.run(self._collect_async())
 
     async def _collect_async(self) -> list[ProxyConfig]:
-        client = TelegramClient(self._config.session_name, self._config.api_id, self._config.api_hash)
+        session = StringSession(self._config.session_string) if self._config.session_string else self._config.session_name
+        client = TelegramClient(session, self._config.api_id, self._config.api_hash)
         results: list[ProxyConfig] = []
         async with client:
             for channel in self._config.channels:

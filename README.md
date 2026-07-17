@@ -94,7 +94,14 @@ Configuration files continue to live under `config/` and drive the MVP pipeline:
 
 ## GitHub Actions
 
-The repository still contains the workflow skeletons created in the earlier scaffold stage.
+The repository includes a scheduled update workflow at `.github/workflows/update.yml`.
+
+- Runs every 8 hours
+- Installs the Python package
+- Executes the Telegram subscription pipeline
+- Uploads `subscriptions/default.txt` as a workflow artifact
+
+The workflow expects the `TELEGRAM_SESSION_STRING` secret for non-interactive Telegram access.
 
 ## Development Notes
 

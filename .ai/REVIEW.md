@@ -2,45 +2,46 @@
 
 ## Files changed
 
-- `src/tester/connectivity_tester.py`
-- `src/core/pipeline.py`
+- `.github/workflows/update.yml`
+- `src/providers/telegram/client.py`
 - `src/runner.py`
-- `tests/test_subscription_pipeline.py`
+- `README.md`
 - `.ai/TASKS.md`
 - `.ai/SESSION.md`
 - `.ai/REVIEW.md`
 
 ## Architecture changes
 
-- Added a dedicated connectivity testing stage between deduplication and generation.
-- Kept the tester isolated from parsing and publishing logic.
-- The pipeline now filters dead nodes before generating and publishing the final subscription payload.
+- Added a scheduled GitHub Actions execution path for the Telegram subscription pipeline.
+- Introduced support for non-interactive Telegram sessions via `TELEGRAM_SESSION_STRING`.
+- Kept the existing local interactive session behavior intact for manual runs.
 
 ## New classes
 
-- `ConnectivityTester` in `src/tester/connectivity_tester.py`
+- No new classes were added in this milestone.
 
 ## New interfaces
 
-- No new public interface types were added beyond the existing `TestResult` model.
+- No new interface types were added in this milestone.
 
 ## Public APIs
 
-- `ConnectivityTester.test(node)` tests whether a normalized node is reachable over TCP.
-- `SubscriptionPipeline` now accepts an optional `tester` dependency.
+- `TelegramProviderConfig` now accepts `channels` and an optional `session_string`.
+- `src/runner.py` now reads `TELEGRAM_SESSION_STRING` from the environment when available.
+- `.github/workflows/update.yml` now runs every 8 hours and uploads the generated subscription artifact.
 
 ## Risks
 
-- The connectivity stage currently checks TCP reachability only.
-- A TCP-open endpoint may still fail proxy protocol negotiation later.
-- The runner still depends on a live Telegram login session for channel access.
+- The scheduled workflow depends on the `TELEGRAM_SESSION_STRING` secret being present in GitHub.
+- Without that secret, GitHub Actions cannot complete Telegram login non-interactively.
+- The workflow currently uploads an artifact, but it does not publish back to a repository or external distribution target.
 
 ## Technical debt
 
-- Full protocol validation is still not implemented.
-- The Telegram provider is still a fetch-and-parse bridge rather than a richer source adapter.
-- The pipeline does not yet rank nodes after testing.
+- Secret management is still split between checked-in config and GitHub Actions secrets.
+- The Telegram provider still assumes a single Telethon-backed runtime path for all channels.
+- No automated promotion step exists after artifact generation.
 
 ## Next recommended task
 
-- Add protocol-aware handshake checks for supported proxy types so the tester can distinguish an open port from a truly usable proxy endpoint.
+- Add a publish step for the generated subscription artifact, such as committing it to a branch or syncing it to a distribution target.

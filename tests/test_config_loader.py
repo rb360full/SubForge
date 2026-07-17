@@ -18,6 +18,7 @@ def test_configuration_loader_loads_project_config() -> None:
     assert telegram_provider.config.enabled is True
     assert telegram_provider.config.source["channels"] == [
         "https://t.me/iProxyChannel",
+        "https://t.me/Capoit",
         "https://t.me/c/1796213998/108538",
     ]
 
