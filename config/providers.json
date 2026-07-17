@@ -6,9 +6,17 @@
       "type": "telegram",
       "source": {
         "channels": [
-          {"channel": "https://t.me/iProxyChannel", "limit": 5},
-          {"channel": "https://t.me/Capoit", "limit": 5},
-          {"channel": "https://t.me/ConfigsHUB", "limit": 5}
+          {"channel": "https://t.me/Capoit", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/ConfigsHUB", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/daily_configs", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/daily_configs", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/mehrosaboran", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/proxy_mtm", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/VmessProtocol", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/customv2ray", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/oneclickvpnkeys", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/FreakConfig", "limit": 5 , "days": 1}
+          
         ],
         "api_id": 34650676,
         "api_hash": "960a602ffe29a6937bdc66e3f6be60a6",
