@@ -27,11 +27,21 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     raw_channels = telegram_provider.config.source.get("channels")
+    channels: tuple[dict[str, object], ...]
     if isinstance(raw_channels, list):
-        channels = tuple(str(channel).strip() for channel in raw_channels if str(channel).strip())
+        # Normalize channel entries to mapping form: {"channel": "...", "message_thread_id": 123}
+        def _normalize(entry: object) -> dict[str, object] | None:
+            if isinstance(entry, str) and entry.strip():
+                return {"channel": entry.strip()}
+            if isinstance(entry, dict) and entry.get("channel"):
+                return {"channel": str(entry.get("channel", "")).strip(), "message_thread_id": entry.get("message_thread_id")}
+            return None
+
+        normalized = tuple(_normalize(item) for item in raw_channels)
+        channels = tuple(item for item in normalized if item is not None)
     else:
         fallback_channel = str(telegram_provider.config.source.get("channel", "")).strip()
-        channels = (fallback_channel,) if fallback_channel else ()
+        channels = ({"channel": fallback_channel},) if fallback_channel else ()
 
     if not channels:
         print("Telegram provider is missing source.channels in config/providers.json")
@@ -57,6 +67,7 @@ def main(argv: list[str] | None = None) -> int:
             channels=channels,
             session_string=session_string.strip() if isinstance(session_string, str) and session_string.strip() else None,
             timeout_seconds=config.settings.default_timeout_seconds,
+            default_message_limit=telegram_provider.config.source.get("default_message_limit", 50),
         )
     )
     try:
@@ -78,7 +89,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     result = pipeline.run(collected_text, subscription.output_path, source=channels[0])
 
-    print(f"Collected {len(nodes)} Telegram proxy links from {', '.join(channels)}")
+    channel_names = ', '.join(str(c.get("channel") if isinstance(c, dict) else c) for c in channels)
+    print(f"Collected {len(nodes)} Telegram proxy links from {channel_names}")
     print(f"Generated {len(result.nodes)} subscription nodes")
     print(f"Published subscription to {result.published.output_path}")
     print(f"Subscription payload length: {len(result.content)}")

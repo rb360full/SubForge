@@ -8,10 +8,8 @@
         "channels": [
           "https://t.me/iProxyChannel",
           "https://t.me/Capoit",
-          "https://t.me/mehrosaboran",
-          "https://t.me/daily_configs",
+          {"channel": "https://t.me/+YIlqV-fl9y4zMmRk", "message_thread_id": 108538, "limit": 10},
           "https://t.me/ConfigsHUB"
-          
         ],
         "api_id": 34650676,
         "api_hash": "960a602ffe29a6937bdc66e3f6be60a6",
