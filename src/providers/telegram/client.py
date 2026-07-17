@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from dataclasses import dataclass
 from typing import Iterable, Any
 
-from telethon import TelegramClient
+from telethon import TelegramClient, errors
 from telethon.sessions import StringSession
 
 from models.proxy import ProxyConfig
@@ -91,6 +92,44 @@ class TelegramProvider:
                             if getattr(m, "message_thread_id", None) == message_thread_id:
                                 filtered.append(m)
                         messages = filtered
+                except errors.UsernameNotOccupiedError as exc:
+                    logging.getLogger(__name__).warning(
+                        "Skipping Telegram channel %r: username not occupied (%s)",
+                        channel,
+                        exc,
+                    )
+                    continue
+                except errors.UsernameInvalidError as exc:
+                    logging.getLogger(__name__).warning(
+                        "Skipping Telegram channel %r: invalid username (%s)",
+                        channel,
+                        exc,
+                    )
+                    continue
+                except errors.UsernameNotMutualContactError as exc:
+                    logging.getLogger(__name__).warning(
+                        "Skipping Telegram channel %r: username not mutual contact (%s)",
+                        channel,
+                        exc,
+                    )
+                    continue
+                except errors.UsernameNotModifiedError as exc:
+                    logging.getLogger(__name__).warning(
+                        "Skipping Telegram channel %r: username not modified (%s)",
+                        channel,
+                        exc,
+                    )
+                    continue
+                except errors.RPCError as exc:
+                    message = str(exc)
+                    if "No user has" in message:
+                        logging.getLogger(__name__).warning(
+                            "Skipping Telegram channel %r: no user has that username (%s)",
+                            channel,
+                            exc,
+                        )
+                        continue
+                    raise
                 # If we got a list/iterable, apply date filtering if requested
                 filtered_messages = []
                 cutoff: datetime | None = None
