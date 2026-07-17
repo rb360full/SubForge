@@ -25,9 +25,15 @@ def main(argv: list[str] | None = None) -> int:
         print("No enabled Telegram provider found in config/providers.json")
         return 1
 
-    channel = str(telegram_provider.config.source.get("channel", "")).strip()
-    if not channel:
-        print("Telegram provider is missing source.channel in config/providers.json")
+    raw_channels = telegram_provider.config.source.get("channels")
+    if isinstance(raw_channels, list):
+        channels = tuple(str(channel).strip() for channel in raw_channels if str(channel).strip())
+    else:
+        fallback_channel = str(telegram_provider.config.source.get("channel", "")).strip()
+        channels = (fallback_channel,) if fallback_channel else ()
+
+    if not channels:
+        print("Telegram provider is missing source.channels in config/providers.json")
         return 1
 
     subscription = next((item for item in config.subscriptions if item.enabled), None)
@@ -46,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
         TelegramProviderConfig(
             api_id=api_id,
             api_hash=api_hash,
-            channel=channel,
+            channels=channels,
             timeout_seconds=config.settings.default_timeout_seconds,
         )
     )
@@ -57,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     if not nodes:
-        print(f"No proxy links found in channel {channel}")
+        print(f"No proxy links found in channels: {', '.join(channels)}")
         return 1
 
     pipeline = SubscriptionPipeline(
@@ -67,9 +73,9 @@ def main(argv: list[str] | None = None) -> int:
     collected_text = "\n".join(
         node.metadata.get("raw", "") for node in nodes if isinstance(node.metadata.get("raw"), str)
     )
-    result = pipeline.run(collected_text, subscription.output_path, source=channel)
+    result = pipeline.run(collected_text, subscription.output_path, source=channels[0])
 
-    print(f"Collected {len(nodes)} Telegram proxy links from {channel}")
+    print(f"Collected {len(nodes)} Telegram proxy links from {', '.join(channels)}")
     print(f"Generated {len(result.nodes)} subscription nodes")
     print(f"Published subscription to {result.published.output_path}")
     print(f"Subscription payload length: {len(result.content)}")

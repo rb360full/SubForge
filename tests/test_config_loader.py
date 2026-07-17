@@ -16,7 +16,10 @@ def test_configuration_loader_loads_project_config() -> None:
     assert len(config.subscriptions) == 1
     telegram_provider = next(provider for provider in config.providers if provider.name == "telegram")
     assert telegram_provider.config.enabled is True
-    assert telegram_provider.config.source["channel"] == "https://t.me/iProxyChannel"
+    assert telegram_provider.config.source["channels"] == [
+        "https://t.me/iProxyChannel",
+        "https://t.me/c/1796213998/108538",
+    ]
 
 
 def test_configuration_loader_missing_file(tmp_path: Path) -> None:

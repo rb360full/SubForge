@@ -18,7 +18,7 @@ class TelegramProviderConfig:
 
     api_id: int
     api_hash: str
-    channel: str
+    channels: tuple[str, ...]
     session_name: str = "subforge"
     timeout_seconds: int = 30
 
@@ -37,21 +37,22 @@ class TelegramProvider:
         client = TelegramClient(self._config.session_name, self._config.api_id, self._config.api_hash)
         results: list[ProxyConfig] = []
         async with client:
-            messages = await client.get_messages(self._config.channel, limit=50)
-            for message in messages:
-                text = getattr(message, "message", "") or ""
-                if not text.strip():
-                    continue
-                parsed = self._parser.parse_text(text, source=self._config.channel)
-                for node in parsed.nodes:
-                    results.append(
-                        ProxyConfig(
-                            protocol=node.protocol,
-                            host=node.host,
-                            port=node.port,
-                            name=node.remark,
-                            source=node.source,
-                            metadata=node.metadata,
+            for channel in self._config.channels:
+                messages = await client.get_messages(channel, limit=50)
+                for message in messages:
+                    text = getattr(message, "message", "") or ""
+                    if not text.strip():
+                        continue
+                    parsed = self._parser.parse_text(text, source=channel)
+                    for node in parsed.nodes:
+                        results.append(
+                            ProxyConfig(
+                                protocol=node.protocol,
+                                host=node.host,
+                                port=node.port,
+                                name=node.remark,
+                                source=node.source,
+                                metadata=node.metadata,
+                            )
                         )
-                    )
         return results

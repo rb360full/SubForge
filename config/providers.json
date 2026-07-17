@@ -5,7 +5,10 @@
       "enabled": true,
       "type": "telegram",
       "source": {
-        "channel": "https://t.me/iProxyChannel",
+        "channels": [
+          "https://t.me/iProxyChannel",
+          "https://t.me/Capoit"
+        ],
         "api_id": 34650676,
         "api_hash": "960a602ffe29a6937bdc66e3f6be60a6",
         "url": "",
