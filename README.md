@@ -13,7 +13,7 @@ SubForge provides a production-ready foundation for subscription aggregation wit
 - pnpm workspace layout
 - TypeScript ESM packages
 - Minimal executable CLI
-- Parser and core package skeletons
+- Parser and core package primitives
 - Vitest-based testing
 - Cross-platform scripts
 - Clean architecture boundaries
@@ -43,6 +43,12 @@ Generator
 Publisher
 
 Each module has one responsibility and communicates through explicit package boundaries.
+
+## Workspace Packages
+
+- `packages/core` contains shared command and workflow primitives
+- `packages/common` contains reusable utility types
+- `apps/cli` provides the executable command-line interface
 
 ## Installation
 
@@ -83,7 +89,6 @@ The repository still contains the workflow skeletons created in the earlier scaf
 
 ## Future Plans
 
-- Expand `packages/core`
 - Add shared utilities in `packages/common`
 - Introduce real provider adapters
 - Implement parsing, validation, and publishing stages

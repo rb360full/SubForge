@@ -14,6 +14,9 @@
 - Added a Node 22 engine guard and minor maintenance refactors
 - Revalidated build, test, dev, and Python test commands after cleanup
 - Created the `Architecture review and cleanup` commit
+- Added shared command/domain primitives to `packages/core`
+- Expanded `packages/core` tests for command context and matching helpers
+- Updated project documentation to reflect the new core primitives
 
 ## Notes
 

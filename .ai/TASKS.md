@@ -6,10 +6,10 @@ Use this file to record significant implementation tasks and progress.
 
 - Initial pnpm workspace skeleton implemented
 - Architecture review and cleanup completed
+- `packages/core` domain primitives added
 
 ## Next Suggested Tasks
 
-- Expand `packages/core` with domain primitives
 - Add shared utilities in `packages/common`
 - Introduce CLI command routing
 - Add workspace-level linting and formatting configuration
