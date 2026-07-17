@@ -29,6 +29,7 @@ class TelegramProviderConfig:
     session_name: str = "subforge"
     timeout_seconds: int = 30
     default_message_limit: int = 50
+    default_thread_fetch_window: int = 200
 
 
 class TelegramProvider:
@@ -68,9 +69,17 @@ class TelegramProvider:
                     # Some Telethon versions don't accept `message_thread_id`.
                     # Fallback: fetch messages without that kwarg and filter by
                     # the attribute on the returned Message objects.
-                    # If Telethon doesn't accept message_thread_id, fetch a larger
-                    # window when filtering by thread to improve chance of matching.
-                    fetch_limit = max(200, limit) if isinstance(message_thread_id, int) else limit
+                    # Telethon doesn't accept `message_thread_id` in this runtime.
+                    # Respect the per-channel `limit` (or provider default) so we
+                    # never fetch more messages than the user expects. If no
+                    # per-channel limit is provided, fall back to a bounded window
+                    # configured by `default_thread_fetch_window` to increase the
+                    # chance of finding thread messages without going unbounded.
+                    if isinstance(message_thread_id, int):
+                        fetch_limit = limit
+                    else:
+                        window = int(getattr(self._config, "default_thread_fetch_window", 200))
+                        fetch_limit = min(window, limit)
                     messages = await client.get_messages(channel, limit=fetch_limit)
                     if isinstance(message_thread_id, int):
                         filtered = []

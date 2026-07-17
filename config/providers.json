@@ -6,12 +6,15 @@
       "type": "telegram",
       "source": {
         "channels": [
-          {"channel": "https://t.me/iProxyChannel", "limit": 10},
-          {"channel": "https://t.me/Capoit", "limit": 10},
-          {"channel": "https://t.me/ConfigsHUB", "limit": 10}
+          {"channel": "https://t.me/iProxyChannel", "limit": 5},
+          {"channel": "https://t.me/Capoit", "limit": 5},
+          {"channel": "https://t.me/+YIlqV-fl9y4zMmRk", "message_thread_id": 108538, "limit": 1},
+          {"channel": "https://t.me/ConfigsHUB", "limit": 5}
         ],
         "api_id": 34650676,
         "api_hash": "960a602ffe29a6937bdc66e3f6be60a6",
+        "default_message_limit": 10,
+        "default_thread_fetch_window": 50,
         "url": "",
         "timeout_seconds": 30
       }
