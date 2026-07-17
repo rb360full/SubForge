@@ -3,9 +3,8 @@
     {
       "name": "default",
       "enabled": true,
-      "output_path": "subscriptions/default.txt",
+      "output_path": "default.txt",
       "format": "plain"
     }
   ]
 }
-

@@ -60,7 +60,9 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     pipeline = SubscriptionPipeline(output_dir=output_dir)
-    collected_text = "\n".join(node.metadata.get("raw", "") for node in nodes if isinstance(node.metadata.get("raw"), str))
+    collected_text = "\n".join(
+        node.metadata.get("raw", "") for node in nodes if isinstance(node.metadata.get("raw"), str)
+    )
     result = pipeline.run(collected_text, subscription.output_path, source=channel)
 
     print(f"Collected {len(nodes)} Telegram proxy links from {channel}")
