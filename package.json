@@ -1,0 +1,17 @@
+{
+  "name": "subforge",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.13.1",
+  "scripts": {
+    "build": "corepack pnpm -r build",
+    "dev": "tsx apps/cli/src/index.ts",
+    "test": "corepack pnpm -r test"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

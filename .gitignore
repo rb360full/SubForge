@@ -10,8 +10,9 @@ htmlcov/
 venv/
 dist/
 build/
+node_modules/
+.pnpm-store/
 *.log
 *.tmp
 *.swp
 .DS_Store
-
