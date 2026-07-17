@@ -2,7 +2,7 @@
 
 SubForge is a modular subscription pipeline for V2Ray and Xray ecosystems.
 
-It is designed to collect proxy configurations from multiple providers, normalize them into a common model, validate them, remove duplicates, test connectivity, filter dead nodes, and publish subscription outputs in a maintainable pipeline.
+The current MVP can extract supported proxy links from Telegram message text, normalize them into a shared model, remove duplicates, generate an importable subscription payload, and publish that payload to disk.
 
 ## Purpose
 
@@ -14,6 +14,7 @@ SubForge provides a production-ready foundation for subscription aggregation wit
 - TypeScript ESM packages
 - Minimal executable CLI
 - Parser and core package primitives
+- Python MVP pipeline for parsing, deduplication, generation, and publishing
 - Vitest-based testing
 - Cross-platform scripts
 - Clean architecture boundaries
@@ -43,6 +44,17 @@ Generator
 Publisher
 
 Each module has one responsibility and communicates through explicit package boundaries.
+
+## MVP Pipeline
+
+The first usable Python milestone currently includes:
+
+- `SubscriptionParser` for extracting `vmess://`, `vless://`, `trojan://`, `ss://`, and `socks://` links from text
+- `SubscriptionNode` as the normalized internal model
+- `SubscriptionDeduplicator` for stable order-preserving deduplication
+- `SubscriptionGenerator` for producing base64 subscription payloads
+- `FilePublisher` for writing generated subscriptions to the configured output folder
+- `SubscriptionPipeline` for orchestrating the MVP flow end to end
 
 ## Workspace Packages
 
@@ -74,7 +86,11 @@ corepack pnpm dev
 
 ## Configuration
 
-This sprint only introduces the workspace skeleton. Future configuration files will continue to live under `config/`.
+Configuration files continue to live under `config/` and drive the MVP pipeline:
+
+- `config/settings.json`
+- `config/providers.json`
+- `config/subscriptions.json`
 
 ## GitHub Actions
 
@@ -90,5 +106,5 @@ The repository still contains the workflow skeletons created in the earlier scaf
 ## Future Plans
 
 - Add shared utilities in `packages/common`
-- Introduce real provider adapters
-- Implement parsing, validation, and publishing stages
+- Introduce a Telegram provider adapter backed by a real Telegram client library
+- Expand normalization and validation for richer proxy metadata

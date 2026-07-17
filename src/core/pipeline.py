@@ -1,0 +1,45 @@
+"""Orchestrate the MVP subscription pipeline."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+
+from filter.deduplicator import SubscriptionDeduplicator
+from generator.subscription_generator import SubscriptionGenerator
+from models.node import SubscriptionNode
+from parser.subscription_parser import SubscriptionParser
+from publisher.file_publisher import FilePublisher, PublishedSubscription
+
+
+@dataclass(frozen=True, slots=True)
+class SubscriptionPipelineResult:
+    """Result of running the MVP pipeline."""
+
+    nodes: tuple[SubscriptionNode, ...]
+    content: str
+    published: PublishedSubscription
+
+
+class SubscriptionPipeline:
+    """Parse, normalize, deduplicate, generate, and publish subscriptions."""
+
+    def __init__(
+        self,
+        output_dir: Path | str,
+        parser: SubscriptionParser | None = None,
+        deduplicator: SubscriptionDeduplicator | None = None,
+        generator: SubscriptionGenerator | None = None,
+        publisher: FilePublisher | None = None,
+    ) -> None:
+        self._parser = parser or SubscriptionParser()
+        self._deduplicator = deduplicator or SubscriptionDeduplicator()
+        self._generator = generator or SubscriptionGenerator()
+        self._publisher = publisher or FilePublisher(output_dir)
+
+    def run(self, text: str, output_path: str, source: str | None = None) -> SubscriptionPipelineResult:
+        parsed = self._parser.parse_text(text, source=source)
+        nodes = self._deduplicator.deduplicate(parsed.nodes)
+        content = self._generator.generate(nodes)
+        published = self._publisher.publish(output_path, content)
+        return SubscriptionPipelineResult(nodes=nodes, content=content, published=published)

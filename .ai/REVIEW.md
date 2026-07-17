@@ -2,92 +2,66 @@
 
 ## Files changed
 
-- `.ai/REVIEW.md` is the only file added in this snapshot.
-- There are no other tracked file changes in the current worktree.
+- `src/models/node.py`
+- `src/parser/subscription_parser.py`
+- `src/generator/subscription_generator.py`
+- `src/filter/deduplicator.py`
+- `src/publisher/file_publisher.py`
+- `src/core/pipeline.py`
+- `src/core/__init__.py`
+- `src/models/__init__.py`
+- `tests/test_subscription_pipeline.py`
+- `README.md`
+- `.ai/TASKS.md`
+- `.ai/SESSION.md`
 
 ## Architecture changes
 
-- The repository is organized as a split Python and TypeScript workspace.
-- Python provides the domain and orchestration layer under `src/`, including config loading, provider abstractions, logging, and shared models.
-- TypeScript provides a separate monorepo under `packages/` and `apps/`, with shared core/common packages and a CLI entry point.
-- The Python side is centered on immutable dataclasses and explicit validation at load time.
-- The TypeScript side is intentionally small, exposing a command parser, a result union type, and a CLI runner.
+- Added a real Python MVP pipeline alongside the existing TypeScript workspace scaffold.
+- Preserved the modular stage boundaries by keeping parsing, deduplication, generation, and publishing in separate modules.
+- Introduced a new normalized node model so downstream stages do not depend on raw provider text.
+- Added a small orchestration service that composes the MVP stages without merging their responsibilities.
 
 ## New classes
 
-- `ProviderConfig` in `src/models/provider.py`
-- `ProviderDefinition` in `src/models/provider.py`
-- `ValidationResult` in `src/models/results.py`
-- `TestResult` in `src/models/results.py`
-- `GenerationResult` in `src/models/results.py`
-- `ProxyConfig` in `src/models/proxy.py`
-- `Settings` in `src/core/config.py`
-- `AppConfiguration` in `src/core/config.py`
-- `ConfigurationLoader` in `src/core/config.py`
-- `LoggingConfig` in `src/core/logging.py`
-- `LoggingManager` in `src/core/logging.py`
-- `Provider` in `src/core/providers.py`
-- Exception classes in `src/core/exceptions.py`:
-  - `SubForgeError`
-  - `ConfigurationError`
-  - `ProviderError`
-  - `ValidationError`
-  - `GeneratorError`
+- `SubscriptionNode` in `src/models/node.py`
+- `ParsedSubscription` in `src/parser/subscription_parser.py`
+- `SubscriptionParser` in `src/parser/subscription_parser.py`
+- `SubscriptionGenerator` in `src/generator/subscription_generator.py`
+- `SubscriptionDeduplicator` in `src/filter/deduplicator.py`
+- `PublishedSubscription` in `src/publisher/file_publisher.py`
+- `FilePublisher` in `src/publisher/file_publisher.py`
+- `SubscriptionPipelineResult` in `src/core/pipeline.py`
+- `SubscriptionPipeline` in `src/core/pipeline.py`
 
 ## New interfaces
 
-- `ParsedCommand` in `packages/core/src/index.ts`
-- `Result<T>` in `packages/common/src/index.ts`
+- The MVP now exposes a Python pipeline API through `SubscriptionPipeline.run()`
+- The normalized node identity contract is exposed through `SubscriptionNode.identity()`
 
 ## Public APIs
 
-- Python package exports are defined in:
-  - `src/core/__init__.py`
-  - `src/models/__init__.py`
-- Python configuration API:
-  - `ConfigurationLoader.load()`
-  - `Settings`
-  - `AppConfiguration`
-- Python provider contract:
-  - `Provider.name`
-  - `Provider.collect()`
-- Python logging API:
-  - `LoggingManager.configure()`
-- TypeScript public APIs:
-  - `parseCommand(argv)` in `packages/core/src/index.ts`
-  - `Result<T>` in `packages/common/src/index.ts`
-  - `VERSION` and `run(argv)` in `apps/cli/src/index.ts`
-- CLI behavior:
-  - `--version` and `-v` print the version
-  - `hello` prints a greeting
-  - all other inputs fall back to a default banner
+- `SubscriptionParser.parse_text(text, source=None)`
+- `SubscriptionDeduplicator.deduplicate(nodes)`
+- `SubscriptionGenerator.generate(nodes)`
+- `FilePublisher.publish(relative_path, content)`
+- `SubscriptionPipeline.run(text, output_path, source=None)`
+- `SubscriptionNode`
 
 ## Risks
 
-- `ConfigurationLoader` is strict about file presence and schema shape, so incomplete config directories will fail fast.
-- The loader expects JSON input with exact keys and types, which reduces flexibility but increases setup sensitivity.
-- `LoggingManager.configure()` clears all existing handlers on the selected logger, which can interfere with embedding or external logging configuration.
-- The Python and TypeScript stacks appear disconnected at the moment, so shared behavior may drift unless integration points are added.
-- Provider and generation models exist, but there is no concrete provider implementation or orchestration flow yet.
+- The parser currently supports only the MVP link formats and ignores all other content.
+- `vmess://` payload parsing assumes standard base64-encoded JSON and will skip malformed input.
+- The generator preserves original raw links when available, which is simple but means some links are not re-serialized from the normalized model.
+- There is still no live Telegram client adapter wired into the pipeline.
 
 ## Technical debt
 
-- TypeScript packages currently expose only minimal functionality and do not yet implement actual subscription domain logic.
-- Python model types are present, but many downstream pipeline stages are still absent.
-- There is some duplication of version metadata between `package.json` files and the CLI constant.
-- `ConfigurationLoader` performs validation manually instead of using a schema library, which keeps dependencies low but increases maintenance burden.
+- The Telegram provider remains a future integration point rather than a concrete adapter.
+- Normalization is intentionally narrow and does not yet enrich all protocol-specific metadata.
+- Configuration is still loaded through the existing manual loader instead of a pydantic-backed schema layer.
+- The TypeScript workspace remains a separate scaffold and is not yet connected to the Python MVP path.
 
-## Future improvements
+## Next recommended task
 
-- Add real provider implementations under `src/providers/` and wire them into an orchestration pipeline.
-- Introduce schema validation helpers to simplify config parsing and error reporting.
-- Add integration between the Python pipeline and the TypeScript CLI if both stacks are intended to coexist long term.
-- Expand the shared TypeScript packages beyond parser/result primitives into real command and domain helpers.
-- Add end-to-end tests for config loading, provider collection, and CLI execution.
-
-## Known issues
-
-- No concrete provider integrations are implemented yet.
-- No subscription generation or testing pipeline exists beyond the domain result types.
-- The CLI currently serves as a scaffold rather than a fully functional product interface.
-- There is no evidence of persistence, networking, or external service integration in the current snapshot.
+- Add a Telegram provider adapter backed by a real Telegram client library so the MVP pipeline can collect live channel messages.

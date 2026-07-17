@@ -17,9 +17,12 @@
 - Added shared command/domain primitives to `packages/core`
 - Expanded `packages/core` tests for command context and matching helpers
 - Updated project documentation to reflect the new core primitives
+- Added the Python MVP pipeline for parsing Telegram proxy links, deduplication, generation, and publishing
+- Added end-to-end Python tests for the MVP pipeline
+- Updated README, tasks, and session notes for the MVP milestone
 
 ## Notes
 
 - No future subscription business logic was implemented
-- The Python scaffold from the prior session remains untouched
+- The Python scaffold now includes a usable offline MVP pipeline
 - The workspace is ready for the next incremental sprint
