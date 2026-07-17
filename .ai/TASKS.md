@@ -5,6 +5,7 @@ Use this file to record significant implementation tasks and progress.
 ## Current Status
 
 - Initial pnpm workspace skeleton implemented
+- Architecture review and cleanup completed
 
 ## Next Suggested Tasks
 

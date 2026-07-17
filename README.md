@@ -46,6 +46,8 @@ Each module has one responsibility and communicates through explicit package bou
 
 ## Installation
 
+SubForge targets Node.js 22 LTS or newer and uses `pnpm` via Corepack.
+
 ```bash
 corepack pnpm install
 ```

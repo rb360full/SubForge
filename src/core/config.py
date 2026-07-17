@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
-import json
+from typing import Any, Callable, TypeVar
 
 from core.exceptions import ConfigurationError
 from models.provider import ProviderConfig, ProviderDefinition
 from models.subscription import Subscription
+
+T = TypeVar("T")
 
 
 @dataclass(frozen=True, slots=True)
@@ -69,50 +71,56 @@ class ConfigurationLoader:
         )
 
     def _load_providers(self, path: Path) -> tuple[ProviderDefinition, ...]:
-        data = self._load_json(path)
-        self._ensure_mapping(data, path)
-        self._require_keys(data, ("providers",), path)
-        providers = data["providers"]
-        if not isinstance(providers, list):
-            raise ConfigurationError(f"Expected 'providers' to be a list in {path}")
-        items: list[ProviderDefinition] = []
-        for index, item in enumerate(providers):
-            self._ensure_mapping(item, path, f"providers[{index}]")
-            self._require_keys(item, ("name", "enabled", "type", "source"), path, f"providers[{index}]")
-            source = item["source"]
-            self._ensure_mapping(source, path, f"providers[{index}].source")
-            items.append(
-                ProviderDefinition(
-                    name=self._require_str(item["name"], f"providers[{index}].name", path),
-                    config=ProviderConfig(
-                        type=self._require_str(item["type"], f"providers[{index}].type", path),
-                        enabled=self._require_bool(item["enabled"], f"providers[{index}].enabled", path),
-                        source=dict(source),
-                    ),
-                )
-            )
-        return tuple(items)
+        return self._load_items(
+            path,
+            "providers",
+            ("name", "enabled", "type", "source"),
+            lambda item, index: ProviderDefinition(
+                name=self._require_str(item["name"], f"providers[{index}].name", path),
+                config=ProviderConfig(
+                    type=self._require_str(item["type"], f"providers[{index}].type", path),
+                    enabled=self._require_bool(item["enabled"], f"providers[{index}].enabled", path),
+                    source=self._require_mapping(item["source"], path, f"providers[{index}].source"),
+                ),
+            ),
+        )
 
     def _load_subscriptions(self, path: Path) -> tuple[Subscription, ...]:
+        return self._load_items(
+            path,
+            "subscriptions",
+            ("name", "enabled", "output_path", "format"),
+            lambda item, index: Subscription(
+                name=self._require_str(item["name"], f"subscriptions[{index}].name", path),
+                enabled=self._require_bool(item["enabled"], f"subscriptions[{index}].enabled", path),
+                output_path=self._require_str(item["output_path"], f"subscriptions[{index}].output_path", path),
+                format=self._require_str(item["format"], f"subscriptions[{index}].format", path),
+                metadata={
+                    k: v
+                    for k, v in item.items()
+                    if k not in {"name", "enabled", "output_path", "format"}
+                },
+            ),
+        )
+
+    def _load_items(
+        self,
+        path: Path,
+        collection_key: str,
+        required_keys: tuple[str, ...],
+        builder: Callable[[dict[str, Any], int], T],
+    ) -> tuple[T, ...]:
         data = self._load_json(path)
         self._ensure_mapping(data, path)
-        self._require_keys(data, ("subscriptions",), path)
-        subscriptions = data["subscriptions"]
-        if not isinstance(subscriptions, list):
-            raise ConfigurationError(f"Expected 'subscriptions' to be a list in {path}")
-        items: list[Subscription] = []
-        for index, item in enumerate(subscriptions):
-            self._ensure_mapping(item, path, f"subscriptions[{index}]")
-            self._require_keys(item, ("name", "enabled", "output_path", "format"), path, f"subscriptions[{index}]")
-            items.append(
-                Subscription(
-                    name=self._require_str(item["name"], f"subscriptions[{index}].name", path),
-                    enabled=self._require_bool(item["enabled"], f"subscriptions[{index}].enabled", path),
-                    output_path=self._require_str(item["output_path"], f"subscriptions[{index}].output_path", path),
-                    format=self._require_str(item["format"], f"subscriptions[{index}].format", path),
-                    metadata={k: v for k, v in item.items() if k not in {"name", "enabled", "output_path", "format"}},
-                )
-            )
+        self._require_keys(data, (collection_key,), path)
+        collection = data[collection_key]
+        if not isinstance(collection, list):
+            raise ConfigurationError(f"Expected '{collection_key}' to be a list in {path}")
+        items: list[T] = []
+        for index, item in enumerate(collection):
+            self._ensure_mapping(item, path, f"{collection_key}[{index}]")
+            self._require_keys(item, required_keys, path, f"{collection_key}[{index}]")
+            items.append(builder(item, index))
         return tuple(items)
 
     def _ensure_mapping(self, value: Any, path: Path, location: str | None = None) -> None:
@@ -120,11 +128,21 @@ class ConfigurationLoader:
             where = f" at {location}" if location else ""
             raise ConfigurationError(f"Expected an object{where} in {path}")
 
-    def _require_keys(self, value: dict[str, Any], keys: tuple[str, ...], path: Path, location: str | None = None) -> None:
+    def _require_keys(
+        self,
+        value: dict[str, Any],
+        keys: tuple[str, ...],
+        path: Path,
+        location: str | None = None,
+    ) -> None:
         missing = [key for key in keys if key not in value]
         if missing:
             where = f" at {location}" if location else ""
             raise ConfigurationError(f"Missing required keys{where} in {path}: {', '.join(missing)}")
+
+    def _require_mapping(self, value: Any, path: Path, location: str) -> dict[str, Any]:
+        self._ensure_mapping(value, path, location)
+        return value
 
     def _require_str(self, value: Any, location: str, path: Path) -> str:
         if not isinstance(value, str) or not value.strip():
@@ -140,4 +158,3 @@ class ConfigurationLoader:
         if not isinstance(value, bool):
             raise ConfigurationError(f"Expected a boolean for {location} in {path}")
         return value
-

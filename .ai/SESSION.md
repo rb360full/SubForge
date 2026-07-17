@@ -10,6 +10,10 @@
 - Added the first workspace lockfile
 - Verified `pnpm install`, `pnpm build`, `pnpm test`, and `pnpm dev`
 - Created the `chore: initialize pnpm workspace` commit
+- Completed an architecture and code quality cleanup pass
+- Added a Node 22 engine guard and minor maintenance refactors
+- Revalidated build, test, dev, and Python test commands after cleanup
+- Created the `Architecture review and cleanup` commit
 
 ## Notes
 
