@@ -11,6 +11,7 @@ from telethon.sessions import StringSession
 
 from models.proxy import ProxyConfig
 from parser.subscription_parser import SubscriptionParser
+from datetime import datetime, timedelta
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,6 +61,9 @@ class TelegramProvider:
                 # Determine limit: per-channel override `limit` or provider default
                 per_channel_limit = channel_spec.get("limit")
                 limit = int(per_channel_limit) if isinstance(per_channel_limit, int) else self._config.default_message_limit
+                # Determine days window (per-channel `days` or None)
+                days_window = channel_spec.get("days")
+                days_window = int(days_window) if isinstance(days_window, int) else None
                 kwargs = {"limit": limit}
                 if isinstance(message_thread_id, int):
                     kwargs["message_thread_id"] = message_thread_id
@@ -87,7 +91,18 @@ class TelegramProvider:
                             if getattr(m, "message_thread_id", None) == message_thread_id:
                                 filtered.append(m)
                         messages = filtered
+                # If we got a list/iterable, apply date filtering if requested
+                filtered_messages = []
+                cutoff: datetime | None = None
+                if days_window is not None:
+                    cutoff = datetime.utcnow() - timedelta(days=days_window)
+
                 for message in messages:
+                    # message.date is a datetime in Telethon messages
+                    msg_date = getattr(message, "date", None)
+                    if cutoff is not None and isinstance(msg_date, datetime):
+                        if msg_date.replace(tzinfo=None) < cutoff:
+                            continue
                     text = getattr(message, "message", "") or ""
                     if not text.strip():
                         continue

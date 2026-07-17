@@ -39,6 +39,7 @@ def main(argv: list[str] | None = None) -> int:
                     "channel": str(entry.get("channel", "")).strip(),
                     "message_thread_id": entry.get("message_thread_id"),
                     "limit": entry.get("limit"),
+                    "days": entry.get("days"),
                 }
             return None
 

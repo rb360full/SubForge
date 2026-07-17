@@ -8,7 +8,6 @@
         "channels": [
           {"channel": "https://t.me/iProxyChannel", "limit": 5},
           {"channel": "https://t.me/Capoit", "limit": 5},
-          {"channel": "https://t.me/+YIlqV-fl9y4zMmRk", "message_thread_id": 108538, "limit": 1},
           {"channel": "https://t.me/ConfigsHUB", "limit": 5}
         ],
         "api_id": 34650676,
