@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 */8 * * *"
   workflow_dispatch:
+    inputs:
+      telegram_session_string:
+        description: "Optional Telethon session string for manual runs"
+        required: false
+        type: string
 
 jobs:
   generate-subscription:
@@ -11,7 +16,7 @@ jobs:
     permissions:
       contents: read
     env:
-      TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+      TELEGRAM_SESSION_STRING: ${{ inputs.telegram_session_string || secrets.TELEGRAM_SESSION_STRING }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,7 +32,7 @@ jobs:
       - name: Validate Telegram session secret
         run: |
           if [ -z "${TELEGRAM_SESSION_STRING}" ]; then
-            echo "TELEGRAM_SESSION_STRING secret is required for scheduled runs."
+            echo "Provide TELEGRAM_SESSION_STRING as a repo secret or manual workflow input."
             exit 1
           fi
 
