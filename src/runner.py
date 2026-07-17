@@ -34,7 +34,12 @@ def main(argv: list[str] | None = None) -> int:
             if isinstance(entry, str) and entry.strip():
                 return {"channel": entry.strip()}
             if isinstance(entry, dict) and entry.get("channel"):
-                return {"channel": str(entry.get("channel", "")).strip(), "message_thread_id": entry.get("message_thread_id")}
+                # Preserve optional per-channel keys like message_thread_id and limit
+                return {
+                    "channel": str(entry.get("channel", "")).strip(),
+                    "message_thread_id": entry.get("message_thread_id"),
+                    "limit": entry.get("limit"),
+                }
             return None
 
         normalized = tuple(_normalize(item) for item in raw_channels)
