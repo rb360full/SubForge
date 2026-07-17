@@ -20,9 +20,12 @@
 - Added the Python MVP pipeline for parsing Telegram proxy links, deduplication, generation, and publishing
 - Added end-to-end Python tests for the MVP pipeline
 - Updated README, tasks, and session notes for the MVP milestone
+- Added a connectivity testing stage that filters out dead proxy nodes before publish
+- Added deterministic tests for live and dead TCP endpoints
 
 ## Notes
 
 - No future subscription business logic was implemented
 - The Python scaffold now includes a usable offline MVP pipeline
+- The MVP pipeline now filters dead nodes with a lightweight connectivity test
 - The workspace is ready for the next incremental sprint

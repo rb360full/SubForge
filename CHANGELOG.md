@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added a connectivity testing stage to filter dead proxy nodes before publish
 - Added a Python MVP pipeline for parsing Telegram proxy links, deduplication, generation, and publishing
 - Added a normalized subscription node model and orchestration service
 - Added end-to-end tests for the MVP pipeline
@@ -14,4 +15,4 @@
 ### Updated
 
 - Updated `README.md`, `.ai/TASKS.md`, `.ai/SESSION.md`, and `.ai/REVIEW.md` for the MVP milestone
-- Updated the repository documentation to reflect the shared core primitives
+- Updated the repository documentation to reflect the shared core primitives and the new connectivity stage

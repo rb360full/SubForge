@@ -8,6 +8,7 @@ Use this file to record significant implementation tasks and progress.
 - Architecture review and cleanup completed
 - `packages/core` domain primitives added
 - Python MVP pipeline for parsing, deduplication, generation, and publishing added
+- Connectivity testing stage added to filter dead proxy nodes before publish
 
 ## Next Suggested Tasks
 

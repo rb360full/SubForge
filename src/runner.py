@@ -8,6 +8,7 @@ from pathlib import Path
 from core.config import ConfigurationLoader
 from core.pipeline import SubscriptionPipeline
 from providers.telegram.client import TelegramProvider, TelegramProviderConfig
+from tester.connectivity_tester import ConnectivityTester
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -59,7 +60,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"No proxy links found in channel {channel}")
         return 1
 
-    pipeline = SubscriptionPipeline(output_dir=output_dir)
+    pipeline = SubscriptionPipeline(
+        output_dir=output_dir,
+        tester=ConnectivityTester(timeout_seconds=config.settings.default_timeout_seconds),
+    )
     collected_text = "\n".join(
         node.metadata.get("raw", "") for node in nodes if isinstance(node.metadata.get("raw"), str)
     )

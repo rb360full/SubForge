@@ -8,6 +8,7 @@ from pathlib import Path
 from filter.deduplicator import SubscriptionDeduplicator
 from generator.subscription_generator import SubscriptionGenerator
 from models.node import SubscriptionNode
+from tester.connectivity_tester import ConnectivityTester
 from parser.subscription_parser import SubscriptionParser
 from publisher.file_publisher import FilePublisher, PublishedSubscription
 
@@ -29,17 +30,24 @@ class SubscriptionPipeline:
         output_dir: Path | str,
         parser: SubscriptionParser | None = None,
         deduplicator: SubscriptionDeduplicator | None = None,
+        tester: ConnectivityTester | None = None,
         generator: SubscriptionGenerator | None = None,
         publisher: FilePublisher | None = None,
     ) -> None:
         self._parser = parser or SubscriptionParser()
         self._deduplicator = deduplicator or SubscriptionDeduplicator()
+        self._tester = tester or ConnectivityTester()
         self._generator = generator or SubscriptionGenerator()
         self._publisher = publisher or FilePublisher(output_dir)
 
     def run(self, text: str, output_path: str, source: str | None = None) -> SubscriptionPipelineResult:
         parsed = self._parser.parse_text(text, source=source)
-        nodes = self._deduplicator.deduplicate(parsed.nodes)
+        deduplicated = self._deduplicator.deduplicate(parsed.nodes)
+        nodes = tuple(
+            node
+            for node in deduplicated
+            if self._tester.test(node).is_reachable
+        )
         content = self._generator.generate(nodes)
         published = self._publisher.publish(output_path, content)
         return SubscriptionPipelineResult(nodes=nodes, content=content, published=published)

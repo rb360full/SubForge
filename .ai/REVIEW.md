@@ -2,66 +2,45 @@
 
 ## Files changed
 
-- `src/models/node.py`
-- `src/parser/subscription_parser.py`
-- `src/generator/subscription_generator.py`
-- `src/filter/deduplicator.py`
-- `src/publisher/file_publisher.py`
+- `src/tester/connectivity_tester.py`
 - `src/core/pipeline.py`
-- `src/core/__init__.py`
-- `src/models/__init__.py`
+- `src/runner.py`
 - `tests/test_subscription_pipeline.py`
-- `README.md`
 - `.ai/TASKS.md`
 - `.ai/SESSION.md`
+- `.ai/REVIEW.md`
 
 ## Architecture changes
 
-- Added a real Python MVP pipeline alongside the existing TypeScript workspace scaffold.
-- Preserved the modular stage boundaries by keeping parsing, deduplication, generation, and publishing in separate modules.
-- Introduced a new normalized node model so downstream stages do not depend on raw provider text.
-- Added a small orchestration service that composes the MVP stages without merging their responsibilities.
+- Added a dedicated connectivity testing stage between deduplication and generation.
+- Kept the tester isolated from parsing and publishing logic.
+- The pipeline now filters dead nodes before generating and publishing the final subscription payload.
 
 ## New classes
 
-- `SubscriptionNode` in `src/models/node.py`
-- `ParsedSubscription` in `src/parser/subscription_parser.py`
-- `SubscriptionParser` in `src/parser/subscription_parser.py`
-- `SubscriptionGenerator` in `src/generator/subscription_generator.py`
-- `SubscriptionDeduplicator` in `src/filter/deduplicator.py`
-- `PublishedSubscription` in `src/publisher/file_publisher.py`
-- `FilePublisher` in `src/publisher/file_publisher.py`
-- `SubscriptionPipelineResult` in `src/core/pipeline.py`
-- `SubscriptionPipeline` in `src/core/pipeline.py`
+- `ConnectivityTester` in `src/tester/connectivity_tester.py`
 
 ## New interfaces
 
-- The MVP now exposes a Python pipeline API through `SubscriptionPipeline.run()`
-- The normalized node identity contract is exposed through `SubscriptionNode.identity()`
+- No new public interface types were added beyond the existing `TestResult` model.
 
 ## Public APIs
 
-- `SubscriptionParser.parse_text(text, source=None)`
-- `SubscriptionDeduplicator.deduplicate(nodes)`
-- `SubscriptionGenerator.generate(nodes)`
-- `FilePublisher.publish(relative_path, content)`
-- `SubscriptionPipeline.run(text, output_path, source=None)`
-- `SubscriptionNode`
+- `ConnectivityTester.test(node)` tests whether a normalized node is reachable over TCP.
+- `SubscriptionPipeline` now accepts an optional `tester` dependency.
 
 ## Risks
 
-- The parser currently supports only the MVP link formats and ignores all other content.
-- `vmess://` payload parsing assumes standard base64-encoded JSON and will skip malformed input.
-- The generator preserves original raw links when available, which is simple but means some links are not re-serialized from the normalized model.
-- There is still no live Telegram client adapter wired into the pipeline.
+- The connectivity stage currently checks TCP reachability only.
+- A TCP-open endpoint may still fail proxy protocol negotiation later.
+- The runner still depends on a live Telegram login session for channel access.
 
 ## Technical debt
 
-- The Telegram provider remains a future integration point rather than a concrete adapter.
-- Normalization is intentionally narrow and does not yet enrich all protocol-specific metadata.
-- Configuration is still loaded through the existing manual loader instead of a pydantic-backed schema layer.
-- The TypeScript workspace remains a separate scaffold and is not yet connected to the Python MVP path.
+- Full protocol validation is still not implemented.
+- The Telegram provider is still a fetch-and-parse bridge rather than a richer source adapter.
+- The pipeline does not yet rank nodes after testing.
 
 ## Next recommended task
 
-- Add a Telegram provider adapter backed by a real Telegram client library so the MVP pipeline can collect live channel messages.
+- Add protocol-aware handshake checks for supported proxy types so the tester can distinguish an open port from a truly usable proxy endpoint.
