@@ -5,12 +5,12 @@ Use this file to record significant implementation tasks and progress.
 ## Current Status
 
 - Initial scaffold created
+- Core foundation implemented
 
 ## Next Suggested Tasks
 
-- Define core interfaces
-- Add the subscription data model
-- Implement parser and normalizer contracts
+- Implement provider-specific adapters
+- Add parser and normalizer contracts
 - Add validation and deduplication rules
-- Add publisher abstractions
-
+- Add connectivity testing logic
+- Add generator and publisher implementations

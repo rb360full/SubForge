@@ -59,6 +59,7 @@ Each module has one responsibility and communicates through explicit data models
 ### Foundation
 
 - [x] Project scaffold
+- [x] Core foundation implementation
 - [x] Architecture and policy documents
 - [x] Configuration placeholders
 - [x] GitHub Actions workflow skeletons
@@ -149,4 +150,3 @@ Please read:
 - `docs/CONTRIBUTING.md`
 
 These files define the operating rules for humans and future AI sessions.
-

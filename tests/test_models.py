@@ -1,0 +1,36 @@
+from models.provider import ProviderConfig, ProviderDefinition
+from models.proxy import ProxyConfig
+from models.results import GenerationResult, TestResult, ValidationResult
+from models.subscription import Subscription
+
+
+def test_proxy_config_model() -> None:
+    proxy = ProxyConfig(protocol="vmess", host="example.com", port=443)
+    assert proxy.protocol == "vmess"
+    assert proxy.host == "example.com"
+    assert proxy.port == 443
+
+
+def test_provider_models() -> None:
+    provider = ProviderDefinition(
+        name="telegram",
+        config=ProviderConfig(type="telegram", enabled=True, source={"channel": "test"}),
+    )
+    assert provider.name == "telegram"
+    assert provider.config.enabled is True
+
+
+def test_subscription_model() -> None:
+    subscription = Subscription(name="default", enabled=True, output_path="subscriptions/default.txt", format="plain")
+    assert subscription.output_path.endswith(".txt")
+
+
+def test_result_models() -> None:
+    validation = ValidationResult(is_valid=True)
+    test_result = TestResult(is_reachable=True, latency_ms=42)
+    generation = GenerationResult(success=True, output_path="subscriptions/default.txt")
+
+    assert validation.is_valid is True
+    assert test_result.latency_ms == 42
+    assert generation.success is True
+
