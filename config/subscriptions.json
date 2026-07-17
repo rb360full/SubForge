@@ -1,0 +1,11 @@
+{
+  "subscriptions": [
+    {
+      "name": "default",
+      "enabled": true,
+      "output_path": "subscriptions/default.txt",
+      "format": "plain"
+    }
+  ]
+}
+

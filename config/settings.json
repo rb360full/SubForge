@@ -1,0 +1,8 @@
+{
+  "project_name": "SubForge",
+  "environment": "development",
+  "log_level": "INFO",
+  "default_timeout_seconds": 30,
+  "output_directory": "subscriptions"
+}
+

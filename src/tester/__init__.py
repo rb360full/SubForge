@@ -1,0 +1,2 @@
+"""Connectivity testing stage."""
+
