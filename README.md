@@ -1,25 +1,22 @@
 # SubForge
 
-SubForge automatically builds clean subscription files for V2Ray and Xray clients.
+SubForge is a modular subscription pipeline for V2Ray and Xray ecosystems.
 
 It is designed to collect proxy configurations from multiple providers, normalize them into a common model, validate them, remove duplicates, test connectivity, filter dead nodes, and publish subscription outputs in a maintainable pipeline.
 
 ## Purpose
 
-SubForge exists to provide a modular, production-ready foundation for subscription aggregation.
-
-The project is intentionally structured so that provider integrations, validation, testing, filtering, and publishing can evolve independently without forcing changes across the entire codebase.
+SubForge provides a production-ready foundation for subscription aggregation with a clean architecture and a workspace layout that is easy to extend.
 
 ## Features
 
-- Modular pipeline architecture
-- Provider abstraction for Telegram, GitHub, and HTTP sources
-- Normalization and validation stages
-- Deduplication and connectivity testing stages
-- Filter and publisher boundaries with single responsibility
-- Centralized configuration
-- CI-friendly project layout
-- Strong typing and clean-architecture-oriented organization
+- pnpm workspace layout
+- TypeScript ESM packages
+- Minimal executable CLI
+- Parser and core package skeletons
+- Vitest-based testing
+- Cross-platform scripts
+- Clean architecture boundaries
 
 ## Architecture
 
@@ -45,108 +42,46 @@ Generator
 ↓
 Publisher
 
-Each module has one responsibility and communicates through explicit data models.
-
-### Core principles
-
-- Business rules stay out of transport-specific code
-- Providers should be pluggable without core rewrites
-- Configuration should drive behavior, not hardcoded values
-- Each stage should be independently testable
-
-## Roadmap
-
-### Foundation
-
-- [x] Project scaffold
-- [x] Core foundation implementation
-- [x] Architecture and policy documents
-- [x] Configuration placeholders
-- [x] GitHub Actions workflow skeletons
-
-### Next implementation phases
-
-- Provider interfaces and collector contracts
-- Subscription data model and parser implementation
-- Normalization and validation rules
-- Deduplication strategy
-- Connectivity tester integration
-- Filter composition
-- Generator output formats
-- Publisher adapters
+Each module has one responsibility and communicates through explicit package boundaries.
 
 ## Installation
 
-SubForge targets Python 3.12+.
-
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
+corepack pnpm install
 ```
-
-## Configuration
-
-Configuration is stored in `config/` and should remain the source of truth for runtime behavior.
-
-- `config/settings.json` for global settings
-- `config/providers.json` for provider definitions
-- `config/subscriptions.json` for subscription output definitions
-
-Do not hardcode:
-
-- channels
-- URLs
-- timeouts
-- paths
-- subscription names
-
-## GitHub Actions
-
-The repository includes workflow placeholders for:
-
-- `update.yml`
-- `lint.yml`
-- `tests.yml`
-
-These workflows are intended to support scheduled updates, lint checks, and test execution as the implementation grows.
 
 ## Development
 
-Recommended workflow:
+```bash
+corepack pnpm dev
+```
 
-1. Update or add configuration first
-2. Implement one pipeline stage at a time
-3. Add tests alongside each feature
-4. Keep modules focused and small
-5. Prefer dependency injection over global state
+## Available Commands
 
-### Local quality checks
+- `corepack pnpm build` - build all workspace packages
+- `corepack pnpm test` - run all workspace tests
+- `corepack pnpm dev` - run the CLI
+- `corepack pnpm dev --version` - print the CLI version
+- `corepack pnpm dev hello` - print the hello message
 
-The project is scaffolded for:
+## Configuration
 
-- formatting
-- linting
-- static typing
-- unit testing
+This sprint only introduces the workspace skeleton. Future configuration files will continue to live under `config/`.
 
-## Future plans
+## GitHub Actions
 
-- Provider adapters for more source types
-- Richer subscription formats
-- Health scoring and quality ranking
-- Incremental publishing
-- Observability and structured metrics
-- Safe automation for scheduled refreshes
-- Plugin-friendly expansion points
+The repository still contains the workflow skeletons created in the earlier scaffold stage.
 
-## Contributing
+## Development Notes
 
-Please read:
+- Keep changes small and reviewable
+- Prefer dependency injection over global state
+- Add tests alongside new behavior
+- Avoid unnecessary dependencies
 
-- `.ai/SYSTEM.md`
-- `.ai/PROJECT.md`
-- `.ai/ARCHITECTURE.md`
-- `docs/CONTRIBUTING.md`
+## Future Plans
 
-These files define the operating rules for humans and future AI sessions.
+- Expand `packages/core`
+- Add shared utilities in `packages/common`
+- Introduce real provider adapters
+- Implement parsing, validation, and publishing stages
