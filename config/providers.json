@@ -2,10 +2,12 @@
   "providers": [
     {
       "name": "telegram",
-      "enabled": false,
+      "enabled": true,
       "type": "telegram",
       "source": {
-        "channel": "",
+        "channel": "https://t.me/iProxyChannel",
+        "api_id": 34650676,
+        "api_hash": "960a602ffe29a6937bdc66e3f6be60a6",
         "url": "",
         "timeout_seconds": 30
       }
@@ -31,4 +33,3 @@
     }
   ]
 }
-
