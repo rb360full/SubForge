@@ -13,7 +13,8 @@
           {"channel": "https://t.me/VmessProtocol", "limit": 5 , "days": 1},
           {"channel": "https://t.me/oneclickvpnkeys", "limit": 5 , "days": 1},
           {"channel": "https://t.me/Best_internet_iran", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/Persianvpnhub", "limit": 5 , "days": 1}
+          {"channel": "https://t.me/Persianvpnhub", "limit": 5 , "days": 1},
+          {"channel": "https://t.me/V2rayng_Fast", "limit": 5 , "days": 1}
           
         ],
         "api_id": 34650676,
