@@ -10,6 +10,7 @@ from pathlib import Path
 from core.pipeline import SubscriptionPipeline
 from filter.deduplicator import SubscriptionDeduplicator
 from generator.subscription_generator import SubscriptionGenerator
+from models.results import TestResult
 from parser.subscription_parser import SubscriptionParser
 from publisher.file_publisher import FilePublisher
 from tester.connectivity_tester import ConnectivityTester
@@ -85,6 +86,42 @@ def test_generator_preserves_raw_vless_query_parameters() -> None:
     decoded = base64.b64decode(encoded).decode("utf-8")
 
     assert decoded == text
+
+
+def test_generator_preserves_original_links_for_supported_protocols() -> None:
+    vmess_payload = base64.b64encode(
+        json.dumps(
+            {
+                "v": "2",
+                "ps": "Example",
+                "add": "vmess.example.com",
+                "port": "443",
+                "id": "11111111-1111-1111-1111-111111111111",
+                "aid": "0",
+                "scy": "auto",
+                "net": "ws",
+                "type": "none",
+                "host": "",
+                "path": "",
+                "tls": "tls",
+                "sni": "vmess.example.com",
+            }
+        ).encode("utf-8")
+    ).decode("ascii")
+
+    cases = [
+        "vless://uuid@example.com:443?security=tls&type=tcp&sni=example.com#example",
+        "trojan://password@example.net:8443?sni=example.net#example",
+        f"vmess://{vmess_payload}",
+        "ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ=@example.org:8388#shadow",
+        "socks://user:pass@example.io:1080#example",
+    ]
+
+    for text in cases:
+        nodes = SubscriptionParser().parse_text(text).nodes
+        encoded = SubscriptionGenerator().generate(nodes)
+        decoded = base64.b64decode(encoded).decode("utf-8")
+        assert decoded == text
 
 
 def test_parser_parses_ss_link() -> None:
@@ -172,3 +209,26 @@ def test_pipeline_filters_out_dead_nodes(tmp_path: Path) -> None:
 
         assert len(result.nodes) == 1
         assert "127.0.0.1" in base64.b64decode(result.content).decode("utf-8")
+
+
+def test_pipeline_prefers_faster_reachable_nodes(tmp_path: Path) -> None:
+    class StubTester:
+        def test(self, node: object) -> TestResult:
+            if node.host == "dead.example.com":
+                return TestResult(is_reachable=False, error="down")
+            if node.host == "slow.example.com":
+                return TestResult(is_reachable=True, latency_ms=120, metadata={"node": node})
+            if node.host == "fast.example.com":
+                return TestResult(is_reachable=True, latency_ms=20, metadata={"node": node})
+            return TestResult(is_reachable=True, latency_ms=50, metadata={"node": node})
+
+    text = (
+        "vless://uuid@slow.example.com:443#slow\n"
+        "vless://uuid@fast.example.com:443#fast\n"
+        "vless://uuid@dead.example.com:443#dead"
+    )
+    pipeline = SubscriptionPipeline(output_dir=tmp_path, tester=StubTester())
+
+    result = pipeline.run(text, "subscriptions/default.txt", source="telegram://channel")
+
+    assert [node.remark for node in result.nodes] == ["fast", "slow"]
