@@ -10,6 +10,8 @@ from core.config import ConfigurationLoader
 from core.pipeline import SubscriptionPipeline
 from providers.telegram.client import TelegramProvider, TelegramProviderConfig
 from tester.connectivity_tester import ConnectivityTester
+import base64
+from pathlib import Path
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -100,6 +102,15 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Generated {len(result.nodes)} subscription nodes")
     print(f"Published subscription to {result.published.output_path}")
     print(f"Subscription payload length: {len(result.content)}")
+    # also write decoded file next to the published output for inspection
+    try:
+        pub_path = Path(result.published.output_path)
+        decoded_path = pub_path.with_name(pub_path.stem + ".decoded.txt")
+        decoded_bytes = base64.b64decode(result.content.encode("utf-8"), validate=False)
+        decoded_path.write_bytes(decoded_bytes)
+        print(f"Wrote decoded subscription to {decoded_path}")
+    except Exception as exc:  # noqa: BLE001
+        print(f"Failed to write decoded subscription: {exc}")
     return 0
 
 
