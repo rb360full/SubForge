@@ -16,11 +16,20 @@ jobs:
     # دسترسی به write برای اعمال تغییرات در ریپازیتوری الزامی است
     permissions:
       contents: write
-    env:
-      TELEGRAM_SESSION_STRING: ${{ inputs.telegram_session_string || secrets.TELEGRAM_SESSION_STRING }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set TELEGRAM_SESSION_STRING
+        run: |
+          if [ -n "${{ github.event.inputs.telegram_session_string }}" ]; then
+            echo "TELEGRAM_SESSION_STRING=${{ github.event.inputs.telegram_session_string }}" >> $GITHUB_ENV
+          elif [ -n "${{ secrets.TELEGRAM_SESSION_STRING }}" ]; then
+            echo "TELEGRAM_SESSION_STRING=${{ secrets.TELEGRAM_SESSION_STRING }}" >> $GITHUB_ENV
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -43,15 +52,15 @@ jobs:
       # ذخیره تغییرات در ریپازیتوری
       - name: Commit and push changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email 'github-actions[bot]@users.noreply.github.com'
           git add subscriptions/default.txt
-          # بررسی اینکه آیا تغییری وجود دارد یا خیر
-          if ! git diff --quiet; then
-            git commit -m "Update subscription [skip ci]"
-            git push
-          else
+          # بررسی اینکه آیا تغییری وجود دارد یا خیر (staged changes)
+          if git diff --cached --quiet; then
             echo "No changes to commit."
+          else
+            git commit -m "Update subscription [ci skip]"
+            git push origin HEAD
           fi
 
       # اگر همچنان می‌خواهی فایل در بخش Actions هم به عنوان آرتیفکت بماند، این مرحله را نگه دار
