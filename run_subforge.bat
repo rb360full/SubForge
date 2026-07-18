@@ -17,6 +17,7 @@ if not exist ".venv\Scripts\python.exe" (
 call ".venv\Scripts\activate.bat"
 
 python -m pip install --upgrade pip >nul 2>&1
+python -m pip install -e . >nul 2>&1
 python -m pip install -r requirements.txt >nul 2>&1
 
 echo Running SubForge...
