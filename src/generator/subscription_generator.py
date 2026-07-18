@@ -18,6 +18,10 @@ class SubscriptionGenerator:
         return encoded
 
     def _serialize_node(self, node: SubscriptionNode) -> str:
+        raw = node.metadata.get("raw")
+        if isinstance(raw, str) and raw:
+            return raw
+
         if node.protocol == "vmess":
             return self._serialize_vmess(node)
         if node.protocol == "vless":

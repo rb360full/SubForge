@@ -6,9 +6,9 @@
       "type": "telegram",
       "source": {
         "channels": [
-        
-          {"channel": "https://t.me/daily_configs", "limit": 5 , "days": 1}
-         
+          
+          {"channel": "https://t.me/daily_configs", "limit": 1 , "days": 1}
+          
           
         ],
         "api_id": 34650676,

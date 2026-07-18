@@ -74,6 +74,19 @@ def test_generator_preserves_original_links_when_available() -> None:
     assert decoded == text
 
 
+def test_generator_preserves_raw_vless_query_parameters() -> None:
+    text = (
+        "vless://uuid@example.com:443?encryption=none&flow=xtls-rprx-vision&security=reality"
+        "&sni=example.com&pbk=abcdef&type=tcp&headerType=none#example"
+    )
+    nodes = SubscriptionParser().parse_text(text).nodes
+
+    encoded = SubscriptionGenerator().generate(nodes)
+    decoded = base64.b64decode(encoded).decode("utf-8")
+
+    assert decoded == text
+
+
 def test_parser_parses_ss_link() -> None:
     text = "ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ=@example.org:8388#shadow"
     nodes = SubscriptionParser().parse_text(text).nodes
