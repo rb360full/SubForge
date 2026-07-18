@@ -26,7 +26,13 @@ python src\runner.py
 if errorlevel 1 (
     echo.
     echo SubForge exited with an error.
-    pause
+    echo Press any key to close this window...
+    pause >nul
+    exit /b %ERRORLEVEL%
 )
 
-exit /b %ERRORLEVEL%
+echo.
+echo SubForge finished successfully.
+echo Press any key to close this window...
+pause >nul
+exit /b 0
