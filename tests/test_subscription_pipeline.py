@@ -74,6 +74,29 @@ def test_generator_preserves_original_links_when_available() -> None:
     assert decoded == text
 
 
+def test_parser_parses_ss_link() -> None:
+    text = "ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ=@example.org:8388#shadow"
+    nodes = SubscriptionParser().parse_text(text).nodes
+
+    assert len(nodes) == 1
+    assert nodes[0].protocol == "ss"
+    assert nodes[0].host == "example.org"
+    assert nodes[0].port == 8388
+    assert nodes[0].username == "aes-256-gcm"
+    assert nodes[0].password == "password"
+    assert nodes[0].remark == "shadow"
+
+
+def test_generator_serializes_ss_link() -> None:
+    text = "ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ=@example.org:8388#shadow"
+    nodes = SubscriptionParser().parse_text(text).nodes
+
+    encoded = SubscriptionGenerator().generate(nodes)
+    decoded = base64.b64decode(encoded).decode("utf-8")
+
+    assert decoded == text
+
+
 def test_pipeline_publishes_subscription_file(tmp_path: Path) -> None:
     text = "vless://uuid@example.com:443#example\nvless://uuid@example.com:443#example"
     pipeline = SubscriptionPipeline(output_dir=tmp_path)

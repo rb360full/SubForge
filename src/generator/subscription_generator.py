@@ -18,9 +18,6 @@ class SubscriptionGenerator:
         return encoded
 
     def _serialize_node(self, node: SubscriptionNode) -> str:
-        raw = node.metadata.get("raw")
-        if isinstance(raw, str) and raw:
-            return raw
         if node.protocol == "vmess":
             return self._serialize_vmess(node)
         if node.protocol == "vless":
@@ -63,6 +60,16 @@ class SubscriptionGenerator:
 
     def _serialize_socks(self, node: SubscriptionNode) -> str:
         return self._serialize_uri(node, "socks")
+
+    def _serialize_ss(self, node: SubscriptionNode) -> str:
+        if not node.username or node.password is None:
+            raise ValueError("SS node requires method and password")
+        auth = f"{node.username}:{node.password}"
+        encoded = base64.b64encode(auth.encode("utf-8")).decode("ascii")
+        uri = f"ss://{encoded}@{node.host}:{node.port}"
+        if node.remark:
+            uri += f"#{node.remark}"
+        return uri
 
     def _serialize_uri(self, node: SubscriptionNode, scheme: str) -> str:
         auth = node.uuid or node.username or ""

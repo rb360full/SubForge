@@ -45,6 +45,8 @@ class SubscriptionParser:
 
         if protocol == "vmess":
             return self._parse_vmess(link, source=source)
+        if protocol == "ss":
+            return self._parse_ss(link, parsed, source=source)
 
         username, password = self._parse_userinfo(parsed)
         query = dict(parse_qsl(parsed.query))
@@ -97,6 +99,40 @@ class SubscriptionParser:
             network=str(payload.get("net", "")) or None,
             sni=str(payload.get("sni", "")) or None,
             remark=str(remark) if remark else None,
+            source=source,
+            metadata=metadata,
+        )
+
+    def _parse_ss(self, link: str, parsed: Any, source: str | None) -> SubscriptionNode | None:
+        username, password = self._parse_userinfo(parsed)
+        if username and password:
+            method = username
+        elif username and not password:
+            try:
+                decoded = self._base64_decode(username)
+            except ValueError:
+                return None
+            if ":" not in decoded:
+                return None
+            method, password = decoded.split(":", 1)
+        else:
+            return None
+
+        if not parsed.hostname or not parsed.port:
+            return None
+
+        metadata = {"raw": link}
+        query = dict(parse_qsl(parsed.query))
+        if query:
+            metadata["query"] = query
+
+        return SubscriptionNode(
+            protocol="ss",
+            host=parsed.hostname,
+            port=parsed.port,
+            username=method,
+            password=password,
+            remark=unquote(parsed.fragment) or query.get("remarks") or query.get("name"),
             source=source,
             metadata=metadata,
         )
