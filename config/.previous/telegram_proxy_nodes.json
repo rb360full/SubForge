@@ -3438,5 +3438,169 @@
         "sid": "f9ffaeacfcf21dc1"
       }
     }
+  },
+  {
+    "protocol": "vless",
+    "host": "okla.dearhossein-taktaz.ir",
+    "port": 443,
+    "name": "[🇫🇷]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://b17e6a63-78f2-4f8f-aea4-0867405a096e@okla.dearhossein-taktaz.ir:443?encryption=none&sid=586c339944e8&pbk=3f4yGlt03YN98A2dTVXc-bm8c2gZBi09uQXODZE5lmE&security=reality&fp=chrome&spx=%2F182973acde35100&sni=google.com&type=tcp&headerType=none#[🇫🇷]t.me/ConfigsHub",
+      "query": {
+        "encryption": "none",
+        "sid": "586c339944e8",
+        "pbk": "3f4yGlt03YN98A2dTVXc-bm8c2gZBi09uQXODZE5lmE",
+        "security": "reality",
+        "fp": "chrome",
+        "spx": "/182973acde35100",
+        "sni": "google.com",
+        "type": "tcp",
+        "headerType": "none"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "like.janiva.ir",
+    "port": 531,
+    "name": "[🇩🇪]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://c51777d5-49b6-470c-df1e-2a469fb37b36@like.janiva.ir:531?type=tcp&host=biscotti.yektanet.com&security=none&sni=biscotti.yektanet.com&alpn=&path=/&headerType=http#[🇩🇪]t.me/ConfigsHub",
+      "query": {
+        "type": "tcp",
+        "host": "biscotti.yektanet.com",
+        "security": "none",
+        "sni": "biscotti.yektanet.com",
+        "path": "/",
+        "headerType": "http"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "chatgpt.com",
+    "port": 2053,
+    "name": "[🇨🇦]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://cca3e5cc-a62b-4877-b2d2-446da5167265@chatgpt.com:2053?path=%2F&security=tls&encryption=none&insecure=0&host=ws.fredomiran.com&type=ws&allowInsecure=0&sni=fredomiran.com#[🇨🇦]t.me/ConfigsHub",
+      "query": {
+        "path": "/",
+        "security": "tls",
+        "encryption": "none",
+        "insecure": "0",
+        "host": "ws.fredomiran.com",
+        "type": "ws",
+        "allowInsecure": "0",
+        "sni": "fredomiran.com"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "188.164.248.143",
+    "port": 2087,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://7b102311-43fd-4e8f-877e-8090623c101d@188.164.248.143:2087?path=%2F&security=tls&encryption=none&insecure=0&host=vp24.cc.cd&fp=firefox&type=ws&allowInsecure=0&sni=vp24.cc.cd#[🏁]t.me/ConfigsHub",
+      "query": {
+        "path": "/",
+        "security": "tls",
+        "encryption": "none",
+        "insecure": "0",
+        "host": "vp24.cc.cd",
+        "fp": "firefox",
+        "type": "ws",
+        "allowInsecure": "0",
+        "sni": "vp24.cc.cd"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "217.198.5.45",
+    "port": 443,
+    "name": "[🇷🇺]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://a3114afe-ea45-4705-b3c5-4e7162fad687@217.198.5.45:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rf1.o4ka-internet.com&fp=random&pbk=V2JprbR_aJkS7uX6anyU3nrswGxdvDQT2HpY4WnzuC8&sid=5629431325884ff0&type=tcp&headerType=none#[🇷🇺]t.me/ConfigsHub",
+      "query": {
+        "encryption": "none",
+        "flow": "xtls-rprx-vision",
+        "security": "reality",
+        "sni": "rf1.o4ka-internet.com",
+        "fp": "random",
+        "pbk": "V2JprbR_aJkS7uX6anyU3nrswGxdvDQT2HpY4WnzuC8",
+        "sid": "5629431325884ff0",
+        "type": "tcp",
+        "headerType": "none"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "feed.onetimeok.com",
+    "port": 443,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://86208db7-8bbc-42c2-9eb2-ffe5675502c3@feed.onetimeok.com:443?mode=gun&security=reality&encryption=none&pbk=nhw3l7ERW8NoAh5lBv3dxkF-mkNYifxsSxX_HNiOhAU&fp=firefox&type=grpc&serviceName=app.v1.StreamService&sni=feed.onetimeok.com&sid=82674cbe556a1209#[🏁]t.me/ConfigsHub",
+      "query": {
+        "mode": "gun",
+        "security": "reality",
+        "encryption": "none",
+        "pbk": "nhw3l7ERW8NoAh5lBv3dxkF-mkNYifxsSxX_HNiOhAU",
+        "fp": "firefox",
+        "type": "grpc",
+        "serviceName": "app.v1.StreamService",
+        "sni": "feed.onetimeok.com",
+        "sid": "82674cbe556a1209"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "subb.biscuitnazari.ir",
+    "port": 443,
+    "name": "[🇹🇷]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://f7673cd7-f025-47dc-9251-46779643923e@subb.biscuitnazari.ir:443?security=reality&encryption=mlkem768x25519plus.native.0rtt._DlNMge9rCmVJqaEJjIFAbwTgNVHMrFvwsqG36HVklY&pbk=jZw-MfEB8JeoXgdUjMd1vdrzghBsBzZAzKwSdRndb1M&headerType=none&fp=ios&spx=%2Ff69f1116586cf60&type=tcp&sni=play.google.com&sid=c33f#[🇹🇷]t.me/ConfigsHub",
+      "query": {
+        "security": "reality",
+        "encryption": "mlkem768x25519plus.native.0rtt._DlNMge9rCmVJqaEJjIFAbwTgNVHMrFvwsqG36HVklY",
+        "pbk": "jZw-MfEB8JeoXgdUjMd1vdrzghBsBzZAzKwSdRndb1M",
+        "headerType": "none",
+        "fp": "ios",
+        "spx": "/f69f1116586cf60",
+        "type": "tcp",
+        "sni": "play.google.com",
+        "sid": "c33f"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "tracker.oneokgames.com",
+    "port": 443,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://86208db7-8bbc-42c2-9eb2-ffe5675502c3@tracker.oneokgames.com:443?mode=gun&security=reality&encryption=none&pbk=VTO26jBMVVnEnnHQON7k8lB3ED46_JHshPorJHHXSRU&fp=firefox&type=grpc&serviceName=push.v2.FeedService&sni=tracker.oneokgames.com&sid=a30b344b5214d62f#[🏁]t.me/ConfigsHub",
+      "query": {
+        "mode": "gun",
+        "security": "reality",
+        "encryption": "none",
+        "pbk": "VTO26jBMVVnEnnHQON7k8lB3ED46_JHshPorJHHXSRU",
+        "fp": "firefox",
+        "type": "grpc",
+        "serviceName": "push.v2.FeedService",
+        "sni": "tracker.oneokgames.com",
+        "sid": "a30b344b5214d62f"
+      }
+    }
   }
 ]
