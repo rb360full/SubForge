@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import base64
+import json
 import os
 import sys
 from pathlib import Path
 
 from core.config import ConfigurationLoader
+from core.config_merger import ConfigMerger
 from core.pipeline import SubscriptionPipeline
 from providers.telegram.client import TelegramProvider, TelegramProviderConfig
 from tester.connectivity_tester import ConnectivityTester
@@ -43,6 +45,10 @@ def main(argv: list[str] | None = None) -> int:
         print("No enabled Telegram provider found in config/providers.json")
         return 1
 
+    # Handle config preservation and merging
+    config_merger = ConfigMerger(Path("config") / ".previous")
+    preserve_configs = telegram_provider.config.preserve_previous_configs
+    
     raw_channels = telegram_provider.config.source.get("channels")
     channels: tuple[dict[str, object], ...]
     if isinstance(raw_channels, list):
@@ -60,8 +66,35 @@ def main(argv: list[str] | None = None) -> int:
                 }
             return None
 
-        normalized = tuple(_normalize(item) for item in raw_channels)
-        channels = tuple(item for item in normalized if item is not None)
+        normalized_channels = [item for item in (_normalize(item) for item in raw_channels) if item is not None]
+        
+        # Merge with previous configs if preserve is enabled
+        if preserve_configs:
+            # Validate channel format: must have "channel" key with non-empty value
+            def validate_channel(config: dict[str, object]) -> None:
+                if not isinstance(config.get("channel"), str) or not str(config.get("channel", "")).strip():
+                    raise ValueError(f"Invalid channel format: missing or empty 'channel' field in {config}")
+            
+            merged_channels, invalid = config_merger.validate_and_merge(
+                provider_name="telegram_channels",
+                new_configs=normalized_channels,
+                preserve=True,
+                validator=validate_channel,
+            )
+            
+            if invalid:
+                print(f"WARNING: {len(invalid)} channel configs failed validation and were skipped:")
+                for item in invalid:
+                    print(f"  - {item['config']}: {item['error']}")
+            
+            channels = tuple(merged_channels)
+        else:
+            # Just validate new channels without preserving old ones
+            valid_channels = []
+            for channel in normalized_channels:
+                if isinstance(channel.get("channel"), str) and str(channel.get("channel", "")).strip():
+                    valid_channels.append(channel)
+            channels = tuple(valid_channels)
     else:
         fallback_channel = str(telegram_provider.config.source.get("channel", "")).strip()
         channels = ({"channel": fallback_channel},) if fallback_channel else ()

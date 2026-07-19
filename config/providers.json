@@ -24,7 +24,8 @@
         "default_message_limit": 10,
         "default_thread_fetch_window": 50,
         "url": "",
-        "timeout_seconds": 30
+        "timeout_seconds": 30,
+        "preserve_previous_configs": true
       }
     },
     {
@@ -34,7 +35,8 @@
       "source": {
         "repository": "",
         "path": "",
-        "timeout_seconds": 30
+        "timeout_seconds": 30,
+        "preserve_previous_configs": true
       }
     },
     {
@@ -43,7 +45,8 @@
       "type": "http",
       "source": {
         "url": "",
-        "timeout_seconds": 30
+        "timeout_seconds": 30,
+        "preserve_previous_configs": true
       }
     }
   ]

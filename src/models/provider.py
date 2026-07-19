@@ -13,6 +13,7 @@ class ProviderConfig:
     type: str
     enabled: bool
     source: dict[str, Any] = field(default_factory=dict)
+    preserve_previous_configs: bool = field(default=False)
 
 
 @dataclass(frozen=True, slots=True)

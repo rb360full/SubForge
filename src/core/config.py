@@ -75,13 +75,29 @@ class ConfigurationLoader:
             path,
             "providers",
             ("name", "enabled", "type", "source"),
-            lambda item, index: ProviderDefinition(
-                name=self._require_str(item["name"], f"providers[{index}].name", path),
-                config=ProviderConfig(
-                    type=self._require_str(item["type"], f"providers[{index}].type", path),
-                    enabled=self._require_bool(item["enabled"], f"providers[{index}].enabled", path),
-                    source=self._require_mapping(item["source"], path, f"providers[{index}].source"),
-                ),
+            lambda item, index: self._build_provider_definition(item, index, path),
+        )
+
+    def _build_provider_definition(self, item: dict[str, Any], index: int, path: Path) -> ProviderDefinition:
+        source_data = self._require_mapping(item["source"], path, f"providers[{index}].source")
+        
+        # Extract preserve_previous_configs from source
+        preserve_previous_configs = source_data.get("preserve_previous_configs", False)
+        if not isinstance(preserve_previous_configs, bool):
+            raise ConfigurationError(
+                f"Expected a boolean for preserve_previous_configs in providers[{index}].source in {path}"
+            )
+        
+        # Create a copy of source without the preserve_previous_configs key
+        filtered_source = {k: v for k, v in source_data.items() if k != "preserve_previous_configs"}
+        
+        return ProviderDefinition(
+            name=self._require_str(item["name"], f"providers[{index}].name", path),
+            config=ProviderConfig(
+                type=self._require_str(item["type"], f"providers[{index}].type", path),
+                enabled=self._require_bool(item["enabled"], f"providers[{index}].enabled", path),
+                source=filtered_source,
+                preserve_previous_configs=preserve_previous_configs,
             ),
         )
 
