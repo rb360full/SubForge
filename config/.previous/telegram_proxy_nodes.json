@@ -3356,5 +3356,87 @@
         "sni": "safi-production-ac34.up.railway.app"
       }
     }
+  },
+  {
+    "protocol": "trojan",
+    "host": "104.18.152.77",
+    "port": 443,
+    "name": "[🇨🇦]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "trojan://humanity@104.18.152.77:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#[🇨🇦]t.me/ConfigsHub",
+      "query": {
+        "path": "/assignment",
+        "security": "tls",
+        "insecure": "0",
+        "host": "www.ignitelimit.com",
+        "type": "ws",
+        "allowInsecure": "0",
+        "sni": "www.ignitelimit.com"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "ws.fredomiran.com",
+    "port": 2053,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://cca3e5cc-a62b-4877-b2d2-446da5167265@ws.fredomiran.com:2053?path=%2F&security=tls&encryption=none&insecure=0&host=ws.fredomiran.com&type=ws&allowInsecure=0&sni=fredomiran.com#[🏁]t.me/ConfigsHub",
+      "query": {
+        "path": "/",
+        "security": "tls",
+        "encryption": "none",
+        "insecure": "0",
+        "host": "ws.fredomiran.com",
+        "type": "ws",
+        "allowInsecure": "0",
+        "sni": "fredomiran.com"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "upload.onetimeok.com",
+    "port": 443,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://86208db7-8bbc-42c2-9eb2-ffe5675502c3@upload.onetimeok.com:443?encryption=none&security=reality&sni=upload.onetimeok.com&fp=firefox&pbk=nhw3l7ERW8NoAh5lBv3dxkF-mkNYifxsSxX_HNiOhAU&sid=82674cbe556a1209&type=grpc&authority=&serviceName=app.v1.StreamService&mode=gun#[🏁]t.me/ConfigsHub",
+      "query": {
+        "encryption": "none",
+        "security": "reality",
+        "sni": "upload.onetimeok.com",
+        "fp": "firefox",
+        "pbk": "nhw3l7ERW8NoAh5lBv3dxkF-mkNYifxsSxX_HNiOhAU",
+        "sid": "82674cbe556a1209",
+        "type": "grpc",
+        "serviceName": "app.v1.StreamService",
+        "mode": "gun"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "nl.fredomiran.com",
+    "port": 443,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://cca3e5cc-a62b-4877-b2d2-446da5167265@nl.fredomiran.com:443?security=reality&encryption=none&pbk=5vlie1Xxnp4ZhghxvPWZCPLiwxM9CNVuQN0lRz2Gigw&headerType=none&fp=chrome&spx=%2F&type=tcp&flow=xtls-rprx-vision&sni=www.cloudflare.com&sid=f9ffaeacfcf21dc1#[🏁]t.me/ConfigsHub",
+      "query": {
+        "security": "reality",
+        "encryption": "none",
+        "pbk": "5vlie1Xxnp4ZhghxvPWZCPLiwxM9CNVuQN0lRz2Gigw",
+        "headerType": "none",
+        "fp": "chrome",
+        "spx": "/",
+        "type": "tcp",
+        "flow": "xtls-rprx-vision",
+        "sni": "www.cloudflare.com",
+        "sid": "f9ffaeacfcf21dc1"
+      }
+    }
   }
 ]
