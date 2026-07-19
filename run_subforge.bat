@@ -33,6 +33,35 @@ if errorlevel 1 (
 
 echo.
 echo SubForge finished successfully.
+
+rem Ask whether to commit and push changes (default: Y)
+set "GIT_CONFIRM="
+set /p GIT_CONFIRM=Do you want to commit and push changes? [Y/n] (default Y): 
+if "%GIT_CONFIRM%"=="" set "GIT_CONFIRM=Y"
+
+if /I "%GIT_CONFIRM:~0,1%"=="Y" (
+    where git >nul 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        echo Git not found in PATH; skipping commit/push.
+    ) else (
+        echo Staging changes...
+        git add -A
+        set "CHANGES="
+        for /f "delims=" %%A in ('git status --porcelain') do set "CHANGES=1"
+        if defined CHANGES (
+            echo Committing changes...
+            git commit -m "Automated commit after running SubForge"
+            echo Pushing to remote...
+            git push
+        ) else (
+            echo No changes to commit.
+        )
+    )
+) else (
+    echo Skipping commit and push.
+)
+
+echo.
 echo Press any key to close this window...
 pause >nul
 exit /b 0
