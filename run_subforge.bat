@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 rem Optional: set this to the remote repository URL you want to push to.
 rem If empty, the script will push to the existing 'origin' remote.
-set "GIT_REMOTE_URL="
+set "GIT_REMOTE_URL=https://github.com/rb360full/SubForge.git"
 
 where py >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
@@ -55,8 +55,21 @@ if /I "%GIT_CONFIRM:~0,1%"=="Y" (
         if defined CHANGES (
             echo Committing changes...
             git commit -m "Automated commit after running SubForge"
-            echo Pushing to remote...
-            git push
+                rem Push to configured remote URL if provided, otherwise push to origin
+                if not "%GIT_REMOTE_URL%"=="" (
+                    echo Ensuring remote 'deploy' points to %GIT_REMOTE_URL%...
+                    git remote get-url deploy >nul 2>&1
+                    if %ERRORLEVEL% NEQ 0 (
+                        git remote add deploy "%GIT_REMOTE_URL%"
+                    ) else (
+                        git remote set-url deploy "%GIT_REMOTE_URL%"
+                    )
+                    echo Pushing to configured remote 'deploy'...
+                    git push deploy HEAD
+                ) else (
+                    echo Pushing to origin...
+                    git push
+                )
         ) else (
             echo No changes to commit.
         )
