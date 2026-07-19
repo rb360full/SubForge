@@ -2,16 +2,31 @@
 
 from __future__ import annotations
 
-import sys
+import base64
 import os
+import sys
 from pathlib import Path
 
 from core.config import ConfigurationLoader
 from core.pipeline import SubscriptionPipeline
 from providers.telegram.client import TelegramProvider, TelegramProviderConfig
 from tester.connectivity_tester import ConnectivityTester
-import base64
-from pathlib import Path
+
+
+def resolve_telegram_session_config(
+    env_value: str | None = None,
+    session_file: Path | None = None,
+) -> tuple[str | None, str]:
+    """Resolve Telegram auth input from the environment or a local session file."""
+    resolved_value = env_value if env_value is not None else os.getenv("TELEGRAM_SESSION_STRING")
+    if isinstance(resolved_value, str) and resolved_value.strip():
+        return resolved_value.strip(), "environment"
+
+    candidate = session_file or Path("subforge.session")
+    if candidate.exists():
+        return None, "subforge"
+
+    return None, "subforge"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -63,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
     output_dir = Path(config.settings.output_directory)
     api_id = telegram_provider.config.source.get("api_id")
     api_hash = telegram_provider.config.source.get("api_hash")
-    session_string = os.getenv("TELEGRAM_SESSION_STRING")
+    session_string, session_name = resolve_telegram_session_config()
     if not isinstance(api_id, int) or not isinstance(api_hash, str) or not api_hash.strip():
         print("Telegram provider is missing api_id/api_hash in config/providers.json")
         return 1
@@ -74,6 +89,7 @@ def main(argv: list[str] | None = None) -> int:
             api_hash=api_hash,
             channels=channels,
             session_string=session_string.strip() if isinstance(session_string, str) and session_string.strip() else None,
+            session_name=session_name,
             timeout_seconds=config.settings.default_timeout_seconds,
             default_message_limit=telegram_provider.config.source.get("default_message_limit", 50),
         )

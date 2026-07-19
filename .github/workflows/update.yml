@@ -41,8 +41,12 @@ jobs:
 
       - name: Validate Telegram session secret
         run: |
-          if [ -z "${TELEGRAM_SESSION_STRING}" ]; then
-            echo "Provide TELEGRAM_SESSION_STRING as a repo secret or manual workflow input."
+          if [ -n "${TELEGRAM_SESSION_STRING}" ]; then
+            echo "Using TELEGRAM_SESSION_STRING from secret or manual workflow input."
+          elif [ -f "subforge.session" ]; then
+            echo "Using repository session file subforge.session."
+          else
+            echo "Provide TELEGRAM_SESSION_STRING as a repo secret or manual workflow input, or ensure subforge.session exists."
             exit 1
           fi
 
