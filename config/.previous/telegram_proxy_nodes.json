@@ -3602,5 +3602,80 @@
         "sid": "a30b344b5214d62f"
       }
     }
+  },
+  {
+    "protocol": "vless",
+    "host": "samd.softupdl.ir",
+    "port": 56792,
+    "name": "[🇩🇪]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://12fbfce4-80bc-4559-9936-337963bb3fca@Samd.softupdl.ir:56792?encryption=none&security=none&type=tcp&headerType=http&path=%2F&host=play.google.com#[🇩🇪]t.me/ConfigsHub",
+      "query": {
+        "encryption": "none",
+        "security": "none",
+        "type": "tcp",
+        "headerType": "http",
+        "path": "/",
+        "host": "play.google.com"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "3.124.225.132",
+    "port": 22223,
+    "name": "[🇩🇪]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://e4514801-0d5a-42ba-869f-39bd605aef9e@3.124.225.132:22223?security=none&encryption=none&headerType=none&type=tcp#[🇩🇪]t.me/ConfigsHub",
+      "query": {
+        "security": "none",
+        "encryption": "none",
+        "headerType": "none",
+        "type": "tcp"
+      }
+    }
+  },
+  {
+    "protocol": "ss",
+    "host": "212.113.106.76",
+    "port": 61992,
+    "name": "[🇦🇹]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpFNkJMZEQzMEYzUzQ5dW5UY21UcDNn@212.113.106.76:61992#[🇦🇹]t.me/ConfigsHub"
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "199.247.4.254",
+    "port": 34274,
+    "name": "[🇩🇪]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://399f7f1b-0f5e-43a1-b0b5-6f255367d778@199.247.4.254:34274?path=%2Fws&security=none&encryption=none&type=ws#[🇩🇪]t.me/ConfigsHub",
+      "query": {
+        "path": "/ws",
+        "security": "none",
+        "encryption": "none",
+        "type": "ws"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "188.244.122.189",
+    "port": 8080,
+    "name": "[🇩🇪]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://69c548e8-67cd-4a9f-9fd0-cee6863012ad@188.244.122.189:8080?security=none&type=ws&path=%2Fjoin---to---vistav2ray-------join---to---vistav2ray-------join---to---vistav2ray-------join---to---vistav2ray-------%3Fed#[🇩🇪]t.me/ConfigsHub",
+      "query": {
+        "security": "none",
+        "type": "ws",
+        "path": "/join---to---vistav2ray-------join---to---vistav2ray-------join---to---vistav2ray-------join---to---vistav2ray-------?ed"
+      }
+    }
   }
 ]
