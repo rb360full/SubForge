@@ -2167,5 +2167,135 @@
         "sni": "zeus-panel-cxyca3.zeus-butoun.workers.dev"
       }
     }
+  },
+  {
+    "protocol": "trojan",
+    "host": "162.159.38.200",
+    "port": 443,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "trojan://MiTiVPN@162.159.38.200:443?path=%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%3DfLL&security=tls&alpn=http%2F1.1&insecure=1&host=f--ls-Fl.App-Cloud.ir&fp=chrome&type=ws&allowInsecure=1&sni=fl-o--7-flla.App-Cloud.ir#[🏁]t.me/ConfigsHub",
+      "query": {
+        "path": "/---@MiTiVPN/---@MiTiVPN/---@MiTiVPN/---@MiTiVPN/---@MiTiVPN=fLL",
+        "security": "tls",
+        "alpn": "http/1.1",
+        "insecure": "1",
+        "host": "f--ls-Fl.App-Cloud.ir",
+        "fp": "chrome",
+        "type": "ws",
+        "allowInsecure": "1",
+        "sni": "fl-o--7-flla.App-Cloud.ir"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "support.zoom.us",
+    "port": 8080,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://d4951d91-23e0-4301-a1ea-5300e0b5ec67@support.zoom.us:8080?path=%2Ffree-server.techsonic.me&security=none&encryption=none&host=free-server.techsonic.me&type=ws#[🏁]t.me/ConfigsHub",
+      "query": {
+        "path": "/free-server.techsonic.me",
+        "security": "none",
+        "encryption": "none",
+        "host": "free-server.techsonic.me",
+        "type": "ws"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "and-share.ir",
+    "port": 443,
+    "name": "[🇨🇦]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://54f6511e-5ea2-46b8-8475-7adc729ece51@and-share.ir:443?path=%2FZEUS_PANEL_BOT&security=tls&encryption=none&insecure=0&host=zeus-panel-cxyca3.zeus-butoun.workers.dev&fp=ios&type=ws&allowInsecure=0&sni=zeus-panel-cxyca3.zeus-butoun.workers.dev#[🇨🇦]t.me/ConfigsHub",
+      "query": {
+        "path": "/ZEUS_PANEL_BOT",
+        "security": "tls",
+        "encryption": "none",
+        "insecure": "0",
+        "host": "zeus-panel-cxyca3.zeus-butoun.workers.dev",
+        "fp": "ios",
+        "type": "ws",
+        "allowInsecure": "0",
+        "sni": "zeus-panel-cxyca3.zeus-butoun.workers.dev"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "webmail.azinsaraco.ir",
+    "port": 80,
+    "name": "[🇨🇦]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://54f6511e-5ea2-46b8-8475-7adc729ece51@webmail.azinsaraco.ir:80?path=%2FZEUS_PANEL_BOT&security=none&encryption=none&host=zeus-panel-cxyca3.zeus-butoun.workers.dev&fp=ios&type=ws&sni=zeus-panel-cxyca3.zeus-butoun#[🇨🇦]t.me/ConfigsHub",
+      "query": {
+        "path": "/ZEUS_PANEL_BOT",
+        "security": "none",
+        "encryption": "none",
+        "host": "zeus-panel-cxyca3.zeus-butoun.workers.dev",
+        "fp": "ios",
+        "type": "ws",
+        "sni": "zeus-panel-cxyca3.zeus-butoun"
+      }
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "a2.jobwebs.ir",
+    "port": 50567,
+    "name": "[🇩🇪]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "vless://d7870f16-1c35-445f-9ff9-36f052895b34@a2.jobwebs.ir:50567?security=reality&encryption=none&pbk=NpgXDQ6jl_HGPdHAHFeiBl5Ym7bywxmw_EYovmFjVQs&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=play.google.com&sid=184a6838386d384e#[🇩🇪]t.me/ConfigsHub",
+      "query": {
+        "security": "reality",
+        "encryption": "none",
+        "pbk": "NpgXDQ6jl_HGPdHAHFeiBl5Ym7bywxmw_EYovmFjVQs",
+        "headerType": "none",
+        "fp": "firefox",
+        "type": "tcp",
+        "flow": "xtls-rprx-vision",
+        "sni": "play.google.com",
+        "sid": "184a6838386d384e"
+      }
+    }
+  },
+  {
+    "protocol": "ss",
+    "host": "20.164.216.112",
+    "port": 443,
+    "name": "[🏁]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpZMVlTV05WV2Z1Zm9scGxL@20.164.216.112:443#[🏁]t.me/ConfigsHub"
+    }
+  },
+  {
+    "protocol": "trojan",
+    "host": "104.21.55.230",
+    "port": 443,
+    "name": "[🇨🇦]t.me/ConfigsHub",
+    "source": "https://t.me/ConfigsHUB",
+    "metadata": {
+      "raw": "trojan://MiTiVPN@104.21.55.230:443?path=%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%3DSS-w&security=tls&alpn=http%2F1.1&insecure=1&host=bw--ivs-b--vvs.App-Cloud.ir&fp=chrome&type=ws&allowInsecure=1&sni=wbjj-bbcs-.App-Cloud.ir#[🇨🇦]t.me/ConfigsHub",
+      "query": {
+        "path": "/---@MiTiVPN/---@MiTiVPN/---@MiTiVPN/---@MiTiVPN/---@MiTiVPN=SS-w",
+        "security": "tls",
+        "alpn": "http/1.1",
+        "insecure": "1",
+        "host": "bw--ivs-b--vvs.App-Cloud.ir",
+        "fp": "chrome",
+        "type": "ws",
+        "allowInsecure": "1",
+        "sni": "wbjj-bbcs-.App-Cloud.ir"
+      }
+    }
   }
 ]

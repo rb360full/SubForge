@@ -2,6 +2,10 @@
 setlocal
 cd /d "%~dp0"
 
+rem Optional: set this to the remote repository URL you want to push to.
+rem If empty, the script will push to the existing 'origin' remote.
+set "GIT_REMOTE_URL="
+
 where py >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
     set "PYTHON_CMD=py -3"
