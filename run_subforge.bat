@@ -41,13 +41,13 @@ echo SubForge finished successfully.
 rem Ask whether to commit and push changes (default: Y). Only 'N' or 'n' means No; Enter or anything else means Yes.
 set "GIT_CONFIRM="
 set /p GIT_CONFIRM=Do you want to commit and push changes? [Y/n] (default Y): 
-if "%GIT_CONFIRM%"=="" set "GIT_CONFIRM=Y"
+set "GIT_FIRSTCHAR=%GIT_CONFIRM:~0,1%"
+if "%GIT_FIRSTCHAR%"=="" set "GIT_FIRSTCHAR=Y"
 
-rem If the first character is N/n, treat as No; otherwise treat as Yes
-if /I "%GIT_CONFIRM:~0,1%"=="N" (
+if /I "%GIT_FIRSTCHAR%"=="N" (
     echo Skipping commit and push.
 ) else (
-    where git >nul 2>&1
+    git --version >nul 2>&1
     if %ERRORLEVEL% NEQ 0 (
         echo Git not found in PATH; skipping commit/push.
     ) else (
@@ -58,30 +58,30 @@ if /I "%GIT_CONFIRM:~0,1%"=="N" (
         if defined CHANGES (
             echo Committing changes...
             git commit -m "Automated commit after running SubForge"
-                rem Push directly to the configured remote URL if provided; otherwise push to origin.
-                if not "%GIT_REMOTE_URL%"=="" (
-                    rem Determine current branch
-                    set "CURRENT_BRANCH="
-                    for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set "CURRENT_BRANCH=%%B"
-                    if "%CURRENT_BRANCH%"=="" (
-                        echo Could not determine current branch; pushing HEAD to URL without branch name...
-                        git push "%GIT_REMOTE_URL%" HEAD
-                    ) else (
-                        echo Pushing to %GIT_REMOTE_URL% on branch %CURRENT_BRANCH%...
-                        git push "%GIT_REMOTE_URL%" HEAD:refs/heads/%CURRENT_BRANCH%
-                    )
-                    if %ERRORLEVEL% NEQ 0 (
-                        echo Push failed. Please check your remote URL and access rights.
-                    )
+            rem Push directly to the configured remote URL if provided; otherwise push to origin.
+            if not "%GIT_REMOTE_URL%"=="" (
+                rem Determine current branch
+                set "CURRENT_BRANCH="
+                for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set "CURRENT_BRANCH=%%B"
+                if "%CURRENT_BRANCH%"=="" (
+                    echo Could not determine current branch; pushing HEAD to URL without branch name...
+                    git push "%GIT_REMOTE_URL%" HEAD
                 ) else (
-                    echo Pushing to origin...
-                    git push
+                    echo Pushing to %GIT_REMOTE_URL% on branch %CURRENT_BRANCH%...
+                    git push "%GIT_REMOTE_URL%" HEAD:refs/heads/%CURRENT_BRANCH%
                 )
+                if %ERRORLEVEL% NEQ 0 (
+                    echo Push failed. Please check your remote URL and access rights.
+                )
+            ) else (
+                echo Pushing to origin...
+                git push
+            )
         ) else (
             echo No changes to commit.
         )
     )
- )
+)
 
 echo.
 echo Press any key to close this window...
