@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 cd /d "%~dp0"
 
 rem Optional: set this to the remote repository URL you want to push to.
@@ -63,12 +63,12 @@ if /I "%GIT_FIRSTCHAR%"=="N" (
                 rem Determine current branch
                 set "CURRENT_BRANCH="
                 for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set "CURRENT_BRANCH=%%B"
-                if "%CURRENT_BRANCH%"=="" (
+                if "!CURRENT_BRANCH!"=="" (
                     echo Could not determine current branch; pushing HEAD to URL without branch name...
                     git push "%GIT_REMOTE_URL%" HEAD
                 ) else (
-                    echo Pushing to %GIT_REMOTE_URL% on branch %CURRENT_BRANCH%...
-                    git push "%GIT_REMOTE_URL%" HEAD:refs/heads/%CURRENT_BRANCH%
+                    echo Pushing to %GIT_REMOTE_URL% on branch !CURRENT_BRANCH!...
+                    git push "%GIT_REMOTE_URL%" HEAD:refs/heads/!CURRENT_BRANCH!
                 )
                 if %ERRORLEVEL% NEQ 0 (
                     echo Push failed. Please check your remote URL and access rights.
