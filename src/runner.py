@@ -10,6 +10,7 @@ from pathlib import Path
 
 from core.config import ConfigurationLoader
 from core.config_merger import ConfigMerger
+from core.node_serializer import dicts_to_nodes, nodes_to_dicts
 from core.pipeline import SubscriptionPipeline
 from providers.telegram.client import TelegramProvider, TelegramProviderConfig
 from tester.connectivity_tester import ConnectivityTester
@@ -137,6 +138,40 @@ def main(argv: list[str] | None = None) -> int:
         print(f"No proxy links found in channels: {', '.join(channels)}")
         return 1
 
+    # Handle proxy node preservation and merging
+    if preserve_configs:
+        # Convert nodes to dictionaries for merging
+        new_node_dicts = nodes_to_dicts(nodes)
+        
+        # Validate node format: must have required fields
+        def validate_node(config: dict[str, object]) -> None:
+            if not isinstance(config.get("protocol"), str) or not str(config.get("protocol", "")).strip():
+                raise ValueError(f"Invalid node: missing or empty 'protocol' field in {config}")
+            if not isinstance(config.get("host"), str) or not str(config.get("host", "")).strip():
+                raise ValueError(f"Invalid node: missing or empty 'host' field in {config}")
+            if not isinstance(config.get("port"), int) or config.get("port", 0) <= 0:
+                raise ValueError(f"Invalid node: missing or invalid 'port' field in {config}")
+        
+        merged_node_dicts, invalid_nodes = config_merger.validate_and_merge(
+            provider_name="telegram_proxy_nodes",
+            new_configs=new_node_dicts,
+            preserve=True,
+            validator=validate_node,
+        )
+        
+        if invalid_nodes:
+            print(f"WARNING: {len(invalid_nodes)} proxy node(s) failed validation and were skipped:")
+            for item in invalid_nodes:
+                print(f"  - {item['error']}")
+        
+        # Convert back to nodes
+        nodes = dicts_to_nodes(merged_node_dicts)
+        print(f"Merged {len(nodes)} proxy nodes (new + preserved, deduplicated)")
+    
+    if not nodes:
+        print("No valid proxy nodes available after merge and validation")
+        return 1
+
     pipeline = SubscriptionPipeline(
         output_dir=output_dir,
         tester=ConnectivityTester(timeout_seconds=config.settings.default_timeout_seconds),
@@ -147,8 +182,8 @@ def main(argv: list[str] | None = None) -> int:
     result = pipeline.run(collected_text, subscription.output_path, source=channels[0])
 
     channel_names = ', '.join(str(c.get("channel") if isinstance(c, dict) else c) for c in channels)
-    print(f"Collected {len(nodes)} Telegram proxy links from {channel_names}")
-    print(f"Generated {len(result.nodes)} subscription nodes")
+    print(f"Collected {len(nodes)} total proxy links from {channel_names}")
+    print(f"Generated {len(result.nodes)} subscription nodes after validation and deduplication")
     print(f"Published subscription to {result.published.output_path}")
     print(f"Subscription payload length: {len(result.content)}")
     # also write decoded file next to the published output for inspection
