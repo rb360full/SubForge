@@ -35,6 +35,21 @@ def test_subscription_model() -> None:
     assert len(subscription.channels) == 2
 
 
+def test_subscription_model_merged_empty_channels() -> None:
+    # Test merged subscription with empty channels
+    merged = Subscription(
+        name="merged",
+        enabled=True,
+        subscription_name="Telegram-Merged",
+        format="plain",
+        provider="telegram",
+        channels=()  # Empty - should use all unique channels
+    )
+    assert merged.output_path == "Telegram-Merged.txt"
+    assert len(merged.channels) == 0
+    assert merged.name == "merged"
+
+
 def test_result_models() -> None:
     validation = ValidationResult(is_valid=True)
     test_result = TestResult(is_reachable=True, latency_ms=42)

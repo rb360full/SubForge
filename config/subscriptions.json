@@ -7,11 +7,8 @@
       "format": "plain",
       "provider": "telegram",
       "channels": [
-        "https://t.me/Capoit",
-        "https://t.me/ConfigsHUB",
-        "https://t.me/daily_configs",
-        "https://t.me/mehrosaboran",
-        "https://t.me/VmessProtocol"
+        "https://t.me/PrivateVPNs",
+        "https://t.me/bored_vpn"
       ]
     },
     {
@@ -24,8 +21,22 @@
         "https://t.me/daily_configs",
         "https://t.me/Best_internet_iran",
         "https://t.me/Persianvpnhub",
-        "https://t.me/V2rayng_Fast"
+        "https://t.me/V2rayng_Fast",
+        "https://t.me/Capoit",
+        "https://t.me/ConfigsHUB",
+        "https://t.me/daily_configs",
+        "https://t.me/mehrosaboran",
+        "https://t.me/VmessProtocol",
+        "https://t.me/ConfigX2ray"
       ]
+    },
+    {
+      "name": "merged",
+      "enabled": true,
+      "subscription_name": "Telegram-Merged",
+      "format": "plain",
+      "provider": "telegram",
+      "channels": []
     }
   ]
 }

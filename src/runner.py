@@ -55,10 +55,29 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f"Found {len(enabled_subscriptions)} enabled subscription(s): {', '.join(s.subscription_name for s in enabled_subscriptions)}")
 
-    # Extract unique channels from all enabled subscriptions
+    # Extract unique channels from all enabled subscriptions (excluding merged for now)
     unique_channels_set: set[str] = set()
+    non_merged_subscriptions = []
+    merged_subscription = None
+    
     for subscription in enabled_subscriptions:
-        unique_channels_set.update(subscription.channels)
+        if subscription.name == "merged":
+            merged_subscription = subscription
+        else:
+            non_merged_subscriptions.append(subscription)
+            unique_channels_set.update(subscription.channels)
+    
+    # If merged subscription exists and has empty channels, it will use all unique channels
+    # Otherwise add merged subscription's channels to unique set
+    if merged_subscription:
+        if merged_subscription.channels:
+            unique_channels_set.update(merged_subscription.channels)
+        # If empty, it will use unique_channels_set which is built from other subscriptions
+    
+    # Re-create enabled_subscriptions list with proper order
+    final_subscriptions = non_merged_subscriptions.copy()
+    if merged_subscription:
+        final_subscriptions.append(merged_subscription)
     
     if not unique_channels_set:
         print("No channels defined in any enabled subscription")
@@ -149,7 +168,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     
     success_count = 0
-    for subscription in enabled_subscriptions:
+    for subscription in final_subscriptions:
         # Filter nodes for this subscription based on channels
         # Get raw text that includes channel source info if available
         collected_text = "\n".join(
@@ -159,7 +178,16 @@ def main(argv: list[str] | None = None) -> int:
         output_filename = f"subscriptions/{subscription.output_path}"
         
         try:
-            result = pipeline.run(collected_text, output_filename, source=subscription.channels[0] if subscription.channels else "mixed")
+            # Determine source display
+            if subscription.channels:
+                source_display = subscription.channels[0]
+                channels_display = ', '.join(subscription.channels[:3]) + ('...' if len(subscription.channels) > 3 else '')
+            else:
+                # For merged subscription with empty channels
+                source_display = "merged"
+                channels_display = f"{len(unique_channels_set)} unique channels"
+            
+            result = pipeline.run(collected_text, output_filename, source=source_display)
             
             # Write decoded file
             pub_path = Path(result.published.output_path)
@@ -168,7 +196,7 @@ def main(argv: list[str] | None = None) -> int:
             decoded_path.write_bytes(decoded_bytes)
             
             print(f"✓ Published {subscription.subscription_name}.txt with {len(result.nodes)} nodes to {result.published.output_path}")
-            print(f"  Channels: {', '.join(subscription.channels[:3])}{'...' if len(subscription.channels) > 3 else ''}")
+            print(f"  Channels: {channels_display}")
             success_count += 1
             
         except Exception as exc:  # noqa: BLE001
@@ -178,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
         print("Failed to process any subscriptions")
         return 1
     
-    print(f"\n✓ Successfully processed {success_count}/{len(enabled_subscriptions)} subscription(s)")
+    print(f"\n✓ Successfully processed {success_count}/{len(final_subscriptions)} subscription(s)")
     return 0
 
 
