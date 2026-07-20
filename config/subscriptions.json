@@ -14,7 +14,7 @@
     {
       "name": "vpn_specialized",
       "enabled": true,
-      "subscription_name": "Telegram-VPN-Specialized",
+      "subscription_name": "Telegram-List2",
       "format": "plain",
       "provider": "telegram",
       "channels": [

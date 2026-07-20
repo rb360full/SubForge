@@ -12,7 +12,6 @@ from filter.deduplicator import SubscriptionDeduplicator
 from generator.subscription_generator import SubscriptionGenerator
 from models.results import TestResult
 from parser.subscription_parser import SubscriptionParser
-from publisher.file_publisher import FilePublisher
 from tester.connectivity_tester import ConnectivityTester
 
 

@@ -131,7 +131,6 @@ class TelegramProvider:
                         continue
                     raise
                 # If we got a list/iterable, apply date filtering if requested
-                filtered_messages = []
                 cutoff: datetime | None = None
                 if days_window is not None:
                     cutoff = datetime.utcnow() - timedelta(days=days_window)
@@ -147,6 +146,8 @@ class TelegramProvider:
                         continue
                     parsed = self._parser.parse_text(text, source=channel)
                     for node in parsed.nodes:
+                        metadata = dict(node.metadata)
+                        metadata["source_channel"] = channel
                         results.append(
                             ProxyConfig(
                                 protocol=node.protocol,
@@ -154,7 +155,7 @@ class TelegramProvider:
                                 port=node.port,
                                 name=node.remark,
                                 source=node.source,
-                                metadata=node.metadata,
+                                metadata=metadata,
                             )
                         )
         return results
