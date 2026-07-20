@@ -8471,5 +8471,92 @@
       },
       "source_channel": "https://t.me/ConfigX2ray"
     }
+  },
+  {
+    "protocol": "vless",
+    "host": "47.89.186.170",
+    "port": 55861,
+    "name": "V2rayByUnknown™",
+    "source": "https://t.me/Persianvpnhub",
+    "metadata": {
+      "raw": "vless://d51ed55c-d6dd-400b-aaf6-017c33969bfe@47.89.186.170:55861?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=firefox&pbk=t2ndf6SeVxinFCo5bcemnW_ZZhAtmHWiAkllks5qPWs&sid=7551ed1b&sni=www.intel.com#V2rayByUnknown™",
+      "query": {
+        "type": "tcp",
+        "security": "reality",
+        "encryption": "none",
+        "flow": "xtls-rprx-vision",
+        "fp": "firefox",
+        "pbk": "t2ndf6SeVxinFCo5bcemnW_ZZhAtmHWiAkllks5qPWs",
+        "sid": "7551ed1b",
+        "sni": "www.intel.com"
+      },
+      "source_channel": "https://t.me/Persianvpnhub"
+    }
+  },
+  {
+    "protocol": "vless",
+    "host": "109.163.239.64",
+    "port": 443,
+    "name": "● 👺 @ProxySXHub | 🍑خانوم هلو",
+    "source": "https://t.me/Persianvpnhub",
+    "metadata": {
+      "raw": "vless://c6a420c7-3bdb-40cd-8a57-f5ce870e9b83@109.163.239.64:443?security=reality&encryption=none&pbk=CMkW1axrhEXoiJ6anMz9XEjlfqlAtEZya7L0b5ZPMyw&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=cdn4-35.yahoo.com&sid=c252dea48965065b#%E2%97%8F%20%F0%9F%91%BA%20%40ProxySXHub%20%7C%20%F0%9F%8D%91%D8%AE%D8%A7%D9%86%D9%88%D9%85%20%D9%87%D9%84%D9%88",
+      "query": {
+        "security": "reality",
+        "encryption": "none",
+        "pbk": "CMkW1axrhEXoiJ6anMz9XEjlfqlAtEZya7L0b5ZPMyw",
+        "headerType": "none",
+        "fp": "firefox",
+        "type": "tcp",
+        "flow": "xtls-rprx-vision",
+        "sni": "cdn4-35.yahoo.com",
+        "sid": "c252dea48965065b"
+      },
+      "source_channel": "https://t.me/Persianvpnhub"
+    }
+  },
+  {
+    "protocol": "trojan",
+    "host": "162.159.152.202",
+    "port": 443,
+    "name": "@Hope_Net-join-us-on-Telegram",
+    "source": "https://t.me/Persianvpnhub",
+    "metadata": {
+      "raw": "trojan://tg-dns68@162.159.152.202:443?security=tls&sni=vip.putata.eu.org&type=ws&host=vip.putata.eu.org&path=%2F%3Fed%3D2560&fp=randomized&alpn=h3#@Hope_Net-join-us-on-Telegram",
+      "query": {
+        "security": "tls",
+        "sni": "vip.putata.eu.org",
+        "type": "ws",
+        "host": "vip.putata.eu.org",
+        "path": "/?ed=2560",
+        "fp": "randomized",
+        "alpn": "h3"
+      },
+      "source_channel": "https://t.me/Persianvpnhub"
+    }
+  },
+  {
+    "protocol": "vmess",
+    "host": "ydtxwbcvb_cdn.hfhfb.homes",
+    "port": 2095,
+    "name": "@Hope_Net-join-us-on-Telegram",
+    "source": "https://t.me/Persianvpnhub",
+    "metadata": {
+      "raw": "vmess://eyJ2IjogIjIiLCAicHMiOiAiQEhvcGVfTmV0LWpvaW4tdXMtb24tVGVsZWdyYW0iLCAiYWRkIjogInlkdHh3YmN2Yl9jZG4uaGZoZmIuaG9tZXMiLCAicG9ydCI6ICIyMDk1IiwgInR5cGUiOiAibm9uZSIsICJpZCI6ICIzNDQ5YTg2ZS1lMzA0LTQ1YjItYTU0My1iNmQ4ZWY0MjkwMTIiLCAiYWlkIjogIjAiLCAibmV0IjogIndzIiwgInBhdGgiOiAiLz9lZD0xMDI0IiwgImhvc3QiOiAiZGVjZG4uZmFzazUxMS5jZmQiLCAidGxzIjogIiJ9",
+      "vmess": {
+        "v": "2",
+        "ps": "@Hope_Net-join-us-on-Telegram",
+        "add": "ydtxwbcvb_cdn.hfhfb.homes",
+        "port": "2095",
+        "type": "none",
+        "id": "3449a86e-e304-45b2-a543-b6d8ef429012",
+        "aid": "0",
+        "net": "ws",
+        "path": "/?ed=1024",
+        "host": "decdn.fask511.cfd",
+        "tls": ""
+      },
+      "source_channel": "https://t.me/Persianvpnhub"
+    }
   }
 ]
