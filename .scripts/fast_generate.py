@@ -80,15 +80,15 @@ def fast_generate(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="Path to raw input text")
-    parser.add_argument("output", nargs="?", help="Output path (default: subscriptions/default.txt)")
+    parser.add_argument("output", nargs="?", help="Output path (default: subscriptions/Telegram-List1.txt)")
     parser.add_argument("--skip-tests", action="store_true", help="Skip connectivity tests for faster generation")
     parser.add_argument("--workers", type=int, default=32, help="Number of worker threads for connectivity tests")
     parser.add_argument("--timeout", type=float, default=3.0, help="Socket timeout seconds for connectivity checks")
-    parser.add_argument("--decode", action="store_true", help="Also write decoded output (default.decoded.txt)")
+    parser.add_argument("--decode", action="store_true", help="Also write decoded output (Telegram-List1.decoded.txt)")
     args = parser.parse_args()
 
     input_file = Path(args.input)
-    out_file = Path(args.output) if args.output else REPO_ROOT / "subscriptions" / "default.txt"
+    out_file = Path(args.output) if args.output else REPO_ROOT / "subscriptions" / "Telegram-List1.txt"
     # pass timeout to the tester via environment of the script
     # create tester inside fast_generate using provided timeout
     fast_generate(

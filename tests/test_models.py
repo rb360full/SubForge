@@ -21,14 +21,24 @@ def test_provider_models() -> None:
 
 
 def test_subscription_model() -> None:
-    subscription = Subscription(name="default", enabled=True, output_path="subscriptions/default.txt", format="plain")
+    subscription = Subscription(
+        name="default",
+        enabled=True,
+        subscription_name="Telegram-List1",
+        format="plain",
+        provider="telegram",
+        channels=("https://t.me/channel1", "https://t.me/channel2")
+    )
+    assert subscription.output_path == "Telegram-List1.txt"
     assert subscription.output_path.endswith(".txt")
+    assert subscription.provider == "telegram"
+    assert len(subscription.channels) == 2
 
 
 def test_result_models() -> None:
     validation = ValidationResult(is_valid=True)
     test_result = TestResult(is_reachable=True, latency_ms=42)
-    generation = GenerationResult(success=True, output_path="subscriptions/default.txt")
+    generation = GenerationResult(success=True, output_path="subscriptions/Telegram-List1.txt")
 
     assert validation.is_valid is True
     assert test_result.latency_ms == 42

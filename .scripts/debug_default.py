@@ -2,7 +2,7 @@ import base64
 import re
 from pathlib import Path
 
-path = Path('subscriptions/default.txt')
+path = Path('subscriptions/Telegram-List1.txt')
 text = path.read_text(encoding='utf-8').strip()
 print('file_size', len(text))
 print('contains_newline', '\n' in text)

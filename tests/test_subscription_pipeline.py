@@ -151,10 +151,10 @@ def test_pipeline_publishes_subscription_file(tmp_path: Path) -> None:
     text = "vless://uuid@example.com:443#example\nvless://uuid@example.com:443#example"
     pipeline = SubscriptionPipeline(output_dir=tmp_path)
 
-    result = pipeline.run(text, "subscriptions/default.txt", source="telegram://channel")
+    result = pipeline.run(text, "subscriptions/Telegram-List1.txt", source="telegram://channel")
 
     assert len(result.nodes) == 1
-    assert result.published.output_path == tmp_path / "subscriptions/default.txt"
+    assert result.published.output_path == tmp_path / "subscriptions/Telegram-List1.txt"
     assert result.published.output_path.exists()
     assert base64.b64decode(result.content).decode("utf-8") == "vless://uuid@example.com:443#example"
 
@@ -205,7 +205,7 @@ def test_pipeline_filters_out_dead_nodes(tmp_path: Path) -> None:
             "vless://uuid@127.0.0.1:65534#dead"
         )
         pipeline = SubscriptionPipeline(output_dir=tmp_path)
-        result = pipeline.run(text, "subscriptions/default.txt", source="telegram://channel")
+        result = pipeline.run(text, "subscriptions/Telegram-List1.txt", source="telegram://channel")
 
         assert len(result.nodes) == 1
         assert "127.0.0.1" in base64.b64decode(result.content).decode("utf-8")
@@ -229,6 +229,6 @@ def test_pipeline_prefers_faster_reachable_nodes(tmp_path: Path) -> None:
     )
     pipeline = SubscriptionPipeline(output_dir=tmp_path, tester=StubTester())
 
-    result = pipeline.run(text, "subscriptions/default.txt", source="telegram://channel")
+    result = pipeline.run(text, "subscriptions/Telegram-List1.txt", source="telegram://channel")
 
     assert [node.remark for node in result.nodes] == ["fast", "slow"]

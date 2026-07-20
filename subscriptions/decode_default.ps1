@@ -1,13 +1,17 @@
 Param(
-    [string]$Input = "default.txt",
-    [string]$Output = "default.decoded.txt"
+    [string]$Input = "Telegram-List1.txt",
+    [string]$Output = $null
 )
+
+if (-not $Output) {
+    $Output = [System.IO.Path]::GetFileNameWithoutExtension($Input) + ".decoded.txt"
+}
 
 $repo = Split-Path -Parent $PSScriptRoot
 Set-Location $repo
 
 if (-not (Test-Path $Input)) {
-    Write-Error "Input file '$Input' not found in $repo\subscriptions"
+    Write-Error "Input file '$Input' not found"
     exit 2
 }
 

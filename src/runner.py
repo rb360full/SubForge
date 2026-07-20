@@ -38,6 +38,7 @@ def main(argv: list[str] | None = None) -> int:
     loader = ConfigurationLoader(config_dir)
     config = loader.load()
 
+    # Validate telegram provider
     telegram_provider = next(
         (provider for provider in config.providers if provider.name == "telegram" and provider.config.enabled),
         None,
@@ -46,111 +47,83 @@ def main(argv: list[str] | None = None) -> int:
         print("No enabled Telegram provider found in config/providers.json")
         return 1
 
-    # Handle config preservation and merging
-    config_merger = ConfigMerger(Path("config") / ".previous")
-    preserve_configs = telegram_provider.config.preserve_previous_configs
+    # Validate subscriptions
+    enabled_subscriptions = [sub for sub in config.subscriptions if sub.enabled]
+    if not enabled_subscriptions:
+        print("No enabled subscriptions found in config/subscriptions.json")
+        return 1
+
+    print(f"Found {len(enabled_subscriptions)} enabled subscription(s): {', '.join(s.subscription_name for s in enabled_subscriptions)}")
+
+    # Extract unique channels from all enabled subscriptions
+    unique_channels_set: set[str] = set()
+    for subscription in enabled_subscriptions:
+        unique_channels_set.update(subscription.channels)
     
-    raw_channels = telegram_provider.config.source.get("channels")
-    channels: tuple[dict[str, object], ...]
-    if isinstance(raw_channels, list):
-        # Normalize channel entries to mapping form: {"channel": "...", "message_thread_id": 123}
-        def _normalize(entry: object) -> dict[str, object] | None:
-            if isinstance(entry, str) and entry.strip():
-                return {"channel": entry.strip()}
-            if isinstance(entry, dict) and entry.get("channel"):
-                # Preserve optional per-channel keys like message_thread_id and limit
-                return {
-                    "channel": str(entry.get("channel", "")).strip(),
-                    "message_thread_id": entry.get("message_thread_id"),
-                    "limit": entry.get("limit"),
-                    "days": entry.get("days"),
-                }
-            return None
-
-        normalized_channels = [item for item in (_normalize(item) for item in raw_channels) if item is not None]
-        
-        # Merge with previous configs if preserve is enabled
-        if preserve_configs:
-            # Validate channel format: must have "channel" key with non-empty value
-            def validate_channel(config: dict[str, object]) -> None:
-                if not isinstance(config.get("channel"), str) or not str(config.get("channel", "")).strip():
-                    raise ValueError(f"Invalid channel format: missing or empty 'channel' field in {config}")
-            
-            merged_channels, invalid = config_merger.validate_and_merge(
-                provider_name="telegram_channels",
-                new_configs=normalized_channels,
-                preserve=True,
-                validator=validate_channel,
-            )
-            
-            if invalid:
-                print(f"WARNING: {len(invalid)} channel configs failed validation and were skipped:")
-                for item in invalid:
-                    print(f"  - {item['config']}: {item['error']}")
-            
-            channels = tuple(merged_channels)
-        else:
-            # Just validate new channels without preserving old ones
-            valid_channels = []
-            for channel in normalized_channels:
-                if isinstance(channel.get("channel"), str) and str(channel.get("channel", "")).strip():
-                    valid_channels.append(channel)
-            channels = tuple(valid_channels)
-    else:
-        fallback_channel = str(telegram_provider.config.source.get("channel", "")).strip()
-        channels = ({"channel": fallback_channel},) if fallback_channel else ()
-
-    if not channels:
-        print("Telegram provider is missing source.channels in config/providers.json")
+    if not unique_channels_set:
+        print("No channels defined in any enabled subscription")
         return 1
 
-    subscription = next((item for item in config.subscriptions if item.enabled), None)
-    if subscription is None:
-        print("No enabled subscription found in config/subscriptions.json")
+    print(f"Extracting {len(unique_channels_set)} unique channel(s)...")
+
+    # Normalize channels to provider format
+    provider_channels: list[dict[str, object]] = []
+    for channel_url in unique_channels_set:
+        provider_channels.append({"channel": channel_url.strip()})
+
+    if not provider_channels:
+        print("No valid channels found")
         return 1
 
+    # Setup provider
     output_dir = Path(config.settings.output_directory)
     api_id = telegram_provider.config.source.get("api_id")
     api_hash = telegram_provider.config.source.get("api_hash")
     session_string, session_name = resolve_telegram_session_config()
+    
     if not isinstance(api_id, int) or not isinstance(api_hash, str) or not api_hash.strip():
         print("Telegram provider is missing api_id/api_hash in config/providers.json")
         return 1
 
+    # Collect proxy nodes from unique channels (once)
     provider = TelegramProvider(
         TelegramProviderConfig(
             api_id=api_id,
             api_hash=api_hash,
-            channels=channels,
+            channels=tuple(provider_channels),
             session_string=session_string.strip() if isinstance(session_string, str) and session_string.strip() else None,
             session_name=session_name,
             timeout_seconds=config.settings.default_timeout_seconds,
             default_message_limit=telegram_provider.config.source.get("default_message_limit", 50),
         )
     )
+    
     try:
-        nodes = list(provider.collect())
+        all_nodes = list(provider.collect())
     except Exception as exc:  # noqa: BLE001
-        print(str(exc))
+        print(f"Error collecting from Telegram: {exc}")
         return 1
 
-    if not nodes:
-        print(f"No proxy links found in channels: {', '.join(channels)}")
+    if not all_nodes:
+        print(f"No proxy links found in channels: {', '.join(unique_channels_set)}")
         return 1
+
+    print(f"✓ Collected {len(all_nodes)} proxy nodes from {len(unique_channels_set)} channel(s)")
 
     # Handle proxy node preservation and merging
+    config_merger = ConfigMerger(Path("config") / ".previous")
+    preserve_configs = telegram_provider.config.preserve_previous_configs
+    
     if preserve_configs:
-        # Convert nodes to dictionaries for merging
-        new_node_dicts = nodes_to_dicts(nodes)
+        new_node_dicts = nodes_to_dicts(all_nodes)
         
-        # Validate node format: must have required fields
         def validate_node(config: dict[str, object]) -> None:
             if not isinstance(config.get("protocol"), str) or not str(config.get("protocol", "")).strip():
-                raise ValueError(f"Invalid node: missing or empty 'protocol' field in {config}")
+                raise ValueError(f"Invalid node: missing or empty 'protocol'")
             if not isinstance(config.get("host"), str) or not str(config.get("host", "")).strip():
-                raise ValueError(f"Invalid node: missing or empty 'host' field in {config}")
+                raise ValueError(f"Invalid node: missing or empty 'host'")
             if not isinstance(config.get("port"), int) or config.get("port", 0) <= 0:
-                raise ValueError(f"Invalid node: missing or invalid 'port' field in {config}")
+                raise ValueError(f"Invalid node: missing or invalid 'port'")
         
         merged_node_dicts, invalid_nodes = config_merger.validate_and_merge(
             provider_name="telegram_proxy_nodes",
@@ -160,41 +133,52 @@ def main(argv: list[str] | None = None) -> int:
         )
         
         if invalid_nodes:
-            print(f"WARNING: {len(invalid_nodes)} proxy node(s) failed validation and were skipped:")
-            for item in invalid_nodes:
-                print(f"  - {item['error']}")
+            print(f"WARNING: {len(invalid_nodes)} proxy node(s) failed validation")
         
-        # Convert back to nodes
-        nodes = dicts_to_nodes(merged_node_dicts)
-        print(f"Merged {len(nodes)} proxy nodes (new + preserved, deduplicated)")
+        all_nodes = dicts_to_nodes(merged_node_dicts)
+        print(f"✓ Merged {len(all_nodes)} proxy nodes (new + preserved, deduplicated)")
     
-    if not nodes:
-        print("No valid proxy nodes available after merge and validation")
+    if not all_nodes:
+        print("No valid proxy nodes available")
         return 1
 
+    # Process each subscription
     pipeline = SubscriptionPipeline(
         output_dir=output_dir,
         tester=ConnectivityTester(timeout_seconds=config.settings.default_timeout_seconds),
     )
-    collected_text = "\n".join(
-        node.metadata.get("raw", "") for node in nodes if isinstance(node.metadata.get("raw"), str)
-    )
-    result = pipeline.run(collected_text, subscription.output_path, source=channels[0])
-
-    channel_names = ', '.join(str(c.get("channel") if isinstance(c, dict) else c) for c in channels)
-    print(f"Collected {len(nodes)} total proxy links from {channel_names}")
-    print(f"Generated {len(result.nodes)} subscription nodes after validation and deduplication")
-    print(f"Published subscription to {result.published.output_path}")
-    print(f"Subscription payload length: {len(result.content)}")
-    # also write decoded file next to the published output for inspection
-    try:
-        pub_path = Path(result.published.output_path)
-        decoded_path = pub_path.with_name(pub_path.stem + ".decoded.txt")
-        decoded_bytes = base64.b64decode(result.content.encode("utf-8"), validate=False)
-        decoded_path.write_bytes(decoded_bytes)
-        print(f"Wrote decoded subscription to {decoded_path}")
-    except Exception as exc:  # noqa: BLE001
-        print(f"Failed to write decoded subscription: {exc}")
+    
+    success_count = 0
+    for subscription in enabled_subscriptions:
+        # Filter nodes for this subscription based on channels
+        # Get raw text that includes channel source info if available
+        collected_text = "\n".join(
+            node.metadata.get("raw", "") for node in all_nodes if isinstance(node.metadata.get("raw"), str)
+        )
+        
+        output_filename = f"subscriptions/{subscription.output_path}"
+        
+        try:
+            result = pipeline.run(collected_text, output_filename, source=subscription.channels[0] if subscription.channels else "mixed")
+            
+            # Write decoded file
+            pub_path = Path(result.published.output_path)
+            decoded_path = pub_path.with_name(pub_path.stem + ".decoded.txt")
+            decoded_bytes = base64.b64decode(result.content.encode("utf-8"), validate=False)
+            decoded_path.write_bytes(decoded_bytes)
+            
+            print(f"✓ Published {subscription.subscription_name}.txt with {len(result.nodes)} nodes to {result.published.output_path}")
+            print(f"  Channels: {', '.join(subscription.channels[:3])}{'...' if len(subscription.channels) > 3 else ''}")
+            success_count += 1
+            
+        except Exception as exc:  # noqa: BLE001
+            print(f"✗ Failed to publish {subscription.subscription_name}: {exc}")
+    
+    if success_count == 0:
+        print("Failed to process any subscriptions")
+        return 1
+    
+    print(f"\n✓ Successfully processed {success_count}/{len(enabled_subscriptions)} subscription(s)")
     return 0
 
 

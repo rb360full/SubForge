@@ -5,20 +5,7 @@
       "enabled": true,
       "type": "telegram",
       "source": {
-        "channels": [
-          {"channel": "https://t.me/Capoit", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/ConfigsHUB", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/daily_configs", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/mehrosaboran", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/VmessProtocol", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/oneclickvpnkeys", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/Best_internet_iran", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/Persianvpnhub", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/V2rayng_Fast", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/PrivateVPNs", "limit": 5 , "days": 1},
-          {"channel": "https://t.me/bored_vpn", "limit": 5 , "days": 1}
-          
-        ],
+        "channels": [],
         "api_id": 34650676,
         "api_hash": "960a602ffe29a6937bdc66e3f6be60a6",
         "default_message_limit": 10,

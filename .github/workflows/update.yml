@@ -58,7 +58,7 @@ jobs:
         run: |
           git config --local user.name 'github-actions[bot]'
           git config --local user.email 'github-actions[bot]@users.noreply.github.com'
-          git add subscriptions/default.txt subscriptions/default.decoded.txt || true
+          git add subscriptions/ || true
           # بررسی اینکه آیا تغییری وجود دارد یا خیر (staged changes)
           if git diff --cached --quiet; then
             echo "No changes to commit."
@@ -72,6 +72,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: subforge-subscription
-          path: |
-            subscriptions/default.txt
-            subscriptions/default.decoded.txt
+          path: subscriptions/

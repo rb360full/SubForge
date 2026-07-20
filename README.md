@@ -99,7 +99,7 @@ The repository includes a scheduled update workflow at `.github/workflows/update
 - Runs every 8 hours
 - Installs the Python package
 - Executes the Telegram subscription pipeline
-- Uploads `subscriptions/default.txt` as a workflow artifact
+- Uploads all generated subscription files from `config/subscriptions.json` as workflow artifacts
 
 The workflow expects the `TELEGRAM_SESSION_STRING` secret for non-interactive Telegram access.
 

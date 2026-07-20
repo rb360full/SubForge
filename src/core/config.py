@@ -105,16 +105,18 @@ class ConfigurationLoader:
         return self._load_items(
             path,
             "subscriptions",
-            ("name", "enabled", "output_path", "format"),
+            ("name", "enabled", "subscription_name", "format", "provider"),
             lambda item, index: Subscription(
                 name=self._require_str(item["name"], f"subscriptions[{index}].name", path),
                 enabled=self._require_bool(item["enabled"], f"subscriptions[{index}].enabled", path),
-                output_path=self._require_str(item["output_path"], f"subscriptions[{index}].output_path", path),
+                subscription_name=self._require_str(item["subscription_name"], f"subscriptions[{index}].subscription_name", path),
                 format=self._require_str(item["format"], f"subscriptions[{index}].format", path),
+                provider=self._require_str(item["provider"], f"subscriptions[{index}].provider", path),
+                channels=tuple(item.get("channels", [])) if isinstance(item.get("channels"), list) else (),
                 metadata={
                     k: v
                     for k, v in item.items()
-                    if k not in {"name", "enabled", "output_path", "format"}
+                    if k not in {"name", "enabled", "subscription_name", "format", "provider", "channels"}
                 },
             ),
         )

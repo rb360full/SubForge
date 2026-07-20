@@ -1,5 +1,5 @@
 import base64,re
-p='subscriptions/default.txt'
+p='subscriptions/Telegram-List1.txt'
 with open(p,'rb') as f:
     raw=f.read()
 
