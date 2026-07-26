@@ -135,6 +135,7 @@ class TelegramProvider:
                 if days_window is not None:
                     cutoff = datetime.utcnow() - timedelta(days=days_window)
 
+                analyzed_message_index = 0
                 for message in messages:
                     # message.date is a datetime in Telethon messages
                     msg_date = getattr(message, "date", None)
@@ -144,10 +145,12 @@ class TelegramProvider:
                     text = getattr(message, "message", "") or ""
                     if not text.strip():
                         continue
+                    analyzed_message_index += 1
                     parsed = self._parser.parse_text(text, source=channel)
                     for node in parsed.nodes:
                         metadata = dict(node.metadata)
                         metadata["source_channel"] = channel
+                        metadata["source_message_index"] = analyzed_message_index
                         results.append(
                             ProxyConfig(
                                 protocol=node.protocol,

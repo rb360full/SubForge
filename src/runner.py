@@ -41,6 +41,23 @@ def channel_display(channel: object) -> str:
     return str(channel).strip()
 
 
+def resolve_message_limit(value: object, default: int) -> int:
+    """Resolve a positive message limit from config data."""
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, int) and value > 0:
+        return value
+    return default
+
+
+def subscription_message_limit(subscription: object, default: int) -> int:
+    """Return subscription-level message limit with provider default fallback."""
+    metadata = getattr(subscription, "metadata", {})
+    if isinstance(metadata, dict):
+        return resolve_message_limit(metadata.get("message_limit"), default)
+    return default
+
+
 def node_source_key(node: object) -> str:
     """Return the normalized Telegram channel key for a collected node."""
     metadata = getattr(node, "metadata", {})
@@ -64,6 +81,7 @@ def filter_nodes_for_subscription(
     nodes: list[object],
     subscription_channels: tuple[object, ...],
     all_channel_keys: set[str],
+    message_limit: int = 2_147_483_647,
 ) -> list[object]:
     """Select only nodes that belong to the subscription's configured channels."""
     if subscription_channels:
@@ -71,7 +89,16 @@ def filter_nodes_for_subscription(
     else:
         allowed_keys = all_channel_keys
     allowed_keys.discard("")
-    return [node for node in nodes if node_source_key(node) in allowed_keys]
+    selected_nodes: list[object] = []
+    for node in nodes:
+        if node_source_key(node) not in allowed_keys:
+            continue
+        metadata = getattr(node, "metadata", {})
+        source_message_index = metadata.get("source_message_index") if isinstance(metadata, dict) else None
+        if isinstance(source_message_index, int) and source_message_index > message_limit:
+            continue
+        selected_nodes.append(node)
+    return selected_nodes
 
 
 def resolve_telegram_session_config(
@@ -149,26 +176,43 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f"Extracting {len(unique_channels)} unique channel(s)...")
 
-    # Normalize channels to provider format
-    provider_channels: list[dict[str, object]] = []
-    for channel in unique_channels.values():
-        if isinstance(channel, dict):
-            provider_channels.append(channel)
-        else:
-            provider_channels.append({"channel": channel_display(channel)})
-
-    if not provider_channels:
-        print("No valid channels found")
-        return 1
-
     # Setup provider
     output_dir = Path(config.settings.output_directory)
     api_id = telegram_provider.config.source.get("api_id")
     api_hash = telegram_provider.config.source.get("api_hash")
+    provider_default_message_limit = resolve_message_limit(
+        telegram_provider.config.source.get("default_message_limit"),
+        50,
+    )
     session_string, session_name = resolve_telegram_session_config()
     
     if not isinstance(api_id, int) or not isinstance(api_hash, str) or not api_hash.strip():
         print("Telegram provider is missing api_id/api_hash in config/providers.json")
+        return 1
+
+    # Normalize channels to provider format. Shared channels are fetched with the
+    # highest subscription limit, then filtered per subscription below.
+    channel_fetch_limits: dict[str, int] = {}
+    for subscription in final_subscriptions:
+        limit = subscription_message_limit(subscription, provider_default_message_limit)
+        channels = subscription.channels if subscription.channels else tuple(unique_channels.values())
+        for channel in channels:
+            key = normalize_telegram_channel(channel)
+            if key:
+                channel_fetch_limits[key] = max(channel_fetch_limits.get(key, 0), limit)
+
+    provider_channels: list[dict[str, object]] = []
+    for channel in unique_channels.values():
+        if isinstance(channel, dict):
+            channel_config = dict(channel)
+        else:
+            channel_config = {"channel": channel_display(channel)}
+        channel_key = normalize_telegram_channel(channel_config)
+        channel_config["limit"] = channel_fetch_limits.get(channel_key, provider_default_message_limit)
+        provider_channels.append(channel_config)
+
+    if not provider_channels:
+        print("No valid channels found")
         return 1
 
     # Collect proxy nodes from unique channels (once)
@@ -180,7 +224,7 @@ def main(argv: list[str] | None = None) -> int:
             session_string=session_string.strip() if isinstance(session_string, str) and session_string.strip() else None,
             session_name=session_name,
             timeout_seconds=config.settings.default_timeout_seconds,
-            default_message_limit=telegram_provider.config.source.get("default_message_limit", 50),
+            default_message_limit=provider_default_message_limit,
             default_thread_fetch_window=telegram_provider.config.source.get("default_thread_fetch_window", 200),
         )
     )
@@ -241,6 +285,7 @@ def main(argv: list[str] | None = None) -> int:
             all_nodes,
             subscription.channels,
             set(unique_channels.keys()),
+            subscription_message_limit(subscription, provider_default_message_limit),
         )
         collected_text = raw_text_from_nodes(subscription_nodes)
         

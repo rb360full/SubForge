@@ -16,13 +16,15 @@ def test_configuration_loader_loads_project_config() -> None:
     assert len(config.subscriptions) == 3
     telegram_provider = next(provider for provider in config.providers if provider.name == "telegram")
     assert telegram_provider.config.enabled is True
-    assert telegram_provider.config.preserve_previous_configs is False
+    assert telegram_provider.config.preserve_previous_configs is True
     assert telegram_provider.config.source["channels"] == []
-    assert telegram_provider.config.source["default_message_limit"] == 1
-    assert config.subscriptions[0].channels == (
+    assert telegram_provider.config.source["default_message_limit"] == 5
+    assert config.subscriptions[0].metadata["message_limit"] == 5
+    assert config.subscriptions[0].channels[:2] == (
         "https://t.me/PrivateVPNs",
         "https://t.me/bored_vpn",
     )
+    assert len(config.subscriptions[0].channels) == 7
     assert config.subscriptions[2].name == "merged"
     assert config.subscriptions[2].channels == ()
 

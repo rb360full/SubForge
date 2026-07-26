@@ -8,13 +8,16 @@ from runner import (
 )
 
 
-def _node(raw: str, source: str) -> SubscriptionNode:
+def _node(raw: str, source: str, message_index: int | None = None) -> SubscriptionNode:
+    metadata: dict[str, object] = {"raw": raw, "source_channel": source}
+    if message_index is not None:
+        metadata["source_message_index"] = message_index
     return SubscriptionNode(
         protocol="vless",
         host="example.com",
         port=443,
         source=source,
-        metadata={"raw": raw, "source_channel": source},
+        metadata=metadata,
     )
 
 
@@ -50,6 +53,26 @@ def test_filter_nodes_for_merged_subscription_uses_all_channels() -> None:
     ]
 
     selected = filter_nodes_for_subscription(nodes, (), {"privatevpns", "configshub"})
+
+    assert raw_text_from_nodes(selected) == (
+        "vless://a@example.com:443#a\n"
+        "vless://b@example.com:443#b"
+    )
+
+
+def test_filter_nodes_for_subscription_applies_message_limit() -> None:
+    nodes = [
+        _node("vless://a@example.com:443#a", "https://t.me/PrivateVPNs", 1),
+        _node("vless://b@example.com:443#b", "https://t.me/PrivateVPNs", 2),
+        _node("vless://c@example.com:443#c", "https://t.me/PrivateVPNs", 3),
+    ]
+
+    selected = filter_nodes_for_subscription(
+        nodes,
+        ("https://t.me/PrivateVPNs",),
+        {"privatevpns"},
+        message_limit=2,
+    )
 
     assert raw_text_from_nodes(selected) == (
         "vless://a@example.com:443#a\n"

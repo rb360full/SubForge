@@ -6,6 +6,7 @@
       "subscription_name": "Telegram-List1",
       "format": "plain",
       "provider": "telegram",
+      "message_limit": 5,
       "channels": [
         "https://t.me/PrivateVPNs",
         "https://t.me/bored_vpn",
@@ -22,6 +23,7 @@
       "subscription_name": "Telegram-List2",
       "format": "plain",
       "provider": "telegram",
+      "message_limit": 5,
       "channels": [
         "https://t.me/Capoit",
         "https://t.me/ConfigsHUB",
@@ -34,11 +36,23 @@
       ]
     },
     {
+      "name": "DailyConfigs",
+      "enabled": true,
+      "subscription_name": "DailyConfigs",
+      "format": "plain",
+      "provider": "telegram",
+      "message_limit": 20,
+      "channels": [
+        "https://t.me/daily_configs"
+      ]
+    },
+    {
       "name": "merged",
       "enabled": true,
       "subscription_name": "Telegram-Merged",
       "format": "plain",
       "provider": "telegram",
+      "message_limit": 5,
       "channels": []
     }
   ]
