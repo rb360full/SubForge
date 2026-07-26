@@ -27,7 +27,6 @@
       "channels": [
         "https://t.me/Capoit",
         "https://t.me/ConfigsHUB",
-        "https://t.me/daily_configs",
         "https://t.me/mehrosaboran",
         "https://t.me/VmessProtocol",
         "https://t.me/ConfigX2ray",
@@ -44,7 +43,19 @@
       "message_limit": 5,
       "channels": [
         "https://t.me/daily_configs",
-        "https://t.me/chillguy_vpn"
+        "https://t.me/chillguy_vpn",
+        "https://t.me/ConfigsHUB"
+      ]
+    },
+    {
+      "name": "ConfigsHUB",
+      "enabled": true,
+      "subscription_name": "ConfigsHUB",
+      "format": "plain",
+      "provider": "telegram",
+      "message_limit": 20,
+      "channels": [
+        "https://t.me/ConfigsHUB"
       ]
     },
     {
