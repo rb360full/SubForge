@@ -52,7 +52,7 @@
       "subscription_name": "Telegram-Merged",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 5,
+      "message_limit": 10,
       "channels": []
     }
   ]
