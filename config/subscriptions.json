@@ -47,6 +47,17 @@
       ]
     },
     {
+      "name": "ChillGuyVPN",
+      "enabled": true,
+      "subscription_name": "ChillGuyVPN",
+      "format": "plain",
+      "provider": "telegram",
+      "message_limit": 10,
+      "channels": [
+        "https://t.me/chillguy_vpn"
+      ]
+    },
+    {
       "name": "merged",
       "enabled": true,
       "subscription_name": "Telegram-Merged",
