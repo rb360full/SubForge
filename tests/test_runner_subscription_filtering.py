@@ -81,7 +81,7 @@ def test_filter_nodes_for_subscription_applies_message_limit() -> None:
     )
 
 
-def test_publish_location_subscriptions_groups_tested_nodes_by_flag(tmp_path) -> None:
+def test_publish_location_subscriptions_groups_tested_nodes_by_test_location(tmp_path) -> None:
     nodes = [
         SubscriptionNode(
             protocol="vless",
@@ -90,6 +90,7 @@ def test_publish_location_subscriptions_groups_tested_nodes_by_flag(tmp_path) ->
             metadata={
                 "raw": "vless://a@de-one.example.com:443#%F0%9F%87%A9%F0%9F%87%AA-a",
                 "source_channel": "https://t.me/ConfigsHUB",
+                "country_code": "DE",
             },
         ),
         SubscriptionNode(
@@ -99,6 +100,7 @@ def test_publish_location_subscriptions_groups_tested_nodes_by_flag(tmp_path) ->
             metadata={
                 "raw": "vless://b@de-two.example.com:443#🇩🇪-b",
                 "source_channel": "https://t.me/ConfigsHUB",
+                "country_code": "DE",
             },
         ),
         SubscriptionNode(
@@ -108,6 +110,7 @@ def test_publish_location_subscriptions_groups_tested_nodes_by_flag(tmp_path) ->
             metadata={
                 "raw": "vless://c@gb-one.example.com:443#🇬🇧-c",
                 "source_channel": "https://t.me/ConfigsHUB",
+                "country_code": "GB",
             },
         ),
     ]
@@ -123,6 +126,28 @@ def test_publish_location_subscriptions_groups_tested_nodes_by_flag(tmp_path) ->
     assert (tmp_path / "subscriptions" / "locations" / "EN.decoded.txt").read_text(encoding="utf-8") == (
         "vless://c@gb-one.example.com:443#🇬🇧-c"
     )
+
+
+def test_publish_location_subscriptions_ignores_unverified_remark_flags(tmp_path) -> None:
+    node = SubscriptionNode(
+        protocol="trojan",
+        host="162.159.38.119",
+        port=443,
+        password="humanity",
+        remark="🇺🇸@V2rayng_Fast",
+        metadata={
+            "raw": (
+                "trojan://humanity@162.159.38.119:443?security=tls&sni=www.calmloud.com"
+                "&insecure=0&allowInsecure=0&type=ws&host=www.calmloud.com"
+                "&path=%2Fassignment#%F0%9F%87%BA%F0%9F%87%B8%40V2rayng_Fast"
+            ),
+        },
+    )
+
+    paths = publish_location_subscriptions(tmp_path, [node])
+
+    assert paths == {}
+    assert not (tmp_path / "subscriptions" / "locations" / "US.txt").exists()
 
 
 def test_publish_location_subscriptions_uses_metadata_country_code(tmp_path) -> None:

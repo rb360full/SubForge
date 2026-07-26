@@ -231,3 +231,29 @@ def test_pipeline_prefers_faster_reachable_nodes(tmp_path: Path) -> None:
     result = pipeline.run(text, "subscriptions/Telegram-List1.txt", source="telegram://channel")
 
     assert [node.remark for node in result.nodes] == ["fast", "slow"]
+
+
+def test_pipeline_preserves_location_metadata_from_tester(tmp_path: Path) -> None:
+    class StubTester:
+        def test(self, node: object) -> TestResult:
+            return TestResult(
+                is_reachable=True,
+                latency_ms=20,
+                metadata={
+                    "node": node,
+                    "country_code": "FR",
+                    "exit_ip": "51.15.136.31",
+                },
+            )
+
+    text = (
+        "trojan://humanity@162.159.38.119:443?security=tls&sni=www.calmloud.com"
+        "&insecure=0&allowInsecure=0&type=ws&host=www.calmloud.com"
+        "&path=%2Fassignment#%F0%9F%87%BA%F0%9F%87%B8%40V2rayng_Fast"
+    )
+    pipeline = SubscriptionPipeline(output_dir=tmp_path, tester=StubTester())
+
+    result = pipeline.run(text, "subscriptions/Telegram-List1.txt", source="telegram://channel")
+
+    assert result.nodes[0].metadata["country_code"] == "FR"
+    assert result.nodes[0].metadata["exit_ip"] == "51.15.136.31"
