@@ -128,7 +128,7 @@ def test_publish_location_subscriptions_groups_tested_nodes_by_test_location(tmp
     )
 
 
-def test_publish_location_subscriptions_ignores_unverified_remark_flags(tmp_path) -> None:
+def test_publish_location_subscriptions_falls_back_to_remark_flags(tmp_path) -> None:
     node = SubscriptionNode(
         protocol="trojan",
         host="162.159.38.119",
@@ -146,8 +146,12 @@ def test_publish_location_subscriptions_ignores_unverified_remark_flags(tmp_path
 
     paths = publish_location_subscriptions(tmp_path, [node])
 
-    assert paths == {}
-    assert not (tmp_path / "subscriptions" / "locations" / "US.txt").exists()
+    assert set(paths) == {"US"}
+    assert (tmp_path / "subscriptions" / "locations" / "US.decoded.txt").read_text(encoding="utf-8") == (
+        "trojan://humanity@162.159.38.119:443?security=tls&sni=www.calmloud.com"
+        "&insecure=0&allowInsecure=0&type=ws&host=www.calmloud.com"
+        "&path=%2Fassignment#%F0%9F%87%BA%F0%9F%87%B8%40V2rayng_Fast"
+    )
 
 
 def test_publish_location_subscriptions_uses_metadata_country_code(tmp_path) -> None:
