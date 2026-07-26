@@ -36,6 +36,18 @@
       ]
     },
     {
+      "name": "Telegram_List3",
+      "enabled": true,
+      "subscription_name": "Telegram-List3",
+      "format": "plain",
+      "provider": "telegram",
+      "message_limit": 10,
+      "channels": [
+        "https://t.me/daily_configs",
+        "https://t.me/chillguy_vpn"
+      ]
+    },
+    {
       "name": "DailyConfigs",
       "enabled": true,
       "subscription_name": "DailyConfigs",

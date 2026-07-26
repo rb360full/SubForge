@@ -1,8 +1,6 @@
 trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&insecure=1&host=www.gossipglove.com&type=ws&allowInsecure=1&sni=www.gossipglove.com#%F0%9F%87%AB%F0%9F%87%B7%20%40V2rayng_Fast
 trojan://humanity@104.18.32.47:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
+vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.39.69.79:22223?security=none&encryption=none&headerType=none&type=tcp#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
 vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.39.69.79:22224?security=none&encryption=none&headerType=none&type=tcp#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
 vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.39.69.79:22222?security=none&encryption=none&headerType=none&type=tcp#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.39.69.79:22223?security=none&encryption=none&headerType=none&type=tcp#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
-vless://b1a689fa-20c3-43b4-a107-4af64f8a7cf3@sweden.oorluma.ir:6300?security=reality&encryption=none&pbk=lQbgwNDYw6Zbjdim0JtXUarzb-3GSjDvtX6FJYZD9Qo&headerType=none&fp=qq&type=tcp&sni=play.google.com#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
-vless://b17e6a63-78f2-4f8f-aea4-0867405a096e@okla.dearhossein-taktaz.ir:443?encryption=none&sid=586c339944e8&pbk=3f4yGlt03YN98A2dTVXc-bm8c2gZBi09uQXODZE5lmE&security=reality&fp=chrome&spx=%2F182973acde35100&sni=google.com&type=tcp&headerType=none#[🇫🇷]t.me/ConfigsHub
 vless://e51796bb-3305-ac88-f39d-22fd9dd63b4f@130.49.77.3:443?encryption=none&security=reality&sni=download.nvidia.com&fp=#[🇫🇷]t.me/ConfigsHub
