@@ -1,2 +1,1 @@
 vless://ddef628e-e3a8-43c4-85eb-bd767a5f3b13@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=autumn-forest-3479.121-488.workers.dev&type=ws#%F0%9F%87%B8%F0%9F%87%AC
-trojan://FC60532879@actual-chicken.rooster465.autos:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&security=tls&sni=#[🇸🇬]t.me/ConfigsHub
