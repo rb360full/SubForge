@@ -4,6 +4,5 @@ trojan://humanity@172.64.152.23:443?path=%2Fassignment&security=tls&insecure=0&h
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpWcEtBQmNPcE5OQTBsNUcyQVZPbXc4@213.109.147.242:62685#%F0%9F%87%B3%F0%9F%87%B1%40V2rayng_Fast
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.39:8080#%F0%9F%87%B3%F0%9F%87%B1%40V2rayng_Fast
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.204:8080#%F0%9F%87%B3%F0%9F%87%B1%40V2rayng_Fast
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.46:8080#%F0%9F%87%B3%F0%9F%87%B1%40V2rayng_Fast
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.32:443#%F0%9F%87%B3%F0%9F%87%B1%40V2rayng_Fast
-vless://106ce42f-aa79-46fc-8c89-401f0d169af7@66.33.22.221:47071?security=reality&encryption=none&pbk=gmfp8wf-z4c5YExFJ6fRvg8m6qHIFOQ9va7Y3C2-N18&headerType=&fp=ios&spx=%2Fbeffb7efc5eadf2&type=tcp&sni=www.yahoo.com&sid=49fc0c#best_internet_iran%E2%91%A0%E3%80%8E%F0%9D%97%A1%F0%9D%97%9F%E3%80%8F%E2%9F%A1%20%E2%9A%A1%F0%9F%87%B3%F0%9F%87%B1
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.46:8080#%F0%9F%87%B3%F0%9F%87%B1%40V2rayng_Fast
