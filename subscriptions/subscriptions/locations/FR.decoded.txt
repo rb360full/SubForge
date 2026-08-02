@@ -1,5 +1,5 @@
-trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&insecure=1&host=www.gossipglove.com&type=ws&allowInsecure=1&sni=www.gossipglove.com#%F0%9F%87%AB%F0%9F%87%B7%20%40V2rayng_Fast
 trojan://humanity@104.18.32.47:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
+trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&insecure=1&host=www.gossipglove.com&type=ws&allowInsecure=1&sni=www.gossipglove.com#%F0%9F%87%AB%F0%9F%87%B7%20%40V2rayng_Fast
 trojan://NQ26071394@35.181.65.111:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=ready-kangaroo.rooster465.autos#%F0%9F%87%AB%F0%9F%87%B7%40V2rayng_Fast
 vless://8309566b-1905-43c6-a4f0-22fc97109111@62.238.55.46:9145?security=reality&encryption=none&pbk=Fw1tpKBQ_bT_eSTbaCSYBthpXAQ76kujwfywvjgpUA0&headerType=none&fp=chrome&type=tcp&sni=www.yahoo.com&sid=5e06032a9c448538#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D9%85%D8%A7%20%D8%AF%D8%B1%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%F0%9F%87%AB%F0%9F%87%B7%40lion_lion_vpn%F0%9F%87%AB%F0%9F%87%B7
 vless://e51796bb-3305-ac88-f39d-22fd9dd63b4f@130.49.77.3:443?encryption=none&security=reality&sni=download.nvidia.com&fp=#[🇫🇷]t.me/ConfigsHub
