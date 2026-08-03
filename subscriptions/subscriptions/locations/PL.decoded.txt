@@ -1,2 +1,4 @@
 trojan://humanity@188.114.98.0:443?path=%2Fassignment&security=tls&insecure=0&host=www.creationlong.org&type=ws&allowInsecure=0&sni=www.creationlong.org#%F0%9F%87%B5%F0%9F%87%B1%40V2rayng_Fast
 vless://bf0899bc-5abd-40b8-b376-f108e2d8cb6f@vs-pl2.vibesignal.space:443?security=reality&encryption=none&pbk=cwGWK11FxNLsxS6uDBw5zHzfu26AA2-E_bNdv7j5-T0&headerType=none&fp=edge&type=tcp&flow=xtls-rprx-vision&sni=ajax.googleapis.com&sid=6316fbe56c3dac5e#%F0%9F%87%B5%F0%9F%87%B1%40V2rayng_Fast
+vless://f3a21b24-5963-495a-a82f-1f62cb459335@82.40.62.103:1234?security=none&encryption=none&host=play.google.com&headerType=http&type=tcp#%F0%9F%87%B5%F0%9F%87%B1%40V2rayng_Fast
+vless://2a088d58-eb38-47bd-b74d-ac392ee12ccd@151.243.182.21:25737?encryption=none&path=%2Fxray&type=ws&security=none#[🇵🇱]t.me/ConfigsHub
