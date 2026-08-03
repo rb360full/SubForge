@@ -1,10 +1,1 @@
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@35.181.245.94:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@15.236.79.88:22222?encryption=none&security=none&type=tcp#(S103)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@35.180.184.27:22222?encryption=none&security=none&type=tcp#(S103)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@15.188.211.23:22222?encryption=none&security=none&type=tcp#(S103)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@51.45.50.197:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@15.188.160.141:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@15.224.38.252:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.39.65.159:22222?encryption=none&security=none&type=tcp#(S103)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.39.58.127:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs
-vless://e4514801-0d5a-42ba-869f-39bd605aef9e@15.236.232.21:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs
+vless://e4514801-0d5a-42ba-869f-39bd605aef9e@15.224.125.7:22222?encryption=none&security=none&type=tcp#(S103)🇨🇵t.me/PrivateVPNs

@@ -1,0 +1,1 @@
+vless://ee25c4ce-2071-4ffd-a541-4e2615118d32@v2.gafe-rezvan.ir:2087?mode=auto&path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=0&host=sdcards.ir&fp=chrome&type=xhttp&allowInsecure=0&sni=sdcards.ir#[🇸🇨]t.me/ConfigsHub
