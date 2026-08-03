@@ -87,7 +87,7 @@
       "subscription_name": "VIP_Configs",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 10,
+      "message_limit": 15,
       "channels": [
         "https://t.me/NetliVPN"
       ]
