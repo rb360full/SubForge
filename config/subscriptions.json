@@ -44,7 +44,8 @@
       "channels": [
         "https://t.me/daily_configs",
         "https://t.me/chillguy_vpn",
-        "https://t.me/ConfigsHUB"
+        "https://t.me/ConfigsHUB",
+        "https://t.me/NetliVPN"
       ]
     },
     {
@@ -78,6 +79,17 @@
       "message_limit": 20,
       "channels": [
         "https://t.me/chillguy_vpn"
+      ]
+    },
+    {
+      "name": "VIP_Configs",
+      "enabled": true,
+      "subscription_name": "VIP_Configs",
+      "format": "plain",
+      "provider": "telegram",
+      "message_limit": 10,
+      "channels": [
+        "https://t.me/NetliVPN"
       ]
     },
     {
