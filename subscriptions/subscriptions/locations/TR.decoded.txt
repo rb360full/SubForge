@@ -1,4 +1,5 @@
 vless://26fb53e4-fd49-4b34-b605-b6cc1b1a06a8@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=royal-shape-3771.93-728.workers.dev&type=ws#%F0%9F%87%B9%F0%9F%87%B7
+vless://vpn_kurdnet@144.225.65.214:666?encryption=none&host=play.google.com&path=%2F&security=none&type=ws#vpn_kurdnet-%F0%9F%87%B9%F0%9F%87%B7
 vless://35a6946a-2003-448f-9c1b-911efaa8c9a7@nl-bl-nl.karmatel.ir:20828?path=%2F&security=none&encryption=none&host=nl-bl-nl.karmatel.ir&type=ws#%F0%9F%87%B9%F0%9F%87%B7%40V2rayng_Fast
+vless://de64aaa6-a0ea-48d0-853b-1c3cbc7fb42c@141.98.118.70:443?mode=auto&path=%2F&security=reality&encryption=none&pbk=LjEQR0FEtsOs5eQoVsZgJX5ZI0yeadUKTCLoGD641RQ&fp=chrome&spx=%2F&type=xhttp&sni=www.google.com&sid=44#[🇹🇷]t.me/ConfigsHub
 vless://4aef3ccd-b048-4efa-bbd6-3b8f259e3dc5@45.141.148.75:8000?security=reality&encryption=none&pbk=0C-oGs4ZcvaXrxR0IfmV9Y3KfhDtmlC3yjgeNSVjykE&headerType=none&fp=qq&type=tcp&sni=yahoo.com#[🇹🇷]@NetliVPN
-vmess://eyJhZGQiOiI1LjE4OC4xOTAuMjUyIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiIiLCJpZCI6IjA0NjIxYmFlLWFiMzYtMTFlYy1iOTA5LTAyNDJhYzEyMDAwMiIsIm5ldCI6InRjcCIsInBhdGgiOiIiLCJwb3J0IjoiMjIzMjQiLCJwcyI6IuKcqCBATmFtaXJhQ29uZmlncyB8IOKdpO+4jyDZiNi12YQg2LTYr9uMINis2YjbjNmGINi02YggfCDimqEgfCDwn4e58J+HtyIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiJub25lIiwidHlwZSI6Im5vbmUiLCJ2IjoiMiJ9
