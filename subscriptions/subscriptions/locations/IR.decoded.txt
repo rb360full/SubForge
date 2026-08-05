@@ -1,1 +1,2 @@
-ss://YWVzLTI1Ni1nY206TURBeFpEVTVNV1ZpT0RCak5qbGhNVE5sWm1Fek0yUTJZbVk1TVRneA@37.32.25.196:11116#[🇮🇷]t.me/ConfigsHub
+ss://MjAyMi1ibGFrZTMtYWVzLTEyOC1nY206VjlRZDFDRG42QjBjT24yUTdUY1lSdz09OllqNmVvQTRha2czOFFrNnN6OVBZUFE9PQ@tun.anony-org.xyz:22222?type=tcp#[🇮🇷]t.me/ConfigsHub
+vless://5779d821-693b-4573-b71d-d332199ead38@zula.ir:80?type=ws&path=/?ed=2048&host=www.speedtest.net.ftp.debian.org.xn--ihqvlaa157dbvciyg50okggl0r2f5bcj1a.7.buydeskapp.com.&security=none#[🇮🇷]t.me/ConfigsHub
