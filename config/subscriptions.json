@@ -89,7 +89,8 @@
       "provider": "telegram",
       "message_limit": 15,
       "channels": [
-        "https://t.me/NetliVPN"
+        "https://t.me/NetliVPN",
+        "https://t.me/planB_net"
       ]
     },
     {
