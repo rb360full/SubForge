@@ -1,2 +1,1 @@
 vless://6f995056-7802-4a1d-bff7-61678e626c3f@40.74.100.138:443?security=tls&sni=sebbb.azurewebsites.net&type=ws&host=sebbb.azurewebsites.net&path=/&fp=chrome#[🇯🇵]t.me/ConfigsHub
-trojan://f653ef08c54e21b3@13.114.31.41:3306?security=tls&type=ws&sni=TG.WangCai2&path=/gateway/connect&host=TG.WangCai_1#[🇯🇵]t.me/ConfigsHub
