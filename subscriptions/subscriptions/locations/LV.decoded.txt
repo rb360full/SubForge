@@ -1,2 +1,2 @@
-vless://abb04c06-87ac-4566-aafa-202020b6813c@dl.sorvexa.ir:8880?security=none&encryption=none&headerType=none&type=tcp#[🇱🇻]@NetliVPN
 vless://99b86ad7-e7cf-43c0-b92b-32c94f91382c@dl.sorvexa.ir:8880?security=none&encryption=none&headerType=none&type=tcp#[🇱🇻]@NetliVPN
+vless://abb04c06-87ac-4566-aafa-202020b6813c@dl.sorvexa.ir:8880?security=none&encryption=none&headerType=none&type=tcp#[🇱🇻]@NetliVPN
