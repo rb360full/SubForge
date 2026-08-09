@@ -1,2 +1,1 @@
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTppOGFzYXI5bHJ4aGF2aDM4@178.128.86.181:51435#[🇸🇬]t.me/ConfigsHub
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.237.40:443?security=tls&sni=hkm.ylks.link&type=ws&path=%2F#[🇸🇬]t.me/ConfigsHub

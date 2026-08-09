@@ -1,3 +1,2 @@
-vless://27c3370e-581f-eab2-4ef5-30b0d6aa4e64@nl.qarvian.ir:8882?headerType=http&security=none&encryption=none&host=play.google.com&type=tcp#[🇱🇻]t.me/ConfigsHub
-vless://99b86ad7-e7cf-43c0-b92b-32c94f91382c@dl.sorvexa.ir:8880?security=none&encryption=none&headerType=none&type=tcp#[🇱🇻]@NetliVPN
 vless://abb04c06-87ac-4566-aafa-202020b6813c@dl.sorvexa.ir:8880?security=none&encryption=none&headerType=none&type=tcp#[🇱🇻]@NetliVPN
+vless://99b86ad7-e7cf-43c0-b92b-32c94f91382c@dl.sorvexa.ir:8880?security=none&encryption=none&headerType=none&type=tcp#[🇱🇻]@NetliVPN
