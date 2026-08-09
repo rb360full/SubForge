@@ -1,1 +1,2 @@
+vless://ddef628e-e3a8-43c4-85eb-bd767a5f3b13@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=autumn-forest-3479.121-488.workers.dev&type=ws#%F0%9F%87%B8%F0%9F%87%AC
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.237.40:443?security=tls&sni=hkm.ylks.link&type=ws&path=%2F#[🇸🇬]t.me/ConfigsHub
