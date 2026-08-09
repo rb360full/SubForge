@@ -2,7 +2,7 @@
   "subscriptions": [
     {
       "name": "default",
-      "enabled": false,
+      "enabled": true,
       "subscription_name": "Telegram-List1",
       "format": "plain",
       "provider": "telegram",
@@ -19,7 +19,7 @@
     },
     {
       "name": "vpn_specialized",
-      "enabled": false,
+      "enabled": true,
       "subscription_name": "Telegram-List2",
       "format": "plain",
       "provider": "telegram",
