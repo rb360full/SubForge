@@ -82,6 +82,17 @@
       ]
     },
     {
+      "name": "V2ray_confiig",
+      "enabled": true,
+      "subscription_name": "V2ray_confiig",
+      "format": "plain",
+      "provider": "telegram",
+      "message_limit": 20,
+      "channels": [
+        "https://t.me/V2ray_confiig"
+      ]
+    },
+    {
       "name": "VIP_Configs",
       "enabled": true,
       "subscription_name": "VIP_Configs",
@@ -90,7 +101,8 @@
       "message_limit": 15,
       "channels": [
         "https://t.me/NetliVPN",
-        "https://t.me/planB_net"
+        "https://t.me/planB_net",
+        "https://t.me/V2ray_confiig"
       ]
     },
     {
