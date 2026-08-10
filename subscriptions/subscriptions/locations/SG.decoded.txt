@@ -1,9 +1,7 @@
 vless://ddef628e-e3a8-43c4-85eb-bd767a5f3b13@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=autumn-forest-3479.121-488.workers.dev&type=ws#%F0%9F%87%B8%F0%9F%87%AC
 vless://eeb6823c-b926-4ea2-866a-5542edd26e59@104.26.5.60:443?path=%2F&security=tls&encryption=none&insecure=0&host=t1s1.rittbo.kdns.fr&type=ws&allowInsecure=0&sni=t1s1.rittbo.kdns.fr#🇸🇬
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.236.167:443?encryption=none&security=tls&sni=zdyj.kpcloud.eu.org&type=ws&host=zdyj.kpcloud.eu.org&path=TG%40juzibaipiao-juzi#[🇸🇬]t.me/ConfigsHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTppOGFzYXI5bHJ4aGF2aDM4@178.128.86.181:51435#[🇸🇬]t.me/ConfigsHub
-vless://89b3cbba-e6ac-485a-9481-976a0415eab9@47.236.164.215:8443?path=%2F&security=tls&encryption=none&type=ws&sni=vj.ylks.link#[🇸🇬]t.me/ConfigsHub
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.237.40:443?security=tls&sni=hkm.ylks.link&type=ws&path=%2F#[🇸🇬]t.me/ConfigsHub
-ss://YWVzLTI1Ni1nY206WTZSOXBBdHZ4eHptR0M@103.106.229.69:9090#🇸🇬
-vless://67c187e4-2f9f-b2bf-4c52-f7b20000000b@www.speedtest.net:2086?sni=ez-645eee.ezaccess13e2b2a.workers.dev&type=ws&host=ez-645eee.ezaccess13e2b2a.workers.dev&path=/sync#🇸🇬
 vless://eeb6823c-b926-4ea2-866a-5542edd26e59@162.159.24.39:443?path=%2F&security=tls&encryption=none&insecure=0&host=t1s1.rittbo.kdns.fr&fp=chrome&type=ws&allowInsecure=0&sni=t1s1.rittbo.kdns.fr#🇸🇬
+vless://67c187e4-2f9f-b2bf-4c52-f7b20000000b@www.speedtest.net:2086?sni=ez-645eee.ezaccess13e2b2a.workers.dev&type=ws&host=ez-645eee.ezaccess13e2b2a.workers.dev&path=/sync#🇸🇬
+ss://YWVzLTI1Ni1nY206WTZSOXBBdHZ4eHptR0M@103.106.229.69:9090#🇸🇬
