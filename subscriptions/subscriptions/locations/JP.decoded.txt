@@ -1,3 +1,2 @@
 vless://7e544a9d-7667-413b-bbb0-b3bb1aac6d77@45.130.125.207:443?path=%2Frsedgws&security=tls&encryption=none&insecure=0&host=shegeftihaaa.net&fp=chrome&type=ws&allowInsecure=0&sni=shegeftihaaa.net#%F0%9F%87%AF%F0%9F%87%B5
 vless://6f995056-7802-4a1d-bff7-61678e626c3f@40.74.100.138:443?security=tls&sni=sebbb.azurewebsites.net&type=ws&host=sebbb.azurewebsites.net&path=/&fp=chrome#[🇯🇵]t.me/ConfigsHub
-vless://12e35bfe-1e79-4cf1-8a8e-22a242e97408@64.176.62.54:443?security=reality&sni=www.amazon.com&fp=chrome&pbk=d1LjsQHtTCj7kHx2LHFisVDPc_xOtKnugy5YRFKXqUs&sid=39&type=tcp&flow=xtls-rprx-vision&packetEncoding=xudp&encryption=none#0043%20%7C%20%F0%9F%87%AF%F0%9F%87%B5%20NetFreedom0
