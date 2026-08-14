@@ -4,4 +4,3 @@ vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.236.167:443?encryption=none
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.237.40:443?security=tls&sni=hkm.ylks.link&type=ws&path=%2F#[🇸🇬]t.me/ConfigsHub
 vless://eeb6823c-b926-4ea2-866a-5542edd26e59@162.159.24.39:443?path=%2F&security=tls&encryption=none&insecure=0&host=t1s1.rittbo.kdns.fr&fp=chrome&type=ws&allowInsecure=0&sni=t1s1.rittbo.kdns.fr#🇸🇬
 vless://67c187e4-2f9f-b2bf-4c52-f7b20000000b@www.speedtest.net:2086?sni=ez-645eee.ezaccess13e2b2a.workers.dev&type=ws&host=ez-645eee.ezaccess13e2b2a.workers.dev&path=/sync#🇸🇬
-ss://YWVzLTI1Ni1nY206WTZSOXBBdHZ4eHptR0M@103.106.229.69:9090#🇸🇬
