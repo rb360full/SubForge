@@ -1,3 +1,5 @@
 vless://7e544a9d-7667-413b-bbb0-b3bb1aac6d77@45.130.125.207:443?path=%2Frsedgws&security=tls&encryption=none&insecure=0&host=shegeftihaaa.net&fp=chrome&type=ws&allowInsecure=0&sni=shegeftihaaa.net#%F0%9F%87%AF%F0%9F%87%B5
+vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIlx1RDgzQ1x1RERFRlx1RDgzQ1x1RERGNUpQXzY3X0BTdXJmYm9hcmR2MnJheSIsDQogICJhZGQiOiAiMTY4LjEzOC40My43NSIsDQogICJwb3J0IjogIjgwIiwNCiAgImlkIjogIjExYzM2MjdmLTMxZTgtNDY5NS1kZmJkLTM0MDc2ZTJmMWY1ZCIsDQogICJhaWQiOiAiMCIsDQogICJzY3kiOiAiYXV0byIsDQogICJuZXQiOiAid3MiLA0KICAidHlwZSI6ICJub25lIiwNCiAgImhvc3QiOiAiTm9uZSIsDQogICJwYXRoIjogIi9jY3R2MTMubTN1OCIsDQogICJ0bHMiOiAiIiwNCiAgInNuaSI6ICJOb25lIiwNCiAgImFscG4iOiAiIiwNCiAgImZwIjogIiIsDQogICJpbnNlY3VyZSI6ICIwIg0KfQ==
+trojan://PQ05174892@proud-escargot.rooster465.autos:443?allowInsecure=1#[🇯🇵]t.me/ConfigsHub
 vless://6f995056-7802-4a1d-bff7-61678e626c3f@40.74.100.138:443?security=tls&sni=sebbb.azurewebsites.net&type=ws&host=sebbb.azurewebsites.net&path=/&fp=chrome#[🇯🇵]t.me/ConfigsHub
-trojan://FH72359861@sacred-shepherd.rooster465.autos:443#[🇯🇵]t.me/ConfigsHub
+trojan://PQ05174892@inspired-hound.rooster465.autos:443?allowInsecure=1#[🇯🇵]t.me/ConfigsHub
