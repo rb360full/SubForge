@@ -1,3 +1,2 @@
 vless://7e544a9d-7667-413b-bbb0-b3bb1aac6d77@45.130.125.207:443?path=%2Frsedgws&security=tls&encryption=none&insecure=0&host=shegeftihaaa.net&fp=chrome&type=ws&allowInsecure=0&sni=shegeftihaaa.net#%F0%9F%87%AF%F0%9F%87%B5
 vless://6f995056-7802-4a1d-bff7-61678e626c3f@40.74.100.138:443?security=tls&sni=sebbb.azurewebsites.net&type=ws&host=sebbb.azurewebsites.net&path=/&fp=chrome#[🇯🇵]t.me/ConfigsHub
-trojan://a196faa4-403e-4a8b-987a-d1789f379685@139.162.100.58:49755?allowInsecure=1&sni=vpn-node.internal&alpn=http/1.1&type=ws&path=/xVpnTrojanWsSvc7f3a#[🇯🇵]t.me/ConfigsHub

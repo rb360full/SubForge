@@ -1,1 +1,1 @@
-vless://9f012ecb-e50b-428f-bb52-ce0af7780117@190.93.247.155:8080?path=%2FTelegram%3A%40UnlimitedDev-Telegram%3A%40UnlimitedDev%3Fed%3D8080&security=none&encryption=none&host=unlimiteddev-vpn.unlimiteddev.Community.&type=ws#[🇮🇨]t.me/ConfigsHub
+vless://7493883f-6047-46a7-8d95-f59e137ffaec@190.93.245.176:443?path=%2F%3FTELEGRAM-TOOTFFARANGI%3Fed%3D2560&security=tls&alpn=http%2F1.1&encryption=none&insecure=0&host=auto-749388.rohawmk.workers.dev&fp=chrome&type=ws&allowInsecure=0&sni=auto-749388.rohawmk.workers.dev#[🇮🇨]t.me/ConfigsHub
