@@ -1,3 +1,4 @@
 trojan://humanity@188.114.98.0:443?path=%2Fassignment&security=tls&insecure=0&host=www.creationlong.org&type=ws&allowInsecure=0&sni=www.creationlong.org#%F0%9F%87%B5%F0%9F%87%B1%40V2rayng_Fast
+vless://f798a2c4-c51b-409d-b349-ca8455b36796@188.114.97.4:8443?path=%2Fdownload.php&security=tls&encryption=none&insecure=0&host=chopin.adaspoloandco.com&fp=chrome&type=ws&allowInsecure=0&sni=chopin.adaspoloandco.com#[🇵🇱]@NetliVPN
 vless://1f113ca6-7b95-4abb-9348-adfb2187e399@38.180.50.4:8443?security=tls&encryption=none&insecure=0&headerType=none&fp=edge&type=tcp&allowInsecure=0&flow=xtls-rprx-vision&sni=tutdesignstudio.site#[🇵🇱]@NetliVPN
 vless://1f113ca6-7b95-4abb-9348-adfb2187e399@tutdesignstudio.site:8443?security=tls&encryption=none&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&flow=xtls-rprx-vision#[🇵🇱]@NetliVPN
