@@ -1,3 +1,1 @@
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCWnBnZWdCUFFaSlIyN0pOdkxrWmRR@Library.amozesh-kade.ir:4099#[🇮🇷]t.me/ConfigsHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCWnBnZWdCUFFaSlIyN0pOdkxrWmRR@Library.amozesh-kade.ir:4098?type=tcp#[🇮🇷]t.me/ConfigsHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpCWnBnZWdCUFFaSlIyN0pOdkxrWmRR@Library.amozesh-kade.ir:4097?type=tcp#[🇮🇷]t.me/ConfigsHub
+vless://89d07d9e-55af-4233-8e42-6739e085450f@ir4.horvexa.ir:2079?path=%2F&security=tls&encryption=none&insecure=0&host=world.ashahan.ir&fp=qq&type=xhttp&allowInsecure=0&sni=world.ashahan.ir#[🇮🇷]t.me/ConfigsHub
