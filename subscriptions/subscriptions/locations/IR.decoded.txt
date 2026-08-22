@@ -1,1 +1,1 @@
-vless://71418563-ee29-48ea-82c6-206c15a44c1c@turkey.blueheartz.ir:27632?encryption=none&flow=xtls-rprx-vision&fp=firefox&pbk=tge1_umgZzzbe243U0RmtmHKF9LNp-Hg6xg0KV7Zv1c&security=reality&sid=405edc07&sni=play-fe.googleapis.com&spx=%2Ff49596ec9d736a4&type=tcp#[🇮🇷]t.me/ConfigsHub
+vless://8ef35d02-5e6a-48d8-977a-ca3d61290b92@iri.lwjq.ir:9060?mode=auto&path=%2Fsnapp&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=0&fp=chrome&type=xhttp&allowInsecure=0&sni=tunk.avqu.ir#[🇮🇷]t.me/ConfigsHub
