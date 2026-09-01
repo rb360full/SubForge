@@ -1,1 +1,1 @@
-vless://8ef35d02-5e6a-48d8-977a-ca3d61290b92@iri.lwjq.ir:9060?mode=auto&path=%2Fsnapp&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=0&fp=chrome&type=xhttp&allowInsecure=0&sni=tunk.avqu.ir#[🇮🇷]t.me/ConfigsHub
+vless://bdc88354-fbc5-46d9-9462-289accca4d93@81.12.35.185:5002?pcs=1E27E21BB58FE0E243893F215EA7790202AE63CE8D41C9346714017EFD331C85&security=tls&alpn=h2%2C%20http%2F1.1&encryption=none&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=afr-data-16.myket.ir#[🇮🇷]t.me/ConfigsHub

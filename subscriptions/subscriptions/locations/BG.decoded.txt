@@ -1,1 +1,1 @@
-vless://bfb66910-f920-42c6-b52a-5f56e1dabcb4@82.118.18.224:443?security=reality&encryption=none&pbk=mx0NhP2x4HYUumJ1r0RV411imRCjKQDfDf5ApSz5cCE&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=www.cloudflare.com&sid=63499b2eceaee61e#[🇧🇬]t.me/ConfigsHub
+vless://2f35965a-9a9b-45fd-ba32-987296dfb6be@bg5.univesalsrv.com:443?encryption=none&security=reality&sni=bg5.univesalsrv.com&fp=firefox&pbk=RDWvDEygSk1eyAQhIK95H9EteFbrS2d9JEjBrco54Bw&sid=1a3102bb8e51399e&type=grpc&authority=&serviceName=gw.v2.RelayService&mode=gun#[🇧🇬]t.me/ConfigsHub
