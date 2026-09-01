@@ -1,3 +1,2 @@
 vless://701ea834-7c31-4544-95d6-f0a4dfe40b36@66.234.150.145:443?security=reality&encryption=none&pbk=KYlgK96xPZJq10GbhF-BaCXRxXc9XzxzfICdooYvMlg&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=storage.yandex.net&sid=d020b987f84eb78a#%F0%9F%87%AB%F0%9F%87%AE%40V2rayng_Fast
-vless://d3aebc17-a731-40fb-a755-aac1a4cf80f2@95.181.167.171:9090?security=none&encryption=none&headerType=none&type=tcp#[🇫🇮]t.me/ConfigsHub
 vless://566e679d-be8e-4465-b81c-a20fc89d59f4@d.telewebion.ir.varzesh3.com.de:443?security=reality&encryption=none&pbk=JtA0d5K6Jnmg35oWP9SDOsc1ceuqaxOsNg33fiPHJQs&host=yahoo.com&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=yahoo.com&sid=e915#[🇫🇮]t.me/ConfigsHub
