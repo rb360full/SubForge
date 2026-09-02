@@ -1,8 +1,1 @@
-vless://54d1237a-4da0-4623-9afb-bc6e229acfff@81.12.35.184:5002?encryption=none&type=tcp&security=tls&headerType=none&sni=afr-data-16.myket.ir&alpn=h3%2Ch2%2Chttp%2F1.1&insecure=1&allowInsecure=1#[🇮🇷]t.me/ConfigsHub
-vless://54d1237a-4da0-4623-9afb-bc6e229acfff@81.12.35.185:5002?encryption=none&type=tcp&security=tls&headerType=none&sni=afr-data-16.myket.ir&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1#[🇮🇷]t.me/ConfigsHub
-vless://54d1237a-4da0-4623-9afb-bc6e229acfff@81.12.35.187:5003?encryption=none&type=tcp&security=tls&headerType=none&sni=afr-data-16.myket.ir&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1#[🇮🇷]t.me/ConfigsHub
-vless://54d1237a-4da0-4623-9afb-bc6e229acfff@81.12.35.188:5004?encryption=none&type=tcp&security=tls&headerType=none&sni=afr-data-16.myket.ir&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1#[🇮🇷]t.me/ConfigsHub
-vless://54d1237a-4da0-4623-9afb-bc6e229acfff@81.12.35.186:5002?encryption=none&type=tcp&security=tls&headerType=none&sni=afr-data-16.myket.ir&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1#[🇮🇷]t.me/ConfigsHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpKaXNuYWd0dlJLcDJrUV9nY21DblNZLW1tUzRPek1lSg@81.12.35.187:443#[🇮🇷]t.me/ConfigsHub
-vless://54d1237a-4da0-4623-9afb-bc6e229acfff@81.12.35.186:5003?encryption=none&type=tcp&security=tls&headerType=none&sni=afr-data-16.myket.ir&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1#[🇮🇷]t.me/ConfigsHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpKaXNuYWd0dlJLcDJrUV9nY21DblNZLW1tUzRPek1lSg@81.12.35.185:443#[🇮🇷]t.me/ConfigsHub
+vless://38dd06a1-e1cb-492b-bb87-218ce05d0d67@185.143.233.5:80?path=%2F&security=none&encryption=none&host=fox-a9e04bb07a-test.apps.ir-central1.arvancaas.ir&type=ws#[🇮🇷]t.me/ConfigsHub
