@@ -3,6 +3,5 @@ vless://eeb6823c-b926-4ea2-866a-5542edd26e59@104.26.5.60:443?path=%2F&security=t
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.236.167:443?encryption=none&security=tls&sni=zdyj.kpcloud.eu.org&type=ws&host=zdyj.kpcloud.eu.org&path=TG%40juzibaipiao-juzi#[🇸🇬]t.me/ConfigsHub
 vless://d318cdac-0033-4b6e-98bf-35116e79c93f@54.251.224.5:26017?security=reality&encryption=none&pbk=cy4ePzAdSz4pqRmAXXchMIgSoSKo8qjq2qLk5805LRA&headerType=&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=www.amd.com&sid=af1c2e33b0c7dad7#[🇸🇬]@NetliVPN
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@206.238.237.40:443?security=tls&sni=hkm.ylks.link&type=ws&path=%2F#[🇸🇬]t.me/ConfigsHub
-vless://8abb4009-5efe-4d27-aa56-d50c37d2b1b8@52.221.220.242:22872?&security=reality&flow=xtls-rprx-vision&pbk=RSikfX950b5w04iH_VvXYAkC5zku5qilSsSIJoXzyhc&sid=2798448b96fff0e0&fp=firefox&sni=www.intel.com&type=tcp&headerType=none&host=www.intel.com&path=%2F#[🇸🇬]t.me/ConfigsHub
 vless://eeb6823c-b926-4ea2-866a-5542edd26e59@162.159.24.39:443?path=%2F&security=tls&encryption=none&insecure=0&host=t1s1.rittbo.kdns.fr&fp=chrome&type=ws&allowInsecure=0&sni=t1s1.rittbo.kdns.fr#🇸🇬
 vless://67c187e4-2f9f-b2bf-4c52-f7b20000000b@www.speedtest.net:2086?sni=ez-645eee.ezaccess13e2b2a.workers.dev&type=ws&host=ez-645eee.ezaccess13e2b2a.workers.dev&path=/sync#🇸🇬
