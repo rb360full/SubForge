@@ -1,2 +1,1 @@
-vless://ef4f4c3d-0b16-48ad-a8d8-2d22512b3b36@89.127.196.238:443?security=reality&encryption=none&pbk=-1HCWRKZmpJFJxw0PSzx1EzzGB2sM7ojBNbUGia4pj8&host=%2F%3FBIA_TELEGRAM%40MARAMBASHI_MARAMBASHI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=api-ch.upd-media.com&sid=b3c1d918e7c4f767#%40V2rayng_Fast%20%F0%9F%87%B8%F0%9F%87%AA
 vless://11b26931-7266-4fcb-895f-006031246faf@185.146.173.237:2053?security=tls&sni=FREE1-DE.MON9TER.eu&type=grpc&serviceName=%40VALAROS#[🇸🇪]t.me/ConfigsHub
