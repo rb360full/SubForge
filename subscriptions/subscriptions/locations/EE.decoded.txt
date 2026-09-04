@@ -1,1 +1,2 @@
 vless://d342d11e-d424-4583-b36e-524ab1f0afa4@45.80.110.209:80?allowInsecure=0&sni=a.ssll.gay&type=ws&host=a.ssll.gay&path=Twitterfreecodesfp=chrome#[🇪🇪]t.me/ConfigsHub
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.80.110.50:8880?type=ws&host=vms.lifetime51.workers.dev&path=/?ed=2560#[🇪🇪]t.me/ConfigsHub
