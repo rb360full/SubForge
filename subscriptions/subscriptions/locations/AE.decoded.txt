@@ -1,0 +1,1 @@
+vless://c543f005-59f7-40c1-9ae6-37505691d5be@51.77.217.70:2053?security=reality&encryption=none&pbk=UKvonm_uE7TSwksQIVQuNYgYwmcidr_g4lDIE2JW_Ag&host=Telegram-Leviko_v2ray&headerType=none&type=tcp&sni=www.google.com&sid=4868e772d098f0af#%F0%9F%87%A6%F0%9F%87%AA%20direct%20%7C%20%40Frog_V2ray
