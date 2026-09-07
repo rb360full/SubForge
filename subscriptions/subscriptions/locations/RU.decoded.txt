@@ -1,1 +1,2 @@
 vless://c82f8880-bdd8-4a35-b8e7-ad5aa880f7d0@45.67.215.177:443?security=tls&sni=zv.ylkszy.eu.org&type=ws&path=/?proxyip#[🇷🇺]t.me/ConfigsHub
+vless://2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5@45.133.247.138:443?path=tg%40zdyz2&security=tls&encryption=none&type=ws&sni=cfed.tgzdyz2.top#[🇷🇺]t.me/ConfigsHub
