@@ -1,1 +1,1 @@
-vless://0faaa1ee-f3d2-49ec-92af-3228329f3000@172.237.44.80:19567?sni=www.nvidia.com&type=tcp&headerType=none&encryption=none&pbk=tzm4xWHOerooioq4QQkI7VCvIapECgody_vJGDzX3UI&security=reality&host=v2rayNplus--v2rayNplus--v2rayNplus--&fp=firefox&flow=xtls-rprx-vision&sid=87714fc3c52a#[🇮🇳]t.me/ConfigsHub
+vless://e0b9fb0f-1bbd-478b-9580-c2294778338b@179.61.227.145:2083?security=reality&encryption=none&pbk=jowOwf_cxg_FNpG36QJcyqBWtDItBBYjqj7VGhD2lnw&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=assets.pleiades.codes&sid=d3124debabf1456c#[🇮🇳]t.me/ConfigsHub
