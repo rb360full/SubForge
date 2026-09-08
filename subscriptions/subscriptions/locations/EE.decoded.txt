@@ -1,2 +1,1 @@
 vless://d342d11e-d424-4583-b36e-524ab1f0afa4@45.80.110.209:80?allowInsecure=0&sni=a.ssll.gay&type=ws&host=a.ssll.gay&path=Twitterfreecodesfp=chrome#[🇪🇪]t.me/ConfigsHub
-vless://9d9e3421-5652-4804-85ba-238355b948ab@estproxy3.lockdwn.com:8443?security=tls&alpn=v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus&encryption=none&insecure=0&headerType=none&type=tcp&allowInsecure=0#[🇪🇪]t.me/ConfigsHub
