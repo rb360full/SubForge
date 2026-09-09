@@ -1,1 +1,2 @@
 vless://26fb53e4-fd49-4b34-b605-b6cc1b1a06a8@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=royal-shape-3771.93-728.workers.dev&type=ws#%F0%9F%87%B9%F0%9F%87%B7
+vless://eae02a50-e329-4647-926e-8439e685f317@86.38.214.23:443?security=tls&sni=first.pinocchio1.ir.&type=grpc&serviceName=%2Fcustom_config%3Fed%3D2048&fp=firefox&alpn=http/1.1#[🇹🇷]t.me/ConfigsHub
