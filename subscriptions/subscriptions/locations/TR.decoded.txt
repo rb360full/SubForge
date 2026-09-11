@@ -1,4 +1,1 @@
 vless://26fb53e4-fd49-4b34-b605-b6cc1b1a06a8@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=royal-shape-3771.93-728.workers.dev&type=ws#%F0%9F%87%B9%F0%9F%87%B7
-vless://0b39a009-2a2a-4035-ba87-cc82894f8e21@connect3.nyxserver.ir:8444?security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&headerType=none&fp=chrome&type=tcp#[🇹🇷]t.me/ConfigsHub
-vless://6f1f7a2f-88ac-4dd4-8f21-131c4d075242@64.49.13.77:8080?path=%2F&security=none&encryption=none&host=play.google.com&type=httpupgrade#[🇹🇷]t.me/ConfigsHub
-vless://6f1f7a2f-88ac-4dd4-8f21-131c4d075242@64.49.13.77:8443?path=%2F&security=none&encryption=none&host=play.google.com&type=ws#[🇹🇷]t.me/ConfigsHub
