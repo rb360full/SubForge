@@ -1,1 +1,2 @@
 vless://26fb53e4-fd49-4b34-b605-b6cc1b1a06a8@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=royal-shape-3771.93-728.workers.dev&type=ws#%F0%9F%87%B9%F0%9F%87%B7
+vless://79f98593-6a21-4783-a425-3d5609a79df1@app.life-pro.ir:8082?security=&alpn=v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus&encryption=none&headerType=none&type=tcp#[🇹🇷]t.me/ConfigsHub
