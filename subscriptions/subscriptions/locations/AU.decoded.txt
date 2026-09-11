@@ -1,2 +1,1 @@
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpUV0c3SjFLUjVLc1BhVjVxWkkrcmlldWVLeHhhZlpTcENI@45.77.232.213:15675#[🇦🇺]t.me/ConfigsHub
-ss://YWVzLTI1Ni1nY206WTZSOXBBdHZ4eHptR0M@103.106.231.82:5600#[🇦🇺]t.me/ConfigsHub
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@103.169.142.30:8880?path=%2F&security=none&encryption=none&host=vms.lifetime38.workers.dev&type=ws#[🇦🇺]t.me/ConfigsHub
