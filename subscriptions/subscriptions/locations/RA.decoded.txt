@@ -1,1 +1,1 @@
-vless://4350213a-b4e7-262a-0bd7-bd16957cf71a@89.47.55.9:443?mode=auto&path=%2F&security=reality&encryption=none&pbk=TWaatavWGcWV-E7c4AXmBXypLKJzm6eR3FGG61spayQ&fp=chrome&type=xhttp&sni=www.sony.com#[🇷🇦]t.me/ConfigsHub
+vless://9e4b7901-2f3b-4e52-ba05-9d41e1504596@aefrisveryfarfromyou.arakphone.ir:443?mode=auto&path=%2F&security=reality&encryption=none&pbk=ogvyxrJMMeHnJ5ruYEjkaRlXEkcFqGwvEgEQYBUXdRY&host=cdn.diba4movie.xyz&fp=ios&type=xhttp&sni=cdn.diba4movie.xyz&sid=fcce92e91c74bd10#[🇷🇦]t.me/ConfigsHub
