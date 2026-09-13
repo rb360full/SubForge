@@ -1,2 +1,1 @@
 vless://c82f8880-bdd8-4a35-b8e7-ad5aa880f7d0@45.67.215.177:443?security=tls&sni=zv.ylkszy.eu.org&type=ws&path=/?proxyip#[🇷🇺]t.me/ConfigsHub
-vless://d73e3cdc-a80b-4e73-a11b-cc467d7a84f8@193.233.217.212:443?security=reality&encryption=none&pbk=NuS0Su5ozBXBDDBEeBHc2AaeL4qRxK-w9SN4t0VP8Bs&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=pl.sdssv-vid.online&sid=d74a5340e604148e#[🇷🇺]t.me/ConfigsHub

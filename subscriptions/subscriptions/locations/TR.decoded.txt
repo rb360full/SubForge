@@ -1,1 +1,2 @@
 vless://26fb53e4-fd49-4b34-b605-b6cc1b1a06a8@104.16.72.101:8880?path=%2Fpyip&security=none&encryption=none&host=royal-shape-3771.93-728.workers.dev&type=ws#%F0%9F%87%B9%F0%9F%87%B7
+vless://2f35965a-9a9b-45fd-ba32-987296dfb6be@45.9.156.42:443?mode=gun&security=reality&encryption=none&authority=%2F%3FTELEGRAM--MARAMBASHI--MARAMBASHI&pbk=RDWvDEygSk1eyAQhIK95H9EteFbrS2d9JEjBrco54Bw&fp=firefox&type=grpc&serviceName=gw.v2.RelayService&sni=bg5.univesalsrv.com&sid=1a3102bb8e51399e#%40V2rayng_Fast%20%F0%9F%87%B9%F0%9F%87%B7
