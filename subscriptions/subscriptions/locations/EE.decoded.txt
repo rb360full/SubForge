@@ -1,2 +1,1 @@
 vless://d342d11e-d424-4583-b36e-524ab1f0afa4@45.80.110.209:80?allowInsecure=0&sni=a.ssll.gay&type=ws&host=a.ssll.gay&path=Twitterfreecodesfp=chrome#[🇪🇪]t.me/ConfigsHub
-vless://42d932cb-8768-41de-b57b-299252a493d2@185.155.55.10:8443?security=reality&alpn=v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus--v2rayNplus&encryption=none&pbk=ApMfbcEyBOve6DxXoBNVu3bCCzQ7XCEYB4ummsDtTBE&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=ee-nf.reddotcorp.org&sid=661766b2bcef440a#[🇪🇪]t.me/ConfigsHub
