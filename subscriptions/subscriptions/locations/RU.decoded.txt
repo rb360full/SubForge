@@ -1,1 +1,2 @@
+vless://16b37572-636e-4f46-8d45-203fccd4bff8@efmir.inrouge.today:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=efmir.inrouge.today&fp=chrome&pbk=-pNxknNY1xAONI5bEKXsaFlnr803OxCS1xAn2pg92n0&sid=eb9ef5e48a9e92f6&type=tcp&headerType=none#%F0%9F%87%B7%F0%9F%87%BA%20%20%40V2_MOD_SHOP
 vless://c82f8880-bdd8-4a35-b8e7-ad5aa880f7d0@45.67.215.177:443?security=tls&sni=zv.ylkszy.eu.org&type=ws&path=/?proxyip#[🇷🇺]t.me/ConfigsHub
