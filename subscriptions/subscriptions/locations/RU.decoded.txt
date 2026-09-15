@@ -1,1 +1,3 @@
 vless://c82f8880-bdd8-4a35-b8e7-ad5aa880f7d0@45.67.215.177:443?security=tls&sni=zv.ylkszy.eu.org&type=ws&path=/?proxyip#[🇷🇺]t.me/ConfigsHub
+vless://01a21e01-6098-4c3b-a6fd-1a04d64d0c7f@app4.betust.net:443?security=reality&encryption=none&pbk=NCW-zK60GXsiDdlbxww18Pqp4kz3zTG1URHWS_bnfDk&headerType=none&fp=firefox&spx=%2F&type=tcp&flow=xtls-rprx-vision&sni=app4.betust.net&sid=3f7e0363#[🇷🇺]t.me/ConfigsHub
+vless://01a21e01-6098-4c3b-a6fd-1a04d64d0c7f@api.betust.net:443?security=reality&encryption=none&pbk=YczbievYAOeZIypa58aRpil6XbfdyifK_0cFJWn8-yg&headerType=none&fp=firefox&spx=%2F&type=tcp&flow=xtls-rprx-vision&sid=d6c172d3#[🇷🇺]t.me/ConfigsHub
