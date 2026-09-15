@@ -1,1 +1,1 @@
-vless://77ec0ba9-b646-4e66-a45b-5440c4ee69a0@190.93.247.155:443?security=tls&sni=all4.savagev2ray.site&type=ws&host=all4.savagev2ray.site&path=%2FTelegram%20-%20%40XvProxy%20-%20Telegram%20-%20%40XvProxy#[🇮🇨]t.me/ConfigsHub
+vless://837a9150-aad5-48e3-b69f-6ad76fff0236@190.93.247.155:80?security=none&type=ws&host=1.V2rayV2ray-_-_-V2ray.Zemestanil.Ir&path=%2F%40Proxy_MTM-%40Proxy_MTM-%40Proxy_MTM-Proxy_%40MTM%3Fed%3D2056#[🇮🇨]t.me/ConfigsHub

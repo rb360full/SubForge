@@ -1,2 +1,1 @@
-vless://d9f0d703-c769-8d67-3f33-0aa0b511173d@latvi.hosting-96.biz.id:7097?security=none&encryption=none&host=play-apps-features.googleusercontent.com&headerType=http&type=tcp#[🇱🇻]t.me/ConfigsHub
 vless://eab915bc-d2df-73d1-47d0-6eb240497055@gr1.fifapes.monster:8882?security=&encryption=none&headerType=http&type=tcp#%F0%9F%87%B1%F0%9F%87%BB%40V2rayng_Fast

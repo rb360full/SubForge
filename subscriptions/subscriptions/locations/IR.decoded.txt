@@ -1,1 +1,1 @@
-vless://756a76ad-7461-4fd3-9eaa-c01617afa707@vodcez.vipstarone.com:54331?security=reality&encryption=none&pbk=hoTFebij4B-4dVqW2WsC-Jttn5NyMkf75ZcH6UReQ0k&headerType=none&fp=chrome&spx=%2Fe81bdfbb9f4c4d8&type=tcp&sni=www.google.com&sid=d5840488e433c7ee#[🇮🇷]t.me/ConfigsHub
+vless://1b5a7a00-2bcf-463e-9f1f-c47756588fb5@t1dn.blazenetwork.ir:443?path=%2Ft%2Fassets&security=tls&alpn=http%2F1.1&encryption=none&insecure=0&host=t1dn.blazenetwork.ir&fp=random&type=ws&allowInsecure=0&sni=t1dn.blazenetwork.ir#%F0%9F%87%AE%F0%9F%87%B7%20Iran%20%7C%20%40config_star1
