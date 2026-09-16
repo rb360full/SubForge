@@ -5,6 +5,7 @@ import json
 import socket
 import threading
 from contextlib import closing
+from dataclasses import replace
 from pathlib import Path
 
 from core.pipeline import SubscriptionPipeline
@@ -257,6 +258,85 @@ def test_pipeline_can_preserve_received_order_and_limit_configs(tmp_path: Path) 
     )
 
     assert [node.remark for node in result.nodes] == ["newest", "older"]
+
+
+def test_pipeline_sorts_unsorted_configs_by_message_time_across_channels(tmp_path: Path) -> None:
+    class StubTester:
+        def test(self, node: object) -> TestResult:
+            return TestResult(is_reachable=True, latency_ms=20, metadata={"node": node})
+
+    text = (
+        "vless://uuid@channel-a-old.example.com:443#a-old\n"
+        "vless://uuid@channel-a-new.example.com:443#a-new\n"
+        "vless://uuid@channel-b-new.example.com:443#b-new"
+    )
+    parser = SubscriptionParser()
+    parsed = parser.parse_text(text)
+    timestamp_by_host = {
+        "channel-a-old.example.com": 100.0,
+        "channel-a-new.example.com": 300.0,
+        "channel-b-new.example.com": 200.0,
+    }
+    nodes = tuple(
+        replace(
+            node,
+            metadata={**node.metadata, "source_message_timestamp": timestamp_by_host[node.host]},
+        )
+        for node in parsed.nodes
+    )
+
+    class StubParser:
+        def parse_text(self, _: str, source: str | None = None):
+            return type("Parsed", (), {"nodes": nodes})()
+
+    pipeline = SubscriptionPipeline(output_dir=tmp_path, tester=StubTester(), parser=StubParser())
+    result = pipeline.run(
+        text,
+        "subscriptions/Telegram-List1.txt",
+        sort_configs=False,
+        config_count=2,
+    )
+
+    assert [node.remark for node in result.nodes] == ["a-new", "b-new"]
+
+
+def test_pipeline_limits_to_newest_healthy_configs_before_latency_sort(tmp_path: Path) -> None:
+    class StubTester:
+        def test(self, node: object) -> TestResult:
+            return TestResult(is_reachable=True, latency_ms=1, metadata={"node": node})
+
+    text = (
+        "vless://uuid@old.example.com:443#old\n"
+        "vless://uuid@new.example.com:443#new\n"
+        "vless://uuid@newest.example.com:443#newest"
+    )
+    parsed = SubscriptionParser().parse_text(text)
+    timestamp_by_host = {
+        "old.example.com": 100.0,
+        "new.example.com": 200.0,
+        "newest.example.com": 300.0,
+    }
+    nodes = tuple(
+        replace(
+            node,
+            metadata={**node.metadata, "source_message_timestamp": timestamp_by_host[node.host]},
+        )
+        for node in parsed.nodes
+    )
+
+    class StubParser:
+        def parse_text(self, _: str, source: str | None = None):
+            return type("Parsed", (), {"nodes": nodes})()
+
+    pipeline = SubscriptionPipeline(output_dir=tmp_path, tester=StubTester(), parser=StubParser())
+    result = pipeline.run(
+        text,
+        "subscriptions/Telegram-List1.txt",
+        sort_configs=True,
+        config_count=2,
+    )
+
+    assert {node.remark for node in result.nodes} == {"new", "newest"}
 
 
 def test_pipeline_preserves_location_metadata_from_tester(tmp_path: Path) -> None:

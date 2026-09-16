@@ -42,13 +42,13 @@
     },
     {
       "name": "Telegram_List3",
-      "enabled": false,
+      "enabled": true,
       "subscription_name": "Telegram-List3",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 5,
+      "message_limit": 10,
       "sort": true,
-      "config_count": null,
+      "config_count": 40,
       "country_split": true,
       "channels": [
         "https://t.me/daily_configs",

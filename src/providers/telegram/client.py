@@ -151,6 +151,8 @@ class TelegramProvider:
                         metadata = dict(node.metadata)
                         metadata["source_channel"] = channel
                         metadata["source_message_index"] = analyzed_message_index
+                        if isinstance(msg_date, datetime):
+                            metadata["source_message_timestamp"] = msg_date.timestamp()
                         results.append(
                             ProxyConfig(
                                 protocol=node.protocol,

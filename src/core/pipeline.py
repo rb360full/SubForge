@@ -68,8 +68,15 @@ class SubscriptionPipeline:
                     tested.append((self._node_with_test_metadata(node, test_result.metadata), test_result))
                 if sort_configs:
                     tested.sort(key=lambda item: (item[1].latency_ms is None, item[1].latency_ms or 0))
+                else:
+                    tested.sort(
+                        key=lambda item: self._message_timestamp(item[0]),
+                        reverse=True,
+                    )
+                if config_count is not None and config_count > 0:
+                    tested = self._newest_tested_configs(tested, config_count)
                 nodes = tuple(node for node, _ in tested)
-        if config_count is not None and config_count > 0:
+        if skip_tests and config_count is not None and config_count > 0:
             nodes = nodes[:config_count]
         content = self._generator.generate(nodes)
         published = self._publisher.publish(output_path, content)
@@ -85,3 +92,22 @@ class SubscriptionPipeline:
             if key != "node":
                 metadata[key] = value
         return replace(node, metadata=metadata)
+
+    def _message_timestamp(self, node: SubscriptionNode) -> float:
+        """Return message time for newest-first ordering across channels."""
+        value = node.metadata.get("source_message_timestamp")
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            return float(value)
+        return float("-inf")
+
+    def _newest_tested_configs(
+        self,
+        tested: list[tuple[SubscriptionNode, object]],
+        config_count: int,
+    ) -> list[tuple[SubscriptionNode, object]]:
+        """Select the newest healthy configs before applying output ordering."""
+        newest = sorted(tested, key=lambda item: self._message_timestamp(item[0]), reverse=True)
+        selected = newest[:config_count]
+        if selected and all(self._message_timestamp(node) == float("-inf") for node, _ in selected):
+            return tested[:config_count]
+        return selected
