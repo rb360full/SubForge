@@ -44,9 +44,9 @@
       "subscription_name": "Telegram-List3",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 10,
+      "message_limit": 20,
       "sort": true,
-      "config_count": 40,
+      "config_count": 120,
       "channels": [
         "https://t.me/daily_configs",
         "https://t.me/chillguy_vpn",
