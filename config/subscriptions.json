@@ -2,11 +2,13 @@
   "subscriptions": [
     {
       "name": "default",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "Telegram-List1",
       "format": "plain",
       "provider": "telegram",
       "message_limit": 5,
+      "sort": true,
+      "config_count": null,
       "channels": [
         "https://t.me/PrivateVPNs",
         "https://t.me/bored_vpn",
@@ -19,11 +21,13 @@
     },
     {
       "name": "vpn_specialized",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "Telegram-List2",
       "format": "plain",
       "provider": "telegram",
       "message_limit": 5,
+      "sort": true,
+      "config_count": null,
       "channels": [
         "https://t.me/Capoit",
         "https://t.me/ConfigsHUB",
@@ -36,11 +40,13 @@
     },
     {
       "name": "Telegram_List3",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "Telegram-List3",
       "format": "plain",
       "provider": "telegram",
       "message_limit": 5,
+      "sort": true,
+      "config_count": null,
       "channels": [
         "https://t.me/daily_configs",
         "https://t.me/chillguy_vpn",
@@ -50,33 +56,39 @@
     },
     {
       "name": "ConfigsHUB",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "ConfigsHUB",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 20,
+      "message_limit": 10,
+      "sort": false,
+      "config_count": 5,
       "channels": [
         "https://t.me/ConfigsHUB"
       ]
     },
     {
       "name": "DailyConfigs",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "DailyConfigs",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 20,
+      "message_limit": 10,
+      "sort": true,
+      "config_count": null,
       "channels": [
         "https://t.me/daily_configs"
       ]
     },
     {
       "name": "ChillGuyVPN",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "ChillGuyVPN",
       "format": "plain",
       "provider": "telegram",
       "message_limit": 20,
+      "sort": true,
+      "config_count": null,
       "channels": [
         "https://t.me/chillguy_vpn"
       ]
@@ -88,17 +100,21 @@
       "format": "plain",
       "provider": "telegram",
       "message_limit": 20,
+      "sort": false,
+      "config_count": 10,
       "channels": [
         "https://t.me/V2ray_confiig"
       ]
     },
     {
       "name": "VIP_Configs",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "VIP_Configs",
       "format": "plain",
       "provider": "telegram",
       "message_limit": 15,
+      "sort": true,
+      "config_count": null,
       "channels": [
         "https://t.me/NetliVPN",
         "https://t.me/planB_net",
@@ -107,11 +123,13 @@
     },
     {
       "name": "merged",
-      "enabled": true,
+      "enabled": false,
       "subscription_name": "Telegram-Merged",
       "format": "plain",
       "provider": "telegram",
       "message_limit": 10,
+      "sort": true,
+      "config_count": null,
       "channels": []
     }
   ]

@@ -63,6 +63,24 @@ def subscription_message_limit(subscription: object, default: int) -> int:
     return default
 
 
+def subscription_sort_configs(subscription: object, default: bool = True) -> bool:
+    """Return whether subscription configs should be sorted by latency."""
+    metadata = getattr(subscription, "metadata", {})
+    if isinstance(metadata, dict) and isinstance(metadata.get("sort"), bool):
+        return metadata["sort"]
+    return default
+
+
+def subscription_config_count(subscription: object) -> int | None:
+    """Return a positive subscription config limit, if configured."""
+    metadata = getattr(subscription, "metadata", {})
+    if isinstance(metadata, dict):
+        value = metadata.get("config_count")
+        if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+            return value
+    return None
+
+
 def node_source_key(node: object) -> str:
     """Return the normalized Telegram channel key for a collected node."""
     metadata = getattr(node, "metadata", {})
@@ -341,7 +359,13 @@ def main(argv: list[str] | None = None) -> int:
                 source_display = "merged"
                 channels_display = f"{len(unique_channels)} unique channels"
             
-            result = pipeline.run(collected_text, output_filename, source=source_display)
+            result = pipeline.run(
+                collected_text,
+                output_filename,
+                source=source_display,
+                sort_configs=subscription_sort_configs(subscription),
+                config_count=subscription_config_count(subscription),
+            )
             
             # Write decoded file
             pub_path = Path(result.published.output_path)

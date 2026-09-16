@@ -233,6 +233,32 @@ def test_pipeline_prefers_faster_reachable_nodes(tmp_path: Path) -> None:
     assert [node.remark for node in result.nodes] == ["fast", "slow"]
 
 
+def test_pipeline_can_preserve_received_order_and_limit_configs(tmp_path: Path) -> None:
+    class StubTester:
+        def test(self, node: object) -> TestResult:
+            if node.host == "dead.example.com":
+                return TestResult(is_reachable=False, error="down")
+            return TestResult(is_reachable=True, latency_ms=20, metadata={"node": node})
+
+    text = (
+        "vless://uuid@newest.example.com:443#newest\n"
+        "vless://uuid@dead.example.com:443#dead\n"
+        "vless://uuid@older.example.com:443#older\n"
+        "vless://uuid@oldest.example.com:443#oldest"
+    )
+    pipeline = SubscriptionPipeline(output_dir=tmp_path, tester=StubTester())
+
+    result = pipeline.run(
+        text,
+        "subscriptions/Telegram-List1.txt",
+        source="telegram://channel",
+        sort_configs=False,
+        config_count=2,
+    )
+
+    assert [node.remark for node in result.nodes] == ["newest", "older"]
+
+
 def test_pipeline_preserves_location_metadata_from_tester(tmp_path: Path) -> None:
     class StubTester:
         def test(self, node: object) -> TestResult:

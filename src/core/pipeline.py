@@ -49,6 +49,8 @@ class SubscriptionPipeline:
         *,
         skip_tests: bool = False,
         test_workers: int = 32,
+        sort_configs: bool = True,
+        config_count: int | None = None,
     ) -> SubscriptionPipelineResult:
         parsed = self._parser.parse_text(text, source=source)
         deduplicated = self._deduplicator.deduplicate(parsed.nodes)
@@ -64,8 +66,11 @@ class SubscriptionPipeline:
                     if not test_result.is_reachable:
                         continue
                     tested.append((self._node_with_test_metadata(node, test_result.metadata), test_result))
-                tested.sort(key=lambda item: (item[1].latency_ms is None, item[1].latency_ms or 0))
+                if sort_configs:
+                    tested.sort(key=lambda item: (item[1].latency_ms is None, item[1].latency_ms or 0))
                 nodes = tuple(node for node, _ in tested)
+        if config_count is not None and config_count > 0:
+            nodes = nodes[:config_count]
         content = self._generator.generate(nodes)
         published = self._publisher.publish(output_path, content)
         return SubscriptionPipelineResult(nodes=nodes, content=content, published=published)
