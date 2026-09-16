@@ -9,7 +9,6 @@
       "message_limit": 5,
       "sort": true,
       "config_count": null,
-      "country_split": true,
       "channels": [
         "https://t.me/PrivateVPNs",
         "https://t.me/bored_vpn",
@@ -29,7 +28,6 @@
       "message_limit": 5,
       "sort": true,
       "config_count": null,
-      "country_split": true,
       "channels": [
         "https://t.me/Capoit",
         "https://t.me/ConfigsHUB",
@@ -49,7 +47,6 @@
       "message_limit": 10,
       "sort": true,
       "config_count": 40,
-      "country_split": true,
       "channels": [
         "https://t.me/daily_configs",
         "https://t.me/chillguy_vpn",
@@ -66,7 +63,6 @@
       "message_limit": 10,
       "sort": false,
       "config_count": 5,
-      "country_split": true,
       "channels": [
         "https://t.me/ConfigsHUB"
       ]
@@ -80,7 +76,6 @@
       "message_limit": 10,
       "sort": true,
       "config_count": null,
-      "country_split": true,
       "channels": [
         "https://t.me/daily_configs"
       ]
@@ -94,7 +89,6 @@
       "message_limit": 20,
       "sort": true,
       "config_count": null,
-      "country_split": true,
       "channels": [
         "https://t.me/chillguy_vpn"
       ]
@@ -108,7 +102,6 @@
       "message_limit": 20,
       "sort": false,
       "config_count": 10,
-      "country_split": true,
       "channels": [
         "https://t.me/V2ray_confiig"
       ]
@@ -122,7 +115,6 @@
       "message_limit": 15,
       "sort": true,
       "config_count": null,
-      "country_split": true,
       "channels": [
         "https://t.me/NetliVPN",
         "https://t.me/planB_net",
@@ -138,7 +130,6 @@
       "message_limit": 10,
       "sort": true,
       "config_count": null,
-      "country_split": true,
       "channels": []
     }
   ]

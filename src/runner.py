@@ -5,15 +5,12 @@ from __future__ import annotations
 import base64
 import os
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 from core.config import ConfigurationLoader
 from core.config_merger import ConfigMerger
-from core.location import country_code_for_node
 from core.node_serializer import dicts_to_nodes, nodes_to_dicts
 from core.pipeline import SubscriptionPipeline
-from filter.deduplicator import SubscriptionDeduplicator
 from generator.subscription_generator import SubscriptionGenerator
 from providers.telegram.client import TelegramProvider, TelegramProviderConfig
 from models.node import SubscriptionNode
@@ -81,14 +78,6 @@ def subscription_config_count(subscription: object) -> int | None:
     return None
 
 
-def subscription_country_split(subscription: object, default: bool = True) -> bool:
-    """Return whether this subscription contributes to country outputs."""
-    metadata = getattr(subscription, "metadata", {})
-    if isinstance(metadata, dict) and isinstance(metadata.get("country_split"), bool):
-        return metadata["country_split"]
-    return default
-
-
 def node_source_key(node: object) -> str:
     """Return the normalized Telegram channel key for a collected node."""
     metadata = getattr(node, "metadata", {})
@@ -114,32 +103,6 @@ def write_decoded_subscription(encoded_content: str, output_path: Path) -> Path:
     decoded_bytes = base64.b64decode(encoded_content.encode("utf-8"), validate=False)
     decoded_path.write_bytes(decoded_bytes)
     return decoded_path
-
-
-def publish_location_subscriptions(
-    output_dir: Path,
-    nodes: list[SubscriptionNode],
-    *,
-    relative_dir: str = "subscriptions/locations",
-) -> dict[str, Path]:
-    """Publish tested nodes into country-specific subscription files."""
-    deduplicated = SubscriptionDeduplicator().deduplicate(tuple(nodes))
-    nodes_by_country: dict[str, list[SubscriptionNode]] = defaultdict(list)
-    for node in deduplicated:
-        country_code = country_code_for_node(node)
-        if country_code:
-            nodes_by_country[country_code].append(node)
-
-    generator = SubscriptionGenerator()
-    published_paths: dict[str, Path] = {}
-    for country_code, country_nodes in sorted(nodes_by_country.items()):
-        content = generator.generate(tuple(country_nodes))
-        output_path = output_dir / relative_dir / f"{country_code}.txt"
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(content, encoding="utf-8")
-        write_decoded_subscription(content, output_path)
-        published_paths[country_code] = output_path
-    return published_paths
 
 
 def filter_nodes_for_subscription(
@@ -345,7 +308,6 @@ def main(argv: list[str] | None = None) -> int:
     )
     
     success_count = 0
-    tested_nodes: list[SubscriptionNode] = []
     for subscription in final_subscriptions:
         subscription_nodes = filter_nodes_for_subscription(
             all_nodes,
@@ -378,9 +340,6 @@ def main(argv: list[str] | None = None) -> int:
             # Write decoded file
             pub_path = Path(result.published.output_path)
             write_decoded_subscription(result.content, pub_path)
-            if subscription_country_split(subscription):
-                tested_nodes.extend(result.nodes)
-            
             print(f"✓ Published {subscription.subscription_name}.txt with {len(result.nodes)} nodes to {result.published.output_path}")
             print(f"  Channels: {channels_display}")
             success_count += 1
@@ -392,16 +351,6 @@ def main(argv: list[str] | None = None) -> int:
         print("Failed to process any subscriptions")
         return 1
 
-    if tested_nodes:
-        location_paths = publish_location_subscriptions(output_dir, tested_nodes)
-        if location_paths:
-            location_names = ", ".join(f"{code}.txt" for code in location_paths)
-            print(f"✓ Published location subscriptions: {location_names}")
-        else:
-            print("No location metadata found for tested configs; skipped location subscriptions")
-    else:
-        print("Country subscriptions disabled; skipped location subscriptions")
-    
     print(f"\n✓ Successfully processed {success_count}/{len(final_subscriptions)} subscription(s)")
     return 0
 

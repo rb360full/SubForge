@@ -3,7 +3,6 @@ from __future__ import annotations
 from models.node import SubscriptionNode
 from runner import (
     filter_nodes_for_subscription,
-    publish_location_subscriptions,
     normalize_telegram_channel,
     raw_text_from_nodes,
 )
@@ -81,93 +80,3 @@ def test_filter_nodes_for_subscription_applies_message_limit() -> None:
     )
 
 
-def test_publish_location_subscriptions_groups_tested_nodes_by_test_location(tmp_path) -> None:
-    nodes = [
-        SubscriptionNode(
-            protocol="vless",
-            host="de-one.example.com",
-            port=443,
-            metadata={
-                "raw": "vless://a@de-one.example.com:443#%F0%9F%87%A9%F0%9F%87%AA-a",
-                "source_channel": "https://t.me/ConfigsHUB",
-                "country_code": "DE",
-            },
-        ),
-        SubscriptionNode(
-            protocol="vless",
-            host="de-two.example.com",
-            port=443,
-            metadata={
-                "raw": "vless://b@de-two.example.com:443#🇩🇪-b",
-                "source_channel": "https://t.me/ConfigsHUB",
-                "country_code": "DE",
-            },
-        ),
-        SubscriptionNode(
-            protocol="vless",
-            host="gb-one.example.com",
-            port=443,
-            metadata={
-                "raw": "vless://c@gb-one.example.com:443#🇬🇧-c",
-                "source_channel": "https://t.me/ConfigsHUB",
-                "country_code": "GB",
-            },
-        ),
-    ]
-
-    paths = publish_location_subscriptions(tmp_path, nodes)
-
-    assert set(paths) == {"DE", "EN"}
-    assert (tmp_path / "subscriptions" / "locations" / "DE.txt").exists()
-    assert (tmp_path / "subscriptions" / "locations" / "DE.decoded.txt").read_text(encoding="utf-8") == (
-        "vless://a@de-one.example.com:443#%F0%9F%87%A9%F0%9F%87%AA-a\n"
-        "vless://b@de-two.example.com:443#🇩🇪-b"
-    )
-    assert (tmp_path / "subscriptions" / "locations" / "EN.decoded.txt").read_text(encoding="utf-8") == (
-        "vless://c@gb-one.example.com:443#🇬🇧-c"
-    )
-
-
-def test_publish_location_subscriptions_falls_back_to_remark_flags(tmp_path) -> None:
-    node = SubscriptionNode(
-        protocol="trojan",
-        host="162.159.38.119",
-        port=443,
-        password="humanity",
-        remark="🇺🇸@V2rayng_Fast",
-        metadata={
-            "raw": (
-                "trojan://humanity@162.159.38.119:443?security=tls&sni=www.calmloud.com"
-                "&insecure=0&allowInsecure=0&type=ws&host=www.calmloud.com"
-                "&path=%2Fassignment#%F0%9F%87%BA%F0%9F%87%B8%40V2rayng_Fast"
-            ),
-        },
-    )
-
-    paths = publish_location_subscriptions(tmp_path, [node])
-
-    assert set(paths) == {"US"}
-    assert (tmp_path / "subscriptions" / "locations" / "US.decoded.txt").read_text(encoding="utf-8") == (
-        "trojan://humanity@162.159.38.119:443?security=tls&sni=www.calmloud.com"
-        "&insecure=0&allowInsecure=0&type=ws&host=www.calmloud.com"
-        "&path=%2Fassignment#%F0%9F%87%BA%F0%9F%87%B8%40V2rayng_Fast"
-    )
-
-
-def test_publish_location_subscriptions_uses_metadata_country_code(tmp_path) -> None:
-    node = SubscriptionNode(
-        protocol="vless",
-        host="example.com",
-        port=443,
-        metadata={
-            "raw": "vless://a@example.com:443#plain",
-            "country_code": "de",
-        },
-    )
-
-    paths = publish_location_subscriptions(tmp_path, [node])
-
-    assert set(paths) == {"DE"}
-    assert (tmp_path / "subscriptions" / "locations" / "DE.decoded.txt").read_text(encoding="utf-8") == (
-        "vless://a@example.com:443#plain"
-    )

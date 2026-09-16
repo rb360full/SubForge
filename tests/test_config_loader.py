@@ -20,7 +20,6 @@ def test_configuration_loader_loads_project_config() -> None:
     assert telegram_provider.config.source["channels"] == []
     assert telegram_provider.config.source["default_message_limit"] == 5
     assert config.subscriptions[0].metadata["message_limit"] == 5
-    assert config.subscriptions[0].metadata["country_split"] is True
     assert config.subscriptions[0].channels[:2] == (
         "https://t.me/PrivateVPNs",
         "https://t.me/bored_vpn",
