@@ -13,20 +13,21 @@ def test_configuration_loader_loads_project_config() -> None:
     assert isinstance(config, AppConfiguration)
     assert config.settings.project_name == "SubForge"
     assert len(config.providers) == 3
-    assert len(config.subscriptions) == 3
+    assert len(config.subscriptions) == 9
     telegram_provider = next(provider for provider in config.providers if provider.name == "telegram")
     assert telegram_provider.config.enabled is True
     assert telegram_provider.config.preserve_previous_configs is True
     assert telegram_provider.config.source["channels"] == []
     assert telegram_provider.config.source["default_message_limit"] == 5
     assert config.subscriptions[0].metadata["message_limit"] == 5
+    assert config.subscriptions[0].metadata["country_split"] is True
     assert config.subscriptions[0].channels[:2] == (
         "https://t.me/PrivateVPNs",
         "https://t.me/bored_vpn",
     )
     assert len(config.subscriptions[0].channels) == 7
-    assert config.subscriptions[2].name == "merged"
-    assert config.subscriptions[2].channels == ()
+    merged_subscription = next(subscription for subscription in config.subscriptions if subscription.name == "merged")
+    assert merged_subscription.channels == ()
 
 
 def test_configuration_loader_missing_file(tmp_path: Path) -> None:

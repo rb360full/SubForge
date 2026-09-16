@@ -81,6 +81,14 @@ def subscription_config_count(subscription: object) -> int | None:
     return None
 
 
+def subscription_country_split(subscription: object, default: bool = True) -> bool:
+    """Return whether this subscription contributes to country outputs."""
+    metadata = getattr(subscription, "metadata", {})
+    if isinstance(metadata, dict) and isinstance(metadata.get("country_split"), bool):
+        return metadata["country_split"]
+    return default
+
+
 def node_source_key(node: object) -> str:
     """Return the normalized Telegram channel key for a collected node."""
     metadata = getattr(node, "metadata", {})
@@ -370,7 +378,8 @@ def main(argv: list[str] | None = None) -> int:
             # Write decoded file
             pub_path = Path(result.published.output_path)
             write_decoded_subscription(result.content, pub_path)
-            tested_nodes.extend(result.nodes)
+            if subscription_country_split(subscription):
+                tested_nodes.extend(result.nodes)
             
             print(f"✓ Published {subscription.subscription_name}.txt with {len(result.nodes)} nodes to {result.published.output_path}")
             print(f"  Channels: {channels_display}")
@@ -383,12 +392,15 @@ def main(argv: list[str] | None = None) -> int:
         print("Failed to process any subscriptions")
         return 1
 
-    location_paths = publish_location_subscriptions(output_dir, tested_nodes)
-    if location_paths:
-        location_names = ", ".join(f"{code}.txt" for code in location_paths)
-        print(f"✓ Published location subscriptions: {location_names}")
+    if tested_nodes:
+        location_paths = publish_location_subscriptions(output_dir, tested_nodes)
+        if location_paths:
+            location_names = ", ".join(f"{code}.txt" for code in location_paths)
+            print(f"✓ Published location subscriptions: {location_names}")
+        else:
+            print("No location metadata found for tested configs; skipped location subscriptions")
     else:
-        print("No location metadata found for tested configs; skipped location subscriptions")
+        print("Country subscriptions disabled; skipped location subscriptions")
     
     print(f"\n✓ Successfully processed {success_count}/{len(final_subscriptions)} subscription(s)")
     return 0
