@@ -108,13 +108,13 @@
     },
     {
       "name": "VIP_Configs",
-      "enabled": false,
+      "enabled": true,
       "subscription_name": "VIP_Configs",
       "format": "plain",
       "provider": "telegram",
-      "message_limit": 15,
+      "message_limit": 20,
       "sort": true,
-      "config_count": null,
+      "config_count": 150,
       "channels": [
         "https://t.me/NetliVPN",
         "https://t.me/planB_net",
